@@ -1,11 +1,11 @@
 public class User
 {
-	private static int userId;
-	private static String email;
-	private static String password;
-	private static int userType;
+	public static int userId;
+	public static String email;
+	public static String password;
+	public static int userType;
 	
-	public User(int userId,String email,String password,int userType)
+	public User(String email,String password,int userType)
 	{
 		userId++;
 		this.email=email;
