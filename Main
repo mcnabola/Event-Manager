@@ -7,13 +7,62 @@ public class main
 	final static String userFileName="Users.txt";
 	final static String facilityFileName="Facilities.txt";
 	final static String bookingFileName="Bookings.txt";
-	
+	private static int currentID;
+	private static int userType;
 	
 	public static void main(String [] args)
 	{
 	createNewUser();
 	createNewUser();
 	}
+
+
+public static boolean loginMethod(String username, String password)
+	{
+		File userFile = new File(userFileName);
+		Scanner in;
+		String[] fileElements;
+		boolean found = false;
+		int loginAttempts = 3;
+		try
+		{
+			if (userFile.exists())
+			{
+				while (!found)
+				{
+					in = new Scanner(userFile);
+					while (in.hasNext())
+					{
+						fileElements = in.nextLine().split(",");
+						if (username.equals(fileElements[1]) && password.equals(fileElements[2]))
+						{
+							found = true;
+							currentID = Integer.parseInt(fileElements[0]);
+							userType = Integer.parseInt(fileElements[3]);
+						}
+					}
+					in.close();
+					if (!found)
+					{
+						loginAttempts--; 
+						if (loginAttempts == 0)
+						{
+							JOptionPane.showMessageDialog(null, "No attempts remaining.");
+							break;
+						}
+						 JOptionPane.showMessageDialog(null, "Incorrect login details.\n" + loginAttempts + " attempt(s) remaining.");
+						username = JOptionPane.showInputDialog(null, "Enter username");
+						password = JOptionPane.showInputDialog(null,"Enter password");
+					}
+					else
+						JOptionPane.showMessageDialog(null, "Successfully logged in as " + username);	
+				}
+			}
+		}
+		catch(Exception e)
+		{}
+		return found;
+	} 
 
 
   public static String generatePassword()
@@ -105,5 +154,55 @@ public class main
         int result = JOptionPane.showOptionDialog(null, whatYouWantItToSay, "League Manager", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
         return result;
 	}
+	
+	/**
+	  * Checks if user email is already registered by searching in the user file
+	  * Input: Takes a user email string
+	  * Output: Returns a true boolean if email is found, returns false otherwise
+	  **/
+	public static boolean nameExists(String email)
+	{
+		File userFile = new File(userFileName);
+		boolean found = false;
+		Scanner in;
+		String[] fileElements;
+		try
+		{
+			in = new Scanner(userFile);
+			while(in.hasNext())
+			{
+				fileElements = in.nextLine().split(",");
+				if (fileElements[1].equals(email))
+					found = true;
+			}
+		}
+		catch(Exception e)
+		{}
+		return found;
+	}
+	
+	/**
+	  * Checks if an inputted string is a valid email address by comparing it to
+	  * a simple email pattern
+	  * Input: Takes an email string
+	  * Output: Returns a true boolean value if the email matches the pattern and 
+	  * returns false if it does not
+	  **/
+	public static boolean validEmail(String email)
+	{
+		boolean isValid = false; 
+		String pattern  = ("^[a-zA-Z0-9]+@[a-zA-Z0-9]+(.[a-zA-Z]{2,})$");
+		
+		if (email.matches(pattern))
+			isValid = true;
+		
+		return isValid;
+	}
+	
+	
+	
+	
+	
+	
 	
 }
