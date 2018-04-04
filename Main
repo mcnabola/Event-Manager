@@ -1,8 +1,21 @@
-public class Main
+import java.io.*;
+import javax.swing.*;
+import java.util.*;
+import java.awt.*;
+public class main
 {
+	final static String userFileName="Users.txt";
+	final static String facilityFileName="Facilities.txt";
+	final static String bookingFileName="Bookings.txt";
 	
-  
-  
+	
+	public static void main(String [] args)
+	{
+	createNewUser();
+	createNewUser();
+	}
+
+
   public static String generatePassword()
 	{
 		boolean isValidPassword=false;
@@ -26,8 +39,71 @@ public class Main
 		return password;
 	}
   
-  
-  
-  
-  
+	public static String menuBox(String options)
+	{
+		String input="";
+		try
+		{
+			input=JOptionPane.showInputDialog(null,options);
+			return input;
+		}
+		catch(Exception e)
+		{
+		JOptionPane.showMessageDialog(null,"Error: no String entered");
+		return menuBox(options);
+		}
+	}
+	
+	public static int menuBoxInt(String options)
+	{
+		String input="";
+		int inputAsInt=0;
+		try
+		{
+			input=JOptionPane.showInputDialog(null,options);
+			inputAsInt=Integer.parseInt(input);
+			return inputAsInt;
+		}
+		catch(Exception e)
+		{
+		JOptionPane.showMessageDialog(null,"Error:Input is not a number entered");
+		return menuBoxInt(options);
+		}
+	}
+	
+	public static void createNewUser()
+	{
+		String [] userTypes={"1","2"};
+		String email=menuBox("Please enter an email:");
+		String password=generatePassword();
+		int userType=optionBoxs(userTypes,"Please select a user type:");
+		User newUser=new User(email,password,userType);
+		int userId=newUser.getUserId();
+		String info=userId+","+email+","+password+","+userType;
+		writeFile(info,userFileName);
+	}
+	
+	
+	public static void writeFile(String input, String fileName)
+    {
+		try
+	    {
+            FileWriter aFileWriter = new FileWriter(fileName,true);
+            PrintWriter out = new PrintWriter(aFileWriter);
+	    	out.print(input);
+            out.println();
+            out.close();
+            aFileWriter.close();		
+	    }
+	    catch(Exception e)
+	    {}
+    }
+	
+
+	public static int optionBoxs(String[] options,String whatYouWantItToSay)
+	{
+        int result = JOptionPane.showOptionDialog(null, whatYouWantItToSay, "League Manager", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+        return result;
+	}
+	
 }
