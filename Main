@@ -3,7 +3,7 @@ public class Main
 	
   
   
-  public String generatePassword()
+  public static String generatePassword()
 	{
 		boolean isValidPassword=false;
 		int passwordLength=(int)((Math.random()*3)+8);
