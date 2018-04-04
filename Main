@@ -1,0 +1,33 @@
+public class Main
+{
+	
+  
+  
+  public String generatePassword()
+	{
+		boolean isValidPassword=false;
+		int passwordLength=(int)((Math.random()*3)+8);
+		int positionOfCharacter;
+		String password="";
+		String pattern="(?=.*?\\d)(?=.*?[a-zA-Z])(?=.*?[^\\w]).{8,}";
+		String possibleCharacters="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghiklmnopqrstuvwxyz1234567890!£$%^&*()_+=@;.,#~/?<>:'-";
+		while(!isValidPassword)
+		{
+			for(int i=0;i<passwordLength;i++)
+			{
+				positionOfCharacter=(int)(Math.random()*possibleCharacters.length()-1);
+				password=password+possibleCharacters.substring(positionOfCharacter,positionOfCharacter+1);
+			}
+			if(password.matches(pattern))
+				isValidPassword=true;
+			else
+				password="";
+		}
+		return password;
+	}
+  
+  
+  
+  
+  
+}
