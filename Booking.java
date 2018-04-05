@@ -3,12 +3,12 @@ import java.text.*;
 import javax.swing.*;
 public class Booking
 {
-	private static int bookingId;
-	private static int facilityId;
-	private static int userId;
-	private static Date date;
-	private static int slotNumber; // e.g 9am - 10am is slot 1.
-	private static char paymentStatus;
+	public int bookingId;
+	public int facilityId;
+	public int userId;
+	public Date date;
+	public int slotNumber; // e.g 9am - 10am is slot 1.
+	public char paymentStatus;
 	
 	public Booking(int bookingId,int facilityId,int userId,Date date,int slotNumber,char paymentStatus)
 	{
