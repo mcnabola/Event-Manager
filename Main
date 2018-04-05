@@ -164,4 +164,48 @@ public class main
          ex.printStackTrace();
         }
 	}
+	
+	/**
+	  * Checks if user email is already registered by searching in the user file
+	  * Input: Takes a user email string
+	  * Output: Returns a true boolean if email is found, returns false otherwise
+	  **/
+	public static boolean nameExists(String email)
+	{
+		File userFile = new File(userFileName);
+		boolean found = false;
+		Scanner in;
+		String[] fileElements;
+		try
+		{
+			in = new Scanner(userFile);
+			while(in.hasNext())
+			{
+				fileElements = in.nextLine().split(",");
+				if (fileElements[1].equals(email))
+					found = true;
+			}
+		}
+		catch(Exception e)
+		{}
+		return found;
+	}
+	
+	/**
+	  * Checks if an inputted string is a valid email address by comparing it to
+	  * a simple email pattern
+	  * Input: Takes an email string
+	  * Output: Returns a true boolean value if the email matches the pattern and 
+	  * returns false if it does not
+	  **/
+	public static boolean validEmail(String email)
+	{
+		boolean isValid = false; 
+		String pattern  = ("^[a-zA-Z0-9]+@[a-zA-Z0-9]+(.[a-zA-Z]{2,})$");
+		
+		if (email.matches(pattern))
+			isValid = true;
+		
+		return isValid;
+	}
 }
