@@ -1,9 +1,9 @@
 public class User
 {
-	private static int userId;
-	private static String email;
-	private static String password;
-	private static int userType;
+	public int userId;
+	public String email;
+	public String password;
+	public int userType;
 	
 	public User(int userId,String email,String password,int userType)
 	{
