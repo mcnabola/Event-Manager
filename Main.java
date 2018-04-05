@@ -255,4 +255,27 @@ public class main
 		{}
 		return found;
 	} 
+	
+		public static void createNewFacility()
+	{
+		String [] options={"True","False"};
+		String facilityName=menuBox("Please enter a facilityName:");
+		double pricePerHour=menuBoxInt("please enter a price per hour:");
+		String date=menuBox("Please enter a date:");
+		int facilityId=facilities.size()+1;
+		int whichChoice=optionBoxs(options,"Select availability");
+		boolean availability;
+		
+		if(whichChoice==0)
+			availability=true;
+		else
+			availability=false;
+		
+		Facility newFacility=new Facility(facilityId,facilityName,pricePerHour,availability);
+		newFacility.setDecommissionedUntilDate(date);
+		facilities.add(newFacility);
+		String info=newFacility.facilityToString();
+		writeFile(info,facilityFileName);
+	}
+	
 }
