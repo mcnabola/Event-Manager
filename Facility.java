@@ -76,4 +76,10 @@ public class Facility
 		this.availability=availability;
 	}
 	
+	public String facilityToString()
+	{
+		String info=""+facilityId+","+facilityName+","+pricePerHour+","+decommissionedUntilDate;
+		return info;
+	}
+	
 }
