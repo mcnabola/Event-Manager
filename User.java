@@ -1,9 +1,9 @@
 public class User
 {
-	public static int userId;
-	public static String email;
-	public static String password;
-	public static int userType;
+	private static int userId;
+	private static String email;
+	private static String password;
+	private static int userType;
 	
 	public User(String email,String password,int userType)
 	{
@@ -51,5 +51,11 @@ public class User
 	public void setUserType(int userType)
 	{
 		this.userType=userType;
+	}
+	
+	public String userToString()
+	{
+		String info=""+userId+","+email+","+password+","+userType;
+		return info;
 	}
 }
