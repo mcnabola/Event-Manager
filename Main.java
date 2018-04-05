@@ -81,8 +81,9 @@ public class main
 		String email=menuBox("Please enter an email:");
 		String password=generatePassword();
 		int userType=2;
-		User newUser=new User(email,password,userType);
-		int userId=newUser.getUserId();
+		int userId=users.size()+1;
+		User newUser=new User(userId,email,password,userType);
+		users.add(newUser);
 		String info=userId+","+email+","+password+","+userType;
 		writeFile(info,userFileName);
 	}
