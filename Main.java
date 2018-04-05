@@ -1,7 +1,6 @@
 import java.io.*;
 import javax.swing.*;
 import java.util.*;
-import java.awt.*;
 public class main
 {
 	final static String userFileName="Users.txt";
