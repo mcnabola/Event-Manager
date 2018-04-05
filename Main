@@ -9,6 +9,9 @@ public class main
 	final static String bookingFileName="Bookings.txt";
 	private static int currentID;
 	private static int userType;
+	private static ArrayList<User> users;
+	private static ArrayList<Facility> facilities;
+	private static ArrayList<Booking> bookings;
 	
 	public static void main(String [] args)
 	{
