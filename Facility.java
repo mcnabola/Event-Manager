@@ -3,11 +3,11 @@ import java.text.*;
 import javax.swing.*;
 public class Facility
 {
-	private static int facilityId;
-	private static String facilityName;
-	private static double pricePerHour;
-	private static Date decommissionedUntilDate;
-	private static boolean availability;
+	public int facilityId;
+	public String facilityName;
+	public double pricePerHour;
+	public Date decommissionedUntilDate;
+	public boolean availability;
 	
 	public Facility(int facilityId,String facilityName,double pricePerHour,Date decommissionedUntilDate,boolean availability)
 	{
@@ -17,6 +17,15 @@ public class Facility
 		this.decommissionedUntilDate=decommissionedUntilDate;
 		this.availability=availability;
 	}
+	
+	public Facility(int facilityId,String facilityName,double pricePerHour,boolean availability)
+	{
+		facilityId++;
+		this.facilityName=facilityName;
+		this.pricePerHour=pricePerHour;
+		this.availability=availability;
+	}
+	
 	
 	public int getFacilityId()
 	{
