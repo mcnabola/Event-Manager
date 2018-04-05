@@ -7,7 +7,7 @@ public class User
 	
 	public User(int userId,String email,String password,int userType)
 	{
-		userId++;
+		this.userId = userId;
 		this.email=email;
 		this.password=password;
 		this.userType=userType;
