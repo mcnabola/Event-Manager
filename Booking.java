@@ -88,4 +88,9 @@ public class Booking
 		this.paymentStatus=paymentStatus;
 	}
 	
+	public String bookingToString()
+	{
+		String info=""+bookingId+","+facilityId+","+userId+","+date+","+slotNumber+","+paymentStatus;
+		return info;
+	}
 }
