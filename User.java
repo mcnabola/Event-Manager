@@ -5,7 +5,7 @@ public class User
 	private static String password;
 	private static int userType;
 	
-	public User(String email,String password,int userType)
+	public User(int userId,String email,String password,int userType)
 	{
 		userId++;
 		this.email=email;
