@@ -199,7 +199,60 @@ public static boolean loginMethod(String username, String password)
 		return isValid;
 	}
 	
-	
+	/**
+	  * Searches a file for a given string in a given position and regenerates the file without the line
+	  * Copies every line from the file except the specified line and writes them to a temp file
+	  * The original file is then deleted and the temp file is renamed to the name of the original file
+	  * Input: Takes the filename, the string item to search for, and its position in a line
+	  **/
+	public static void removeLineFromFile(String fileName, String itemInLineToDel, int pos)
+	{
+		try 
+		{
+		        String[] fileElements;
+			String line = "";
+			File inFile = new File(fileName);
+			if (!inFile.isFile()) 
+			{
+				System.out.println("Parameter is not an existing file");
+				return;
+			}
+			File tempFile 	  = new File("temp.txt");
+			BufferedReader br = new BufferedReader(new FileReader(inFile));
+			PrintWriter pw 	  = new PrintWriter(new FileWriter(tempFile));
+			while ((line = br.readLine()) != null) 
+			{
+				fileElements = line.split(","); 
+				if (!fileElements[pos].equals(itemInLineToDel)) 
+				{
+				pw.println(line);
+				pw.flush();
+				}
+			}
+			pw.close();
+			br.close();
+			//Delete the original file
+			if (!inFile.delete()) 
+			{
+			System.out.println("Could not delete file");
+			return;
+			} 
+			//Rename the new file to the filename the original file had.
+			if (!tempFile.renameTo(inFile)) 
+			{
+				System.out.println("Could not rename file");
+				return;
+			}
+        } 
+		catch (FileNotFoundException ex) 
+		{
+          ex.printStackTrace();
+        } 
+		catch (IOException ex) 
+		{
+          ex.printStackTrace();
+        }
+	}
 	
 	
 	
