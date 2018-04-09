@@ -48,6 +48,10 @@ public class Booking
 		return paymentStatus;
 	}
 	
-	
-	//SETS TO BE ADDED
+	public String bookingToString()
+	{
+		String info = bookingId + "," + facilityId + "," + userId + "," + bookingDate + "," + bookingSlot + "," + paymentStatus;
+		return info;
+	}
+
 }
