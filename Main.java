@@ -16,28 +16,21 @@ public class main
 	
 	public static void main(String [] args)
 	{
-	String [] Options={"Log in","Create Account"};
-		int y=optionBoxs(Options,"Would you like to log in or create an account?");
-		switch(y)
-		{
-			case 0: String email=menuBox("Enter Username");
+	String email=menuBox("Enter Username");
 			String password=menuBox("Enter Password");
 			boolean testing=loginMethod(email,password);
 			if (testing&&userType==1)  
 			{
 				adminMenu();
-				break;
+			
 			}		
 				else if (testing&&userType==2)
 				{
 					userMenu();
-					break;
+					
 				}
-				else break;
+				else System.exit(0);
 				
-				case 1:createNewUser();
-				break;
-		}
 	}
 
 
