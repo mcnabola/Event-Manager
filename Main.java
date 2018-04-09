@@ -20,7 +20,77 @@ public class main
 	//createNewUser();
 	}
 
-
+	public static void restore() //TESTING***** ON START LOADS FROM FILE TO ARRAYLISTS 
+	{
+		Scanner in;
+		String[] fileElements;
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		try
+		{
+			File userFileName 	= new File(userFile);
+			File facilityFileName	= new File(facilityFile);
+			File bookingFileName 	= new File(bookingFile);
+			
+			in = new Scanner(new BufferedReader(new FileReader(userFile)));
+			while(in.hasNext())
+			{
+				fileElements 			= in.nextLine().split(",");
+				int	a 			= Integer.parseInt(fileElements[0]);
+				String b			= fileElements[1];
+				String c			= fileElements[2];
+				int d 				= Integer.parseInt(fileElements[3]); 			
+				User aUser 	= new User(a, b, c, d);
+				users.add(aUser);
+			}
+			in = new Scanner(new BufferedReader(new FileReader(facilityFile)));
+			while(in.hasNext())
+			{
+				int e;
+				String f;
+				double g;
+				fileElements 		    = in.nextLine().split(",");
+				if (fileElements.length == 3)
+				{
+					e					= Integer.parseInt(fileElements[0]);
+					f 					= fileElements[1];
+					g					= Double.parseDouble(fileElements[2]);
+					Facility aFacility 	= new Facility(e, f, g);
+					facilities.add(aFacility);
+				}
+				else
+				{
+					e					= Integer.parseInt(fileElements[0]);
+					f 					= fileElements[1];
+					g					= Double.parseDouble(fileElements[2]);
+					String temp1		= fileElements[3];
+					Date h				= formatter.parse(temp1);
+					Facility bFacility 	= new Facility(e, f, g, h);
+					facilities.add(bFacility);
+				}
+			}
+			in = new Scanner(new BufferedReader(new FileReader(bookingFile)));
+			while(in.hasNext())
+			{
+				fileElements			= in.nextLine().split(",");
+				int i 					= Integer.parseInt(fileElements[0]);
+				int j 					= Integer.parseInt(fileElements[1]);
+				int k 					= Integer.parseInt(fileElements[2]);
+				String temp2			= fileElements[3];
+				Date l					= formatter.parse(temp2);
+				int m					= Integer.parseInt(fileElements[4]);
+				boolean n				= Boolean.parseBoolean(fileElements[5]);
+				Booking aBooking		= new Booking(i, j, k, l, m, n);
+				bookings.add(aBooking);
+			}
+			in.close();
+		}
+		catch(Exception e)
+		{System.out.println(e.getMessage());}
+	}
+	
+	
+	
+	
   public static String generatePassword()
 	{
 		boolean isValidPassword=false;
