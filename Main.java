@@ -488,7 +488,7 @@ public class main
 			    }
 			    else
 			    {
-			        boolean ff =  (bookings.get(i).getPaymentStatus() == 'N') // opposite atm
+			        boolean ff =  (bookings.get(i).getPaymentStatus() == 'N'); // opposite atm
       				if (ff)
 				{
 				    amountDue += facilities.get(y).getPricePerHour();
