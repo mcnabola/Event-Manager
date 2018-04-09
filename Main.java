@@ -513,7 +513,7 @@ public class main
 		
 		IF UserType 2
 		User Id: 1   €56
-		*/
+		  - change ints to doubles*/
 	    return statement;
 	}
 }
