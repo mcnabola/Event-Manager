@@ -28,7 +28,7 @@ public class main
 		int positionOfCharacter;
 		String password="";
 		String pattern="(?=.*?\\d)(?=.*?[a-zA-Z])(?=.*?[^\\w]).{8,}";
-		String possibleCharacters="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghiklmnopqrstuvwxyz1234567890!£$%^&*()_+=@;.,#~/?<>:'-";
+		String possibleCharacters="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghiklmnopqrstuvwxyz1234567890!£$%^&*()_+=@;.#~/?<>:'-";
 		while(!isValidPassword)
 		{
 			for(int i=0;i<passwordLength;i++)
