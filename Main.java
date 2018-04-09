@@ -434,7 +434,11 @@ public class main
                 break;
 				case 2: //Record Payments;
 				break;
-				case 3: //View Account Statements;
+				case 3: String statementOutput = ""; 
+                                        for (int i = 0 ; i < users.size();i++)
+                                        { int userid = users.get(i).getUserId();
+				          statementOutput+= accountStatement(userid,1)+"\n";}						
+				          outputBoxs(statementOutput); 
 				break;
 			}
 		}
@@ -453,7 +457,7 @@ public class main
 		    {
 			    case 0: //View Bookings
 		        break;
-			    case 1: //View Account Statement
+			    case 1: accountStatement(currentID,2);
                 break;				
 			}
 		}	
