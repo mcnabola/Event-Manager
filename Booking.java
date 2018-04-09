@@ -7,7 +7,8 @@ public class Booking
 	public Date bookingDate;
 	public int bookingSlot;
 	public boolean paymentStatus;
-	//Bookingdate maybe as Date*****FIX LIKE USER/FACILITY
+	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+
 	public Booking(int bookingId, int facilityId, int userId, Date bookingDate, int bookingSlot, boolean paymentStatus)
 	{
 		this.bookingId 		= bookingId;
@@ -50,7 +51,8 @@ public class Booking
 	
 	public String bookingToString()
 	{
-		String info = bookingId + "," + facilityId + "," + userId + "," + bookingDate + "," + bookingSlot + "," + paymentStatus;
+		String temp = formatter.format(bookingDate);
+		String info = bookingId + "," + facilityId + "," + userId + "," + temp + "," + bookingSlot + "," + paymentStatus;
 		return info;
 	}
 
