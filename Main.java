@@ -432,7 +432,10 @@ public class main
 		
 		or 
 		
-		just the amount Due??
+		==-or-== 
+		
+		mark@m.ie   €56
+		sean@G.ie   €30
 		*/
 	    return amountDue;
 	}
