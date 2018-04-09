@@ -465,8 +465,8 @@ public class main
 			}
 		}	
 	}
-	
-	/*public static void viewBookings()
+
+	public static void viewBookings()
 	{
 		ArrayList<Booking> personalBookings=new ArrayList<Booking>();
 		ArrayList<String> info=new ArrayList<String>();
@@ -479,10 +479,14 @@ public class main
 		}
 		for(int i=0;i<personalBookings.size();i++)// have to get the facility name
 		{
-			
+			System.out.print(personalBookings.get(i).bookingToString());
 			
 		}
-	}*/
+	}
+		
+			
+			
+
 	
 	public static String accountStatement(int userId, int userType)
 	{
