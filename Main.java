@@ -278,4 +278,121 @@ public class main
 		writeFile(info,facilityFileName);
 	}
 	
+	public static void removeFacility()
+	{
+		String [] listOfFacilities=new String[facilities.size()];
+		int positionInArrayList=0;
+		for(int i=0;i<listOfFacilities.length;i++)
+		{
+			listOfFacilities[i]=facilities.get(i).getFacilityName();
+		}
+		String selection=dropDown(listOfFacilities,"Please select a facility to remove:");
+		for(int i=0;i<listOfFacilities.length;i++)
+		{
+			if(facilities.get(i).getFacilityName().equals(selection))
+				positionInArrayList=i;
+		}
+		boolean availability=facilities.get(positionInArrayList).getAvailability();
+		if(!(availability))
+			outputBoxs("This facility has a booking, cannot delete.");
+		else
+			facilities.remove(positionInArrayList);
+	}
+	
+	
+	public static String dropDown(String[] options, String dialogText)
+	{
+		String selection = "";
+		if (options.length != 0)
+		{
+			selection = (String)JOptionPane.showInputDialog(null, dialogText, "Input", 1, null, options, options[0]);
+		}
+		return selection;
+	}
+
+	
+	public static void outputBoxs(String output)
+	{
+	     JOptionPane.showMessageDialog(null, output);	
+	}
+	
+	public static void adminMenu()
+	{
+		String [] initialOptions = { "Register User", "Facility Menu", "Record Payments", "View Account Statements" };
+		String [] subOptions	 = {"Add Facility","View Facility Availability", "View Facility Bookings", "Remove Facility", "Decommission Facility", "Recommission Facility","Make Booking"};
+	        boolean main = true;
+		int x = 0;
+		while(main && x==0||x==1||x==2||x==3)  // && not null 
+		{	
+		    x = optionBoxs(initialOptions,"Choose an option");
+		    int y = 0;
+		    int z = 0;
+		
+		    switch (x)
+		    {
+			    case 0: createNewUser();
+		        break;
+			    case 1: y = optionBoxs(subOptions,"Choose an option");
+					switch (y)
+					{
+						case 0: createNewFacility();
+						break;
+						case 1: //Facility Availability
+						break;
+						case 2:	//View Facility Bookings		 
+						break;
+						case 3: removeFacility();
+						break;
+						case 4: //Decommission Facility
+						break;
+						case 5: //Recommission Facility
+						break;
+						case 6: //Make Booking
+						break;
+					}
+                break;
+				case 2: //Record Payments;
+				break;
+				case 3: //View Account Statements;
+				break;
+			}
+		}
+	}
+	
+	public static void userMenu()
+	{
+		String [] initialOptions = { "View Bookings", "View Account Statement"};
+	    boolean main = true;
+		int x = 0;
+		while (main && x==0||x==1||x==2||x==3)  // && not null 
+		{	
+		    x = optionBoxs(initialOptions,"Choose an option");
+		    int y = 0;
+		    switch (x)
+		    {
+			    case 0: //View Bookings
+		        break;
+			    case 1: //View Account Statement
+                break;				
+			}
+		}	
+	}
+	
+	/*public static void viewBookings()
+	{
+		ArrayList<Booking> personalBookings=new ArrayList<Booking>();
+		ArrayList<String> info=new ArrayList<String>();
+		String singleBooking;
+		String facilityName;
+		for(int i=0;i<bookings.size();i++)
+		{
+			if(bookings.get(i).getUserId()==currentID)
+				personalBookings.add(bookings.get(i));
+		}
+		for(int i=0;i<personalBookings.size();i++)// have to get the facility name
+		{
+			
+			
+		}
+	}*/
 }
