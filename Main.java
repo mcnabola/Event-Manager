@@ -395,4 +395,45 @@ public class main
 			
 		}
 	}*/
+	
+	public static int accountStatement(int userId)
+	{
+		// want to return the users statement of a specific account   || when user logged in - pass in his id || When admisistrator requests loop through users arraylist and pass in id to this and visulise results  
+		// loop through bookings - look for users id number
+			int amountDue = 0;
+		for (int i = 0 ; i < bookings.size(); i++ )
+		{
+            if (bookings.get(i).getUserId() == userId)
+			{
+				//Found a user now check if paid 
+				if (bookings.get(i).getPaymentStatus() == 'N')
+				{
+					// get the amount that the facility cost and add to amount Due
+					int x = bookings.get(i).getFacilityId();
+					for (int y = 0; i < facilities.size();y++)
+					{
+						if (facilities.get(y).getFacilityId() == x)
+						{
+							amountDue += facilities.get(y).getPricePerHour();
+						}
+					}
+				}
+			}				
+		}
+	
+	
+		// display a invoice styled format?
+		/*
+		Church Room   €100     Paid
+ 		Tea Room       €25   Unpaid
+		Room 3         €12   Unpaid
+		
+		Amount Due:            €37
+		
+		or 
+		
+		just the amount Due??
+		*/
+	    return amountDue;
+	}
 }
