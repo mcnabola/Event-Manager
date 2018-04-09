@@ -20,77 +20,7 @@ public class main
 	//createNewUser();
 	}
 
-	public static void restore() //TESTING***** ON START LOADS FROM FILE TO ARRAYLISTS 
-	{
-		Scanner in;
-		String[] fileElements;
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-		try
-		{
-			File userFileName 	= new File(userFile);
-			File facilityFileName	= new File(facilityFile);
-			File bookingFileName 	= new File(bookingFile);
-			
-			in = new Scanner(new BufferedReader(new FileReader(userFile)));
-			while(in.hasNext())
-			{
-				fileElements 			= in.nextLine().split(",");
-				int	a 			= Integer.parseInt(fileElements[0]);
-				String b			= fileElements[1];
-				String c			= fileElements[2];
-				int d 				= Integer.parseInt(fileElements[3]); 			
-				User aUser 	= new User(a, b, c, d);
-				users.add(aUser);
-			}
-			in = new Scanner(new BufferedReader(new FileReader(facilityFile)));
-			while(in.hasNext())
-			{
-				int e;
-				String f;
-				double g;
-				fileElements 		    = in.nextLine().split(",");
-				if (fileElements.length == 3)
-				{
-					e					= Integer.parseInt(fileElements[0]);
-					f 					= fileElements[1];
-					g					= Double.parseDouble(fileElements[2]);
-					Facility aFacility 	= new Facility(e, f, g);
-					facilities.add(aFacility);
-				}
-				else
-				{
-					e					= Integer.parseInt(fileElements[0]);
-					f 					= fileElements[1];
-					g					= Double.parseDouble(fileElements[2]);
-					String temp1		= fileElements[3];
-					Date h				= formatter.parse(temp1);
-					Facility bFacility 	= new Facility(e, f, g, h);
-					facilities.add(bFacility);
-				}
-			}
-			in = new Scanner(new BufferedReader(new FileReader(bookingFile)));
-			while(in.hasNext())
-			{
-				fileElements			= in.nextLine().split(",");
-				int i 					= Integer.parseInt(fileElements[0]);
-				int j 					= Integer.parseInt(fileElements[1]);
-				int k 					= Integer.parseInt(fileElements[2]);
-				String temp2			= fileElements[3];
-				Date l					= formatter.parse(temp2);
-				int m					= Integer.parseInt(fileElements[4]);
-				boolean n				= Boolean.parseBoolean(fileElements[5]);
-				Booking aBooking		= new Booking(i, j, k, l, m, n);
-				bookings.add(aBooking);
-			}
-			in.close();
-		}
-		catch(Exception e)
-		{System.out.println(e.getMessage());}
-	}
-	
-	
-	
-	
+
   public static String generatePassword()
 	{
 		boolean isValidPassword=false;
@@ -466,47 +396,56 @@ public class main
 		}
 	}*/
 	
-	public static int accountStatement(int userId)
+	public static String accountStatement(int userId, int userType)
 	{
-		// want to return the users statement of a specific account   || when user logged in - pass in his id || When admisistrator requests loop through users arraylist and pass in id to this and visulise results  
-		// loop through bookings - look for users id number
-			int amountDue = 0;
-		for (int i = 0 ; i < bookings.size(); i++ )
+	    // Want to return a String output that contains the amount due by each user - this output is depending on whether a admin or a user calls the method  
+	    int amountDue = 0;
+	    String statement = ( userId + "    " + amountDue );
+            for (int i = 0 ; i < bookings.size(); i++ )
+	    {
+                if (bookings.get(i).getUserId() == userId)
 		{
-            if (bookings.get(i).getUserId() == userId)
+	            int facilityID = bookings.get(i).getFacilityId();
+		    for (int y = 0; i < facilities.size();y++)
+		    {
+	                if (facilities.get(y).getFacilityId() == facilityID)
 			{
-				//Found a user now check if paid 
-				if (bookings.get(i).getPaymentStatus() == 'N')
+			    if (userType == 1)
+			    {
+			        if (bookings.get(i).getPaymentStatus() == 'N')
 				{
-					// get the amount that the facility cost and add to amount Due
-					int x = bookings.get(i).getFacilityId();
-					for (int y = 0; i < facilities.size();y++)
-					{
-						if (facilities.get(y).getFacilityId() == x)
-						{
-							amountDue += facilities.get(y).getPricePerHour();
-						}
-					}
+				    amountDue += facilities.get(y).getPricePerHour();
+                                    statement = userId + "    " + amountDue;									
 				}
-			}				
-		}
+			    }
+			    else
+			    {
+			        boolean ff =  (bookings.get(i).getPaymentStatus() == 'N') // opposite atm
+      				if (ff)
+				{
+				    amountDue += facilities.get(y).getPricePerHour();
+				}
+				statement += ( facilities.get(y).getFacilityName() + " " + facilities.get(y).getPricePerHour()  + "  Paid Status: " + ff );				    
+			    }
+		       }
+                   }
+		  }				
+		 } 
+	      statement += ("Amount Due:     " + amountDue);
 	
-	
-		// display a invoice styled format?
-		/*
+		
+		/*  IF UserType 1 
 		Church Room   €100     Paid
  		Tea Room       €25   Unpaid
 		Room 3         €12   Unpaid
 		
 		Amount Due:            €37
 		
-		or 
+		========
 		
-		==-or-== 
-		
-		mark@m.ie   €56
-		sean@G.ie   €30
+		IF UserType 2
+		User Id: 1   €56
 		*/
-	    return amountDue;
+	    return statement;
 	}
 }
