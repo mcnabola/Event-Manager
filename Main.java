@@ -484,7 +484,7 @@ public class main
 			
 			
 
-	
+	/////=====//// havent tested - but 0 errors when compiled 
 	public static String accountStatement(int userId, int userType)
 	{
 	    // Want to return a String output that contains the amount due by each user - this output is depending on whether a admin or a user calls the method  
@@ -537,7 +537,7 @@ public class main
 		  - change ints to doubles*/
 	    return statement;
 	}
-	
+	/* -- not finished and havent tested
 	public static void viewAvailabilityFacility()
 	{
 	//array for dropdown of the facilities
@@ -580,5 +580,5 @@ public class main
 			 
 			 
 		 }
-	}
+	} */
 }
