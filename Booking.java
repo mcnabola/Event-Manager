@@ -7,10 +7,10 @@ public class Booking
 	public int userId;
 	public Date bookingDate;
 	public int bookingSlot;
-	public boolean paymentStatus;
+	public char paymentStatus;
 	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
-	public Booking(int bookingId, int facilityId, int userId, Date bookingDate, int bookingSlot, boolean paymentStatus)
+	public Booking(int bookingId, int facilityId, int userId, Date bookingDate, int bookingSlot, char paymentStatus)
 	{
 		this.bookingId 		= bookingId;
 		this.facilityId 	= facilityId;
@@ -45,7 +45,7 @@ public class Booking
 		return bookingSlot;
 	}
 	
-	public boolean getPaymentStatus()
+	public char getPaymentStatus()
 	{
 		return paymentStatus;
 	}
