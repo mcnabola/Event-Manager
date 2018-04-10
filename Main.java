@@ -41,9 +41,9 @@ public class main
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		try
 		{
-			File userFileName 		= new File(userFile);
-			File facilityFileName	= new File(facilityFile);
-			File bookingFileName 	= new File(bookingFile);
+			File userFile 		= new File(userFileName);
+			File facilityFile	= new File(facilityFileName);
+			File bookingFile 	= new File(bookingFileName);
 			
 			in = new Scanner(new BufferedReader(new FileReader(userFile)));
 			while(in.hasNext())
