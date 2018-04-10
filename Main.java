@@ -102,7 +102,7 @@ public class main
 		{}
 	}	
 	
-  public static String generatePassword()
+  public static String generatePassword()  //// move method to User.java
 	{
 		boolean isValidPassword=false;
 		int passwordLength=(int)((Math.random()*3)+8);
@@ -226,13 +226,13 @@ public class main
 			//Delete the original file
 			if (!inFile.delete()) 
 			{
-			System.out.println("Could not delete file");
+			outputBoxs("Could not delete file");  
 			return;
 			} 
 			//Rename the new file to the filename the original file had.
 			if (!tempFile.renameTo(inFile)) 
 			{
-				System.out.println("Could not rename file");
+				outputBoxs("Could not rename file");
 				return;
 			}
        } 
@@ -403,7 +403,7 @@ public class main
 		String [] subOptions	 = {"Add Facility","View Facility Availability", "View Facility Bookings", "Remove Facility", "Decommission Facility", "Recommission Facility","Make Booking"};
 	        boolean main = true;
 		int x = 0;
-		while(main && x==0||x==1||x==2||x==3)  // && not null 
+		while(main && x==0||x==1||x==2||x==3)   
 		{	
 		    x = optionBoxs(initialOptions,"Choose an option");
 		    int y = 0;
@@ -449,7 +449,7 @@ public class main
 		String [] initialOptions = { "View Bookings", "View Account Statement"};
 	    boolean main = true;
 		int x = 0;
-		while (main && x==0||x==1||x==2||x==3)  // && not null 
+		while (main && x==0||x==1||x==2||x==3)  
 		{	
 		    x = optionBoxs(initialOptions,"Choose an option");
 		    int y = 0;
@@ -501,7 +501,7 @@ public class main
 			{
 			    if (userType == 1)
 			    {
-			        if (bookings.get(i).getPaymentStatus() == 'N')
+			        if (bookings.get(i).getPaymentStatus() == false)
 				{
 				    amountDue += facilities.get(y).getPricePerHour();
                                     statement = userId + "    " + amountDue;									
@@ -509,7 +509,7 @@ public class main
 			    }
 			    else
 			    {
-			        boolean ff =  (bookings.get(i).getPaymentStatus() == 'N'); // opposite atm
+			        boolean ff =  (bookings.get(i).getPaymentStatus() == false ); // opposite atm
       				if (ff)
 				{
 				    amountDue += facilities.get(y).getPricePerHour();
