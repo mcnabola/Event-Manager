@@ -1,39 +1,44 @@
 import java.util.*;
 import java.text.*;
+import java.time.*;
+import java.time.format.*;
+
 public class Facility
 {
 	public int facilityId;
 	public String facilityName;
 	public double pricePerHour;
-	public Date decommissionedUntil;
+	public LocalDate decommissionedUntil;
 	public boolean available;
-	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	
+	//IF USER DOEST WANT IT DECOMISSIONED WHEN CREATING FACILITY CALL THIS CONSTRUCTOR
 	public Facility(int facilityId, String facilityName, double pricePerHour)
 	{
 		this.facilityId 		 = facilityId;
 		this.facilityName		 = facilityName;
 		this.pricePerHour 		 = pricePerHour;
-		this.decommissionedUntil = decommissionedUntil;
-		this.available			 = getAvailability();
+		this.decommissionedUntil = null;
+		this.available			 = true();
 	}
 	//IF USER WANTS IT DECOMISSIONED WHEN CREATING FACILITY ENTER THIS CONSTRUCTOR
-	public Facility(int facilityId, String facilityName, double pricePerHour, Date decommissionedUntil)
-	{
+	public Facility(int facilityId, String facilityName, double pricePerHour, LocalDate decommissionedUntil)
+	{ 		
 		this.facilityId 		 = facilityId;
 		this.facilityName 		 = facilityName;
 		this.pricePerHour 		 = pricePerHour;
 		this.decommissionedUntil = decommissionedUntil;
 		this.available			 = getAvailability();
 	}
-	//IF USER DOEST WANT IT DECOMISSIONED WHEN CREATING FACILITY CALL THIS CONSTRUCTOR
-	public Facility(int facilityId, String facilityName, double pricePerHour, boolean available)
+	//IF USER WANTS IT DECOMISSIONED WHEN CREATING FACILITY BUT DATE IS STRING
+	public Facility(int facilityId, String facilityName, double pricePerHour, String decommissionedUntilDate)
 	{
 		this.facilityId 		 = facilityId;
 		this.facilityName 		 = facilityName;
 		this.pricePerHour 		 = pricePerHour;
-		this.decommissionedUntil = null;
-		this.available			 = true;
+		LocalDate aDate 		 = LocalDate.parse(decommissionedUntilDate);
+		this.decommissionedUntil = aDate;
+		this.available			 = getAvailability();
 	}
 	
 	public int getFacilityId()
@@ -51,43 +56,39 @@ public class Facility
 		return pricePerHour;
 	}
 	
-	public Date getDecommissionedUntil()
+	public LocalDate getDecommissionedUntil()
 	{
 		return decommissionedUntil;
 	}	
 	
 	public String facilityToString()
 	{
-		String temp = formatter.format(decommissionedUntil);
+		String temp = decommissionedUntil.format(formatter);
 		String info	= facilityId + "," + facilityName + "," + pricePerHour + "," + temp + "," + available;
 		return info;
 	}
 	
 	public boolean getAvailability()
 	{
-		Date decommissioned = decommissionedUntil;
+		LocalDate decommissioned = decommissionedUntil;
+		LocalDate today 		 = LocalDate.now();
 		boolean available = false;
-		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-		Date current = new Date();
-		if (current.after(decommissionedUntil))
+		if (today.isAfter(decommissionedUntil))
 			available = true;
 		return available;	
 	}
 	
-	public void setDecommissionedUntil(Date decommissionedUntil)
+	public void setDecommissionedUntil(String aDate)//SET WITH A STRING
 	{
-		//this.decommissionedUntil = decommissionedUntil;
-		//this.available		 = getAvailability();
-		
-		try
-		{
-			SimpleDateFormat aFormatter=new SimpleDateFormat("dd/MM/yyyy");
-			this.decommissionedUntil=aFormatter.parse(decommissionedUntilDate);
+			this.decommissionedUntil=LocalDate.parse(aDate);
 			this.available		 = getAvailability();
-		}
-		catch(ParseException e)
-		{
-			JOptionPane.showMessageDialog(null,"Error when parsing data");
-		}
 	}
+	
+	public void setDecommissionedUntil(LocalDate aDate)
+	{
+		this.decommissionedUntil = aDate;
+		this.available = getAvailability();
+	}
+	
+	
 }
