@@ -76,7 +76,18 @@ public class Facility
 	
 	public void setDecommissionedUntil(Date decommissionedUntil)
 	{
-		this.decommissionedUntil = decommissionedUntil;
-		this.available		 = getAvailability();
+		//this.decommissionedUntil = decommissionedUntil;
+		//this.available		 = getAvailability();
+		
+		try
+		{
+			SimpleDateFormat aFormatter=new SimpleDateFormat("dd/MM/yyyy");
+			this.decommissionedUntil=aFormatter.parse(decommissionedUntilDate);
+			this.available		 = getAvailability();
+		}
+		catch(ParseException e)
+		{
+			JOptionPane.showMessageDialog(null,"Error when parsing data");
+		}
 	}
 }
