@@ -41,11 +41,8 @@ public class main
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		try
 		{
-			File userFile 		= new File(userFileName);
-			File facilityFile	= new File(facilityFileName);
-			File bookingFile 	= new File(bookingFileName);
-			
-			in = new Scanner(new BufferedReader(new FileReader(userFile)));
+
+			in = new Scanner(new BufferedReader(new FileReader(userFileName)));
 			while(in.hasNext())
 			{
 				fileElements 			= in.nextLine().split(",");
@@ -56,7 +53,7 @@ public class main
 				User aUser 	= new User(a, b, c, d);
 				users.add(aUser);
 			}
-			in = new Scanner(new BufferedReader(new FileReader(facilityFile)));
+			in = new Scanner(new BufferedReader(new FileReader(facilityFileName)));
 			while(in.hasNext())
 			{
 				int e;
@@ -82,7 +79,7 @@ public class main
 					facilities.add(bFacility);
 				}
 			}
-			in = new Scanner(new BufferedReader(new FileReader(bookingFile)));
+			in = new Scanner(new BufferedReader(new FileReader(bookingFileName)));
 			while(in.hasNext())
 			{
 				fileElements			= in.nextLine().split(",");
@@ -160,12 +157,10 @@ public class main
 	public static void createNewUser()
 	{
 		String email=menuBox("Please enter an email:");
-		String password=generatePassword();
-		int userType=2;
 		int userId=users.size()+1;
-		User newUser=new User(userId,email,password,userType);
+		User newUser=new User(userId,email);
 		users.add(newUser);
-		String info=userId+","+email+","+password+","+userType;
+		String info=(userId+","+email);
 		writeFile(info,userFileName);
 	}
 	
