@@ -38,7 +38,7 @@ public class main
 	{
 		Scanner in;
 		String[] fileElements;
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		try
 		{
 
@@ -56,27 +56,29 @@ public class main
 			in = new Scanner(new BufferedReader(new FileReader(facilityFileName)));
 			while(in.hasNext())
 			{
+				Facility aFacility;
 				int e;
 				String f;
 				double g;
-				fileElements 		    = in.nextLine().split(",");
-				if (fileElements.length == 3)
+				fileElements = in.nextLine().split(",");
+				System.out.println(fileElements.length);
+				if (fileElements.length == 5) //IF DECOM DATE PROVIDED
 				{
-					e					= Integer.parseInt(fileElements[0]);
-					f 					= fileElements[1];
-					g					= Double.parseDouble(fileElements[2]);
-					Facility aFacility 	= new Facility(e, f, g);
+					e			 = Integer.parseInt(fileElements[0]);
+					f 			 = fileElements[1];
+					g		   	 = Double.parseDouble(fileElements[2]);
+					String temp1 = fileElements[3];
+					LocalDate h	 = LocalDate.parse(temp1, formatter);
+					aFacility 	 = new Facility(e, f, g, h);
 					facilities.add(aFacility);
 				}
 				else
 				{
-					e					= Integer.parseInt(fileElements[0]);
-					f 					= fileElements[1];
-					g					= Double.parseDouble(fileElements[2]);
-					String temp1		= fileElements[3];
-					Date h				= formatter.parse(temp1);
-					Facility bFacility 	= new Facility(e, f, g, h);
-					facilities.add(bFacility);
+					e = Integer.parseInt(fileElements[0]);
+					f = fileElements[1];
+					g = Double.parseDouble(fileElements[2]);
+					aFacility = new Facility(e, f, g);
+					facilities.add(aFacility);
 				}
 			}
 			in = new Scanner(new BufferedReader(new FileReader(bookingFileName)));
@@ -87,7 +89,7 @@ public class main
 				int j 					= Integer.parseInt(fileElements[1]);
 				int k 					= Integer.parseInt(fileElements[2]);
 				String temp2			= fileElements[3];
-				Date l					= formatter.parse(temp2);
+				LocalDate l				= LocalDate.parse(temp2);
 				int m					= Integer.parseInt(fileElements[4]);
 				boolean n				= Boolean.parseBoolean(fileElements[5]);
 				Booking aBooking		= new Booking(i, j, k, l, m, n);
