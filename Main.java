@@ -156,13 +156,13 @@ public class main
 		}
 	}
 	
-	public static void createNewUser()
+		public static void createNewUser()
 	{
 		String email=menuBox("Please enter an email:");
 		int userId=users.size()+1;
 		User newUser=new User(userId,email);
 		users.add(newUser);
-		String info=(userId+","+email);
+		String info=(newUser.userToString());
 		writeFile(info,userFileName);
 	}
 	
