@@ -18,7 +18,6 @@ public class Facility
 		this.facilityId 		 = facilityId;
 		this.facilityName		 = facilityName;
 		this.pricePerHour 		 = pricePerHour;
-		this.decommissionedUntil 	 = null;
 		this.available			 = true;
 	}
 	//IF USER WANTS IT DECOMISSIONED WHEN CREATING FACILITY ENTER THIS CONSTRUCTOR
@@ -27,7 +26,7 @@ public class Facility
 		this.facilityId 		 = facilityId;
 		this.facilityName 		 = facilityName;
 		this.pricePerHour 		 = pricePerHour;
-		this.decommissionedUntil 	 = decommissionedUntil;
+		this.decommissionedUntil = decommissionedUntil;
 		this.available			 = getAvailability();
 	}
 	//IF USER WANTS IT DECOMISSIONED WHEN CREATING FACILITY BUT DATE IS STRING
@@ -63,8 +62,16 @@ public class Facility
 	
 	public String facilityToString()
 	{
-		String temp = decommissionedUntil.format(formatter);
-		String info	= facilityId + "," + facilityName + "," + pricePerHour + "," + temp + "," + available;
+		String info = "";
+
+		if (decommissionedUntil != null)
+		{
+			String temp = decommissionedUntil.format(formatter);
+			
+			info	= facilityId + "," + facilityName + "," + pricePerHour + "," + temp + "," + available;
+		}
+		else
+			info 	= facilityId + "," + facilityName + "," + pricePerHour + "," + available; //Considering changing to include date=null
 		return info;
 	}
 	
