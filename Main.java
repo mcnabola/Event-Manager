@@ -1,6 +1,8 @@
 import java.io.*;
 import javax.swing.*;
 import java.util.*;
+import java.time.*;
+import java.time.format.*;
 public class main
 {
 	final static String userFileName="Users.txt";
@@ -8,9 +10,9 @@ public class main
 	final static String bookingFileName="Bookings.txt";
 	private static int currentID;
  	private static int userType;
-	private static ArrayList<User> users;
-	private static ArrayList<Facility> facilities;
-	private static ArrayList<Booking> bookings;
+	private static ArrayList<User> users=new ArrayList<User>();
+	private static ArrayList<Facility> facilities=new ArrayList<Facility>();
+	private static ArrayList<Booking> bookings=new ArrayList<Booking>();
  	
 	
 	
@@ -534,4 +536,53 @@ public class main
 			 
 		 }
 	} */
+		//NOT TESTED
+	//NOT TESTED
+	//NOT TESTED
+	public static void viewBookingsForAFacility() //check what slots are free or booked for a certain date
+	{
+     String[] facilitiesName = new String[facilities.size()];
+	 for (int i = 0; i < facilities.size();i++)
+	 {
+		 facilitiesName[i] = facilities.get(i).getFacilityName();
+	 }
+	 String choice = dropDown(facilitiesName, "Choose a facility to view availability for.");
+	 int facilityId=0;
+	 for (int i = 0; i< facilities.size();i++)
+	  {
+		 if (facilities.get(i).getFacilityName().equals(choice))
+		 {
+		 facilityId=facilities.get(i).getFacilityId();
+		 }
+	 }
+	 //LocalDate today=LocalDate.now();
+	 String date=menuBox("Enter a date search:");
+	 LocalDate secondDate=LocalDate.parse(date);
+	 boolean available=true;
+	 ArrayList<Integer> slotNumberForBookingsOfDate=new ArrayList<Integer>();
+	 for(int i=0;i<bookings.size();i++)
+	 {
+		if(bookings.get(i).getFacilityId()==facilityId)
+		{
+			if(bookings.get(i).getBookingDate().equals(secondDate))
+			{
+				available=false;
+				slotNumberForBookingsOfDate.add(bookings.get(i).getBookingSlot());
+			}
+		}
+	 }
+	 if(available==true)
+	 {
+		 outputBoxs("There is no bookings for this date.");
+	 }
+	 else
+	 { 
+	 String result="The current slots on the "+date+"are booked:"+"\n";
+	 for(int i=0;i<slotNumberForBookingsOfDate.size();i++)
+	 {
+		 result+="slot "+slotNumberForBookingsOfDate.get(i)+"\n";
+	 }
+	 outputBoxs(result);
+	 }
+	}
 }
