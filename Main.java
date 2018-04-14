@@ -101,28 +101,6 @@ public class main
 		{}
 	}	
 	
-  public static String generatePassword()  //// move method to User.java
-	{
-		boolean isValidPassword=false;
-		int passwordLength=(int)((Math.random()*3)+8);
-		int positionOfCharacter;
-		String password="";
-		String pattern="(?=.*?\\d)(?=.*?[a-zA-Z])(?=.*?[^\\w]).{8,}";
-		String possibleCharacters="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghiklmnopqrstuvwxyz1234567890!£$%^&*()_+=@;.#~/?<>:'-";
-		while(!isValidPassword)
-		{
-			for(int i=0;i<passwordLength;i++)
-			{
-				positionOfCharacter=(int)(Math.random()*possibleCharacters.length()-1);
-				password=password+possibleCharacters.substring(positionOfCharacter,positionOfCharacter+1);
-			}
-			if(password.matches(pattern))
-				isValidPassword=true;
-			else
-				password="";
-		}
-		return password;
-	}
   
 	public static String menuBox(String options)
 	{
@@ -194,53 +172,31 @@ public class main
 	  * The original file is then deleted and the temp file is renamed to the name of the original file
 	  * Input: Takes the filename, the string item to search for, and its position in a line
 	  **/
-	public static void removeLineFromFile(String fileName, String itemInLineToDel, int pos)
+		public static void removeStringFromFile(String fileName, String str, int pos)throws IOException
 	{
-		try 
+		String tempFileName = "temp.txt";
+		File scanFile = new File(fileName);
+		File tempFile = new File(tempFileName);
+		String[] fileElements;
+		BufferedReader br = new BufferedReader(new FileReader(scanFile));
+		
+		String currentLine = "";
+		try
 		{
-		        String[] fileElements;
-			String line = "";
-			File inFile = new File(fileName);
-			if (!inFile.isFile()) 
+			while((currentLine = br.readLine()) != null)
 			{
-				System.out.println("Parameter is not an existing file");
-				return;
+				fileElements = currentLine.split(",");
+				if (!(fileElements[2].equals(str)))
+					writeFile(currentLine, tempFileName);
 			}
-			File tempFile 	  = new File("temp.txt");
-			BufferedReader br = new BufferedReader(new FileReader(inFile));
-			PrintWriter pw 	  = new PrintWriter(new FileWriter(tempFile));
-			while ((line = br.readLine()) != null) 
-			{
-				fileElements = line.split(","); 
-				if (!fileElements[pos].equals(itemInLineToDel)) 
-				{
-				pw.println(line);
-				pw.flush();
-				}
-			}
-			pw.close();
 			br.close();
-			//Delete the original file
-			if (!inFile.delete()) 
-			{
-			outputBoxs("Could not delete file");  
-			return;
-			} 
-			//Rename the new file to the filename the original file had.
-			if (!tempFile.renameTo(inFile)) 
-			{
-				outputBoxs("Could not rename file");
-				return;
-			}
-       } 
-		catch (FileNotFoundException ex) 
-		{
-          ex.printStackTrace();
-        } 
-		catch (IOException ex) 
-		{
-         ex.printStackTrace();
-        }
+			 if(!(scanFile.delete()))
+				System.out.println("File deleted unsuccessfully");
+			if(!(tempFile.renameTo(scanFile)))
+				System.out.println("File renamed unsuccessfully");
+		}
+		catch(IOException e)
+		{}
 	}
 	
 	/**
