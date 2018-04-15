@@ -136,13 +136,28 @@ public class main
 		}
 	}
 	
-		public static void createNewUser()
+	public static void createNewUser()
 	{
-		String email=menuBox("Please enter an email:");
-		int userId=users.size()+1;
-		User newUser=new User(userId,email);
+		boolean found 	= true;
+		String email	= menuBox("Please enter an email:");
+		while (!validEmail(email) || found)
+		{
+			found = false;
+			if(!validEmail(email))
+				email = menuBox("Please enter a valid email:");
+			for (int i=0;i<users.size();i++)
+			{
+				if (users.get(i).getEmail().equals(email))
+					found = true;
+			}
+			if (found)
+				email = menuBox("Email already registered.Please enter another email:");
+		}	
+		
+		int userId	 =users.size()+1;
+		User newUser =new User(userId,email);
 		users.add(newUser);
-		String info=(newUser.userToString());
+		String info  =(newUser.userToString());
 		writeFile(info,userFileName);
 	}
 	
@@ -200,32 +215,7 @@ public class main
 		catch(IOException e)
 		{}
 	}
-	
-	/**
-	  * Checks if user email is already registered by searching in the user file
-	  * Input: Takes a user email string
-	  * Output: Returns a true boolean if email is found, returns false otherwise
-	  **/
-	public static boolean nameExists(String email)
-	{
-		File userFile = new File(userFileName);
-		boolean found = false;
-		Scanner in;
-		String[] fileElements;
-		try
-		{
-			in = new Scanner(userFile);
-			while(in.hasNext())
-			{
-				fileElements = in.nextLine().split(",");
-				if (fileElements[1].equals(email))
-					found = true;
-			}
-		}
-		catch(Exception e)
-		{}
-		return found;
-	}
+
 	
 	/**
 	  * Checks if an inputted string is a valid email address by comparing it to
