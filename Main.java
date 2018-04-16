@@ -8,8 +8,8 @@ public class main
 	final static String userFileName="Users.txt";
 	final static String facilityFileName="Facilities.txt";
 	final static String bookingFileName="Bookings.txt";
-	private static int currentID;
- 	private static int userType;
+	private static int currentUserId;
+ 	private static int currentUserType;
 	private static ArrayList<User> users=new ArrayList<User>();
 	private static ArrayList<Facility> facilities=new ArrayList<Facility>();
 	private static ArrayList<Booking> bookings=new ArrayList<Booking>();
@@ -21,12 +21,12 @@ public class main
 	String email=menuBox("Enter Username");
 			String password=menuBox("Enter Password");
 			boolean testing=loginMethod(email,password);
-			if (testing&&userType==1)  
+			if (testing&&currentUserType==1)  
 			{
 				adminMenu();
 			
 			}		
-				else if (testing&&userType==2)
+				else if (testing&&currentUserType==2)
 				{
 					userMenu();
 					
@@ -272,81 +272,25 @@ public class main
 		{}
 		return found;
 	}
-
-		public static boolean isValidDate(String date)throws IOException
-	{
-		try
-		{
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-			LocalDate test = LocalDate.parse(date, formatter);
-			System.out.println(" TRUE" + test);
-			return true;
-		}
-		catch(Exception e)
-		{
-			return false;
-		}
-	}
 	
-public static void createNewFacility()
+	public static void createNewFacility()
 	{
-		Facility aFacility;
-		String date;
-		int facilityId;
-		int temp = 0;
-		boolean found = true;
-		boolean check = false;
-		try
-		{
-			for (int i=0;i<facilities.size();i++)
-			{
-				if (facilities.get(i).getFacilityId() > temp)
-					temp = facilities.get(i).getFacilityId();
-			}
-			facilityId = temp + 1;
-			
-			String facilityName = menuBox("Please enter a facilityName:");
-			while (found)
-			{
-				found = false;
-				for (int j=0;j<facilities.size();j++)
-				{
-					if (facilities.get(j).getFacilityName().equals(facilityName))
-						found = true;
-				}
-				if (found)
-					facilityName = menuBox("Facility already exists.\nPlease enter another facility name:");
-			}	
-			
-			double pricePerHour 	= menuBoxInt("please enter a price per hour:");
-			int decommissionChoice 	= JOptionPane.showConfirmDialog (null, "Do you want to decommission this facility?","Facility",JOptionPane.YES_NO_OPTION);
-			
-			if (decommissionChoice == JOptionPane.YES_OPTION)
-			{
-				date = menuBox("Please enter a date:");
-				check = isValidDate(date);
-				while(check == false)
-				{
-					date = menuBox("Please enter a valid date:\nFormat(DD/MM/YYYY)");
-					check = isValidDate(date);
-				}
-				aFacility = new Facility(facilityId, facilityName, pricePerHour, date);
-			}
-			else
-				aFacility = new Facility(facilityId, facilityName, pricePerHour);
-			
-			facilities.add(aFacility);
-			String info = aFacility.facilityToString();
-			System.out.println(info);
-			writeFile(info,facilityFileName);
-		}
-		catch(Exception e)
-		{}
+		String facilityName=menuBox("Please enter a facilityName:");
+		double pricePerHour=menuBoxInt("please enter a price per hour:");
+		String date=menuBox("Please enter a date:");
+		int facilityId=facilities.size()+1;
+		Facility newFacility=new Facility(facilityId,facilityName,pricePerHour);
+		facilities.add(newFacility);
+		String info=newFacility.facilityToString();
+		writeFile(info,facilityFileName);
 	}
 	
 	public static void removeFacility()
 	{
+		try
+		{
 		String [] listOfFacilities=new String[facilities.size()];
+		int facilityId=0;
 		int positionInArrayList=0;
 		for(int i=0;i<listOfFacilities.length;i++)
 		{
@@ -356,13 +300,25 @@ public static void createNewFacility()
 		for(int i=0;i<listOfFacilities.length;i++)
 		{
 			if(facilities.get(i).getFacilityName().equals(selection))
+			{
+				facilityId=facilities.get(i).getFacilityId();
 				positionInArrayList=i;
+			}
 		}
-		boolean availability=facilities.get(positionInArrayList).getAvailability();
+		boolean availability=true;
+		for(int i=0;i<bookings.size();i++)
+		{
+			if(bookings.get(i).getFacilityId()==facilityId)
+				availability=false;
+		}
 		if(!(availability))
 			outputBoxs("This facility has a booking, cannot delete.");
 		else
 			facilities.remove(positionInArrayList);
+			removeStringFromFile(facilityFileName,selection,1);
+		}
+		catch(Exception e)
+		{}
 	}
 	
 	
@@ -442,7 +398,7 @@ public static void createNewFacility()
 		    {
 			    case 0: //View Bookings
 		        break;
-			    case 1: accountStatement(currentID,2);
+			    case 1: accountStatement(currentUserId,2);
                 break;				
 			}
 		}	
@@ -456,7 +412,7 @@ public static void createNewFacility()
 		String facilityName;
 		for(int i=0;i<bookings.size();i++)
 		{
-			if(bookings.get(i).getUserId()==currentID)
+			if(bookings.get(i).getUserId()==currentUserId)
 				personalBookings.add(bookings.get(i));
 		}
 		for(int i=0;i<personalBookings.size();i++)// have to get the facility name
@@ -615,4 +571,79 @@ public static void createNewFacility()
 	 outputBoxs(result);
 	 }
 	}
+	
+	public static void decommissionFacility()throws IOException
+	{
+	 String[] facilitiesName = new String[facilities.size()];
+	 int facilityId=0;
+	 boolean available=true;
+	 for (int i = 0; i < facilities.size();i++)
+	 {
+		 facilitiesName[i] = facilities.get(i).getFacilityName();
+	 }
+	 String choice = dropDown(facilitiesName, "Choose a facility to decommission:");
+	 for (int i = 0; i< facilities.size();i++)
+	  {
+		 if (facilities.get(i).getFacilityName().equals(choice))
+		 {
+		 facilityId=facilities.get(i).getFacilityId();
+		 }
+	 }
+	 for(int i=0;i<bookings.size();i++)
+	 {
+		 if(bookings.get(i).getFacilityId()==facilityId)
+			 available=false;
+	 }
+	 if(available)
+	 {
+	 for (int i = 0; i< facilities.size();i++)
+	  {
+		 if (facilities.get(i).getFacilityName().equals(choice))
+		 {
+		 	String decommissionedToDate=menuBox("Please enter a date in the form DD/MM/YYYY:");
+			facilities.get(i).setDecommissionedUntil(decommissionedToDate);
+			removeStringFromFile(facilityFileName,choice,1);
+			writeFile(facilities.get(i).toString(),facilityFileName);
+		 }
+	 }
+	 }
+	 else
+	 {
+		 outputBoxs("There is a booking for this Facility, cannot decommission");
+	 }
+	 
+	}
+	
+	public static void recommissionFacility()throws IOException
+	{
+	 String[] facilitiesName = new String[facilities.size()];
+	 int facilityId=0;
+	 boolean finished=false;
+	 for (int i = 0; i < facilities.size();i++)
+	 {
+		 facilitiesName[i] = facilities.get(i).getFacilityName();
+	 }
+	 String choice = dropDown(facilitiesName, "Choose a facility to recommission.");
+	 for (int i = 0; i< facilities.size();i++)
+	  {
+		 if (facilities.get(i).getFacilityName().equals(choice)&&facilities.get(i).getAvailability())
+		 {
+			facilities.get(i).setDecommissionedUntil(LocalDate.now());
+			finished=true;
+			removeStringFromFile(facilityFileName,choice,1);
+			writeFile(facilities.get(i).toString(),facilityFileName);
+		 }
+	 }
+	 if(!finished)
+	 {
+		 outputBoxs("This facility is not decomissioned");
+	 }
+	}
+	
+	/*public static void makeBooking()
+	{
+		int [] slots={1,2,3,4,5,6,7,8,9};
+		
+	}
+	*/
 }
