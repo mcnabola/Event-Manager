@@ -223,7 +223,7 @@ public class main
 	  * Input: Takes an email string
 	  * Output: Returns a true boolean value if the email matches the pattern and 
 	  * returns false if it does not
-	  **/
+	  **/                                                               // ---- can "," be accepted - other values "."
 	public static boolean validEmail(String email)
 	{
 		boolean isValid = false; 
