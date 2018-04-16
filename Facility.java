@@ -35,7 +35,7 @@ public class Facility
 		this.facilityId 		 = facilityId;
 		this.facilityName 		 = facilityName;
 		this.pricePerHour 		 = pricePerHour;
-		LocalDate aDate 		 = LocalDate.parse(decommissionedUntilDate);
+		LocalDate aDate 		 = LocalDate.parse(decommissionedUntilDate, formatter);
 		this.decommissionedUntil = aDate;
 		this.available			 = getAvailability();
 	}
