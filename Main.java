@@ -273,16 +273,75 @@ public class main
 		return found;
 	}
 	
+		public static boolean isValidDate(String date)throws IOException
+	{
+		try
+		{
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			LocalDate test = LocalDate.parse(date, formatter);
+			System.out.println(" TRUE" + test);
+			return true;
+		}
+		catch(Exception e)
+		{
+			return false;
+		}
+	}
+	
 	public static void createNewFacility()
 	{
-		String facilityName=menuBox("Please enter a facilityName:");
-		double pricePerHour=menuBoxInt("please enter a price per hour:");
-		String date=menuBox("Please enter a date:");
-		int facilityId=facilities.size()+1;
-		Facility newFacility=new Facility(facilityId,facilityName,pricePerHour);
-		facilities.add(newFacility);
-		String info=newFacility.facilityToString();
-		writeFile(info,facilityFileName);
+		Facility aFacility;
+		String date;
+		int facilityId;
+		int temp = 0;
+		boolean found = true;
+		boolean check = false;
+		try
+		{
+			for (int i=0;i<facilities.size();i++)
+			{
+				if (facilities.get(i).getFacilityId() > temp)
+					temp = facilities.get(i).getFacilityId();
+			}
+			facilityId = temp + 1;
+			
+			String facilityName = menuBox("Please enter a facilityName:");
+			while (found)
+			{
+				found = false;
+				for (int j=0;j<facilities.size();j++)
+				{
+					if (facilities.get(j).getFacilityName().equals(facilityName))
+						found = true;
+				}
+				if (found)
+					facilityName = menuBox("Facility already exists.\nPlease enter another facility name:");
+			}	
+			
+			double pricePerHour 	= menuBoxInt("please enter a price per hour:");
+			int decommissionChoice 	= JOptionPane.showConfirmDialog (null, "Do you want to decommission this facility?","Facility",JOptionPane.YES_NO_OPTION);
+			
+			if (decommissionChoice == JOptionPane.YES_OPTION)
+			{
+				date = menuBox("Please enter a date:");
+				check = isValidDate(date);
+				while(check == false)
+				{
+					date = menuBox("Please enter a valid date:\nFormat(DD/MM/YYYY)");
+					check = isValidDate(date);
+				}
+				aFacility = new Facility(facilityId, facilityName, pricePerHour, date);
+			}
+			else
+				aFacility = new Facility(facilityId, facilityName, pricePerHour);
+			
+			facilities.add(aFacility);
+			String info = aFacility.facilityToString();
+			System.out.println(info);
+			writeFile(info,facilityFileName);
+		}
+		catch(Exception e)
+		{System.out.print(e.getMessage());}
 	}
 	
 	public static void removeFacility()
