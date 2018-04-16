@@ -18,7 +18,7 @@ public class main
 	
 	public static void main(String [] args)
 	{
-	String email=menuBox("Enter Username");
+	String email=menuBox("Enter Email");
 			String password=menuBox("Enter Password");
 			boolean testing=loginMethod(email,password);
 			if (testing&&currentUserType==1)  
