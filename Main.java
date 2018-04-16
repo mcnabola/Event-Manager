@@ -537,7 +537,7 @@ public class main
 		  - change ints to doubles*/
 	    return statement;
 	}
-	/* -- not finished and havent tested
+ /*	 //-- not finished and havent tested
 	public static void viewAvailabilityFacility()
 	{
 	//array for dropdown of the facilities
@@ -562,31 +562,29 @@ public class main
 		 SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		 String d1 = menuBox("Enter the first date you want to view the dates between.\nIn the format dd/MM/yyyy");
 		 String d1 = menuBox("Enter the second date to view the availability between.\nIn the format dd/MM/yyyy");
-		 Date date1 = formatter.parse(d1);
-		 Date date2 = formatter.parse(d2);   // add try catch while loop to check that the date was enterd in the correct format and to try again 
-		 
-		 // check that the second date is after the first one 
-		 if (date2.after(date1))
+		 // thomas' date validation method here
+		     
+                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                 LocalDate date = LocalDate.parse(d1, formatter);
+		 LocalDate date2 = LocalDate.parse(d2, formatter);
+			
+		 // looping over the two dates
+		 LocalDate temp = date;
+		 String output;
+		 while (temp.isBefore(date2))
 		 {
-			 // loop through the dates inclusive so its a loop from date1 up to and including date2
-			 // store each date in a array -> dropDown -- the user chooses to see a day from the drop down and
-			 // and then it shows the nine time slots for that date
-			 
-			 // while loop until user chooses to leave - allows the user to view the bookings for multiple days one after each other
-			 
-			 // once a date is chosen from a dropdown - load the string back into a dateformat
-			 // look through bookings with that date - add to boolean array position 0-9 || How add to a string
-			 // then outputBoxs the string and the index values from the array 
-			 
-			 
+		     temp = temp.plusDays(1);
+		     output = temp.format(formatter1);
+	             System.out.println(output);   
 		 }
+	     }
 	} */
-		//NOT TESTED
+	//NOT TESTED
 	//NOT TESTED
 	//NOT TESTED
 	public static void viewBookingsForAFacility() //check what slots are free or booked for a certain date
 	{
-     String[] facilitiesName = new String[facilities.size()];
+        String[] facilitiesName = new String[facilities.size()];
 	 for (int i = 0; i < facilities.size();i++)
 	 {
 		 facilitiesName[i] = facilities.get(i).getFacilityName();
