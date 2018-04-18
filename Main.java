@@ -537,48 +537,9 @@ public class main
 		  - change ints to doubles*/
 	    return statement;
 	}
- /*	 //-- not finished and havent tested
-	public static void viewAvailabilityFacility()
-	{
-	//array for dropdown of the facilities
-        String[] facilitiesName = String[facilities.size()];
-	 for (int i = 0; i < facilities.size();i++)
-	 {
-		 facilitiesName[i] = facilities.get(i).getFacilityName();
-	 }
-	 String choice = dropDown(facilitiesName, "Choose a facility to view availability for.");
-		 
-		 // need the corressponding facility id or index value in the arraylist
-	 int indexName;
-	 for (int u = 0; u< facilitiesName.length;u++)
-	  {
-		 if (facilities[i].equals(choice)
-		 {
-		 indexName = i;
-		 }
-	 }
-         
-         // date1 and date2 
-		 SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-		 String d1 = menuBox("Enter the first date you want to view the dates between.\nIn the format dd/MM/yyyy");
-		 String d1 = menuBox("Enter the second date to view the availability between.\nIn the format dd/MM/yyyy");
-		 // thomas' date validation method here
-		     
-                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                 LocalDate date = LocalDate.parse(d1, formatter);
-		 LocalDate date2 = LocalDate.parse(d2, formatter);
-			
-		 // looping over the two dates
-		 LocalDate temp = date;
-		 String output;
-		 while (temp.isBefore(date2))
-		 {
-		     temp = temp.plusDays(1);
-		     output = temp.format(formatter1);
-	             System.out.println(output);   
-		 }
-	     }
-	} */
+ 
+	// viewFacility() - method made - still currently refactoring/making presentable
+	
 	//NOT TESTED
 	//NOT TESTED
 	//NOT TESTED
@@ -700,7 +661,11 @@ public class main
 	/*public static void makeBooking()
 	{
 		int [] slots={1,2,3,4,5,6,7,8,9};
+		// check if a booking already made
+		arraylist{2,5,7,3}
+		 arraylist - searchBookings()
 		
+	        
 	}
 	*/
 }
