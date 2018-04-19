@@ -189,33 +189,36 @@ public class main
 	  * The original file is then deleted and the temp file is renamed to the name of the original file
 	  * Input: Takes the filename, the string item to search for, and its position in a line
 	  **/
-		public static void removeStringFromFile(String fileName, String str, int pos)throws IOException
+		public static void removeLine(String filename, String str, int pos)throws IOException
 	{
-		String tempFileName = "temp.txt";
-		File scanFile = new File(fileName);
-		File tempFile = new File(tempFileName);
+		String tempFilename = "temp.txt";
+		File aFile 	  = new File(filename);
+		File tempFile = new File(tempFilename);
+		String lineFromFile = "";
+		Scanner in;
+		PrintWriter out;
 		String[] fileElements;
-		BufferedReader br = new BufferedReader(new FileReader(scanFile));
-		
-		String currentLine = "";
-		try
+		if (aFile.exists())
 		{
-			while((currentLine = br.readLine()) != null)
+			in = new Scanner(aFile);
+			out = new PrintWriter(tempFilename);
+			while (in.hasNext())
 			{
-				fileElements = currentLine.split(",");
-				if (!(fileElements[2].equals(str)))
-					writeFile(currentLine, tempFileName);
+				System.out.println ("LN32");
+				lineFromFile = in.nextLine();
+				fileElements = lineFromFile.split(",");
+				if (!fileElements[pos].equals(str))
+				{
+					out.print(lineFromFile);
+					out.println();
+				}
 			}
-			br.close();
-			 if(!(scanFile.delete()))
-				System.out.println("File deleted unsuccessfully");
-			if(!(tempFile.renameTo(scanFile)))
-				System.out.println("File renamed unsuccessfully");
+			in.close();
+			out.close();
+			aFile.delete();
+			tempFile.renameTo(aFile);
 		}
-		catch(IOException e)
-		{}
 	}
-
 	
 	/**
 	  * Checks if an inputted string is a valid email address by comparing it to
