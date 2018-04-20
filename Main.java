@@ -18,6 +18,9 @@ public class main
 	
 	public static void main(String [] args)
 	{
+		//createNewUser();
+		restore();
+		System.out.println(users.size());
 	String email=menuBox("Enter Email");
 			String password=menuBox("Enter Password");
 			boolean testing=loginMethod(email,password);
@@ -377,7 +380,7 @@ public class main
 			outputBoxs("This facility has a booking, cannot delete.");
 		else
 			facilities.remove(positionInArrayList);
-			removeStringFromFile(facilityFileName,selection,1);
+			removeLine(facilityFileName,selection,1);
 		}
 		catch(Exception e)
 		{}
@@ -402,6 +405,8 @@ public class main
 	
 	public static void adminMenu()
 	{
+		try
+		{
 		String [] initialOptions = { "Register User", "Facility Menu", "Record Payments", "View Account Statements" };
 		String [] subOptions	 = {"Add Facility","View Facility Availability", "View Facility Bookings", "Remove Facility", "Decommission Facility", "Recommission Facility","Make Booking"};
 	        boolean main = true;
@@ -423,15 +428,15 @@ public class main
 						break;
 						case 1: //Facility Availability
 						break;
-						case 2:	//View Facility Bookings		 
+						case 2:	viewBookingsForAFacility();		 
 						break;
 						case 3: removeFacility();
 						break;
-						case 4: //Decommission Facility
+						case 4: decommissionFacility();
 						break;
-						case 5: //Recommission Facility
+						case 5: recommissionFacility();
 						break;
-						case 6: //Make Booking
+						case 6: makeBooking();
 						break;
 					}
                 break;
@@ -445,6 +450,9 @@ public class main
 				break;
 			}
 		}
+		} 
+		catch(Exception E)
+		{}
 	}
 	
 	public static void userMenu()
@@ -458,7 +466,7 @@ public class main
 		    int y = 0;
 		    switch (x)
 		    {
-			    case 0: //View Bookings
+			    case 0: viewBookings();
 		        break;
 			    case 1: accountStatement(currentUserId,2);
                 break;				
@@ -623,7 +631,7 @@ public class main
 		 {
 		 	String decommissionedToDate=menuBox("Please enter a date in the form DD/MM/YYYY:");
 			facilities.get(i).setDecommissionedUntil(decommissionedToDate);
-			removeStringFromFile(facilityFileName,choice,1);
+			removeLine(facilityFileName,choice,1);
 			writeFile(facilities.get(i).toString(),facilityFileName);
 		 }
 	 }
@@ -651,24 +659,90 @@ public class main
 		 {
 			facilities.get(i).setDecommissionedUntil(LocalDate.now());
 			finished=true;
-			removeStringFromFile(facilityFileName,choice,1);
+			removeLine(facilityFileName,choice,1);
 			writeFile(facilities.get(i).toString(),facilityFileName);
 		 }
 	 }
 	 if(!finished)
 	 {
-		 outputBoxs("This facility is not decomissioned");
+		 outputBoxs("This facility is not decommissioned");
 	 }
 	}
 	
-	/*public static void makeBooking()
+	public static void makeBooking()
 	{
-		int [] slots={1,2,3,4,5,6,7,8,9};
-		// check if a booking already made
-		arraylist{2,5,7,3}
-		 arraylist - searchBookings()
-		
-	        
+		ArrayList<Integer> slots=new ArrayList<Integer>();
+		int slotNumber=0;
+		int bookingId=bookings.size()+1;
+	String[] facilitiesName = new String[facilities.size()];
+	 for (int i = 0; i < facilities.size();i++)
+	 {
+		 facilitiesName[i] = facilities.get(i).getFacilityName();
+	 }
+	 String choice = dropDown(facilitiesName, "Choose a facility to make a booking for");
+	 int facilityId=0;
+	 for (int i = 0; i< facilities.size();i++)
+	  {
+		 if (facilities.get(i).getFacilityName().equals(choice))
+		 {
+		 facilityId=facilities.get(i).getFacilityId();
+		 }
+	 }
+	 String date=menuBox("Enter a date to make a booking:");
+	 LocalDate secondDate=LocalDate.parse(date);
+	 ArrayList<Integer> slotNumberForBookingsOfDate=new ArrayList<Integer>();
+	 for(int i=0;i<bookings.size();i++)
+	 {
+		if(bookings.get(i).getFacilityId()==facilityId)
+		{
+			if(bookings.get(i).getBookingDate().equals(secondDate))
+			{
+				slotNumberForBookingsOfDate.add(bookings.get(i).getBookingSlot());
+			}
+		}
+	 }
+		String slotAsString="";
+		String [] dropDownListOfSlots=new String[9-slotNumberForBookingsOfDate.size()];
+		int counter=0;
+		boolean payment=false;
+		if(slotNumberForBookingsOfDate.size()==0)
+		{
+			for(int i=1;i<10;i++)
+			{
+				dropDownListOfSlots[counter]=""+i;
+				counter++;
+			}
+			slotAsString=dropDown(dropDownListOfSlots,"The following slots are available please select one");
+			slotNumber=Integer.parseInt(slotAsString);
+			Booking newBooking= new Booking(bookingId,facilityId,currentUserId,secondDate,slotNumber,payment);
+			writeFile(newBooking.bookingToString(),bookingFileName);
+			bookings.add(newBooking);
+		}
+		else if(slotNumberForBookingsOfDate.size()==9)
+		{
+			outputBoxs("There are no slots available on this date");
+		}
+		else
+		{
+			for(int i=1;i<10;i++)
+			{
+				slots.add(i);
+			}
+			for(int i=0;i<slotNumberForBookingsOfDate.size();i++)
+			{
+				slots.remove(slotNumberForBookingsOfDate.get(i));
+			}
+			for(int i=0;i<slots.size();i++)
+			{
+				dropDownListOfSlots[counter]=""+slots.get(i);
+				counter++;
+			}
+			slotAsString=dropDown(dropDownListOfSlots,"The following slots are available please select one");
+			slotNumber=Integer.parseInt(slotAsString);
+			Booking newBooking= new Booking(bookingId,facilityId,currentUserId,secondDate,slotNumber,payment);
+			writeFile(newBooking.bookingToString(),bookingFileName);
+			bookings.add(newBooking);
+		}
 	}
-	*/
+
 }
