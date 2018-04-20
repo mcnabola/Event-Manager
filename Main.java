@@ -39,72 +39,80 @@ public class main
 	}
 
 
-	public static void restore() //TESTING***** ON START LOADS FROM FILE TO ARRAYLISTS 
+	public static void restore()throws IOException
 	{
+		String filename = userFileName;
 		Scanner in;
 		String[] fileElements;
+		String lineFromFile = "";
+		File aFile;
+		User aUser;
+		Facility aFacility;
+		Booking aBooking;
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		try
-		{
-
-			in = new Scanner(new BufferedReader(new FileReader(userFileName)));
-			while(in.hasNext())
+		aFile = new File(filename);
+		if (aFile.exists())
+		{ 	
+			in = new Scanner(aFile);
+			while (in.hasNext())
 			{
-				fileElements 			= in.nextLine().split(",");
-				int	a 					= Integer.parseInt(fileElements[0]);
-				String b				= fileElements[1];
-				String c				= fileElements[2];
-				int d 					= Integer.parseInt(fileElements[3]); 			
-				User aUser 	= new User(a, b, c, d);
+				lineFromFile = in.nextLine();
+				fileElements = lineFromFile.split(",");
+				int userId 	 = Integer.parseInt(fileElements[0]);
+				String email = fileElements[1];
+				String pass  = fileElements[2];
+				int userType = Integer.parseInt(fileElements[3]);
+				aUser = new User(userId, email, pass, userType);
 				users.add(aUser);
 			}
-			in = new Scanner(new BufferedReader(new FileReader(facilityFileName)));
-			while(in.hasNext())
+			in.close();
+		}
+		filename = facilityFileName;
+		aFile = new File(filename);
+		if (aFile.exists())
+		{
+			in = new Scanner(aFile);
+			while (in.hasNext())
 			{
-				Facility aFacility;
-				int e;
-				String f;
-				double g;
-				fileElements = in.nextLine().split(",");
-				System.out.println(fileElements.length);
-				if (fileElements.length == 5) //IF DECOM DATE PROVIDED
-				{
-					e			 = Integer.parseInt(fileElements[0]);
-					f 			 = fileElements[1];
-					g		   	 = Double.parseDouble(fileElements[2]);
-					String temp1 = fileElements[3];
-					LocalDate h	 = LocalDate.parse(temp1, formatter);
-					aFacility 	 = new Facility(e, f, g, h);
-					facilities.add(aFacility);
-				}
+				lineFromFile 			= in.nextLine();
+				fileElements 			= lineFromFile.split(",");
+				int facilityId 			= Integer.parseInt(fileElements[0]);
+				String facilityName 	= fileElements[1];
+				Double pricePerHour  	= Double.parseDouble(fileElements[2]);
+				if (fileElements.length == 4)
+					aFacility = new Facility(facilityId, facilityName, pricePerHour);
 				else
 				{
-					e = Integer.parseInt(fileElements[0]);
-					f = fileElements[1];
-					g = Double.parseDouble(fileElements[2]);
-					aFacility = new Facility(e, f, g);
-					facilities.add(aFacility);
+					String decomDate  		= fileElements[3];
+					aFacility = new Facility(facilityId, facilityName, pricePerHour, decomDate);
 				}
+				facilities.add(aFacility);
 			}
-			in = new Scanner(new BufferedReader(new FileReader(bookingFileName)));
-			while(in.hasNext())
+			in.close();
+		}
+		
+		filename = bookingFileName;
+		aFile = new File(filename);
+		if (aFile.exists())
+		{
+			System.out.println("ln80");
+			in = new Scanner(aFile);
+			while (in.hasNext())
 			{
-				fileElements			= in.nextLine().split(",");
-				int i 					= Integer.parseInt(fileElements[0]);
-				int j 					= Integer.parseInt(fileElements[1]);
-				int k 					= Integer.parseInt(fileElements[2]);
-				String temp2			= fileElements[3];
-				LocalDate l				= LocalDate.parse(temp2);
-				int m					= Integer.parseInt(fileElements[4]);
-				boolean n				= Boolean.parseBoolean(fileElements[5]);
-				Booking aBooking		= new Booking(i, j, k, l, m, n);
+				lineFromFile 		= in.nextLine();
+				fileElements 		= lineFromFile.split(",");
+				int bookingId  		= Integer.parseInt(fileElements[0]);
+				int facilityId 		= Integer.parseInt(fileElements[1]);
+				int userId 	   		= Integer.parseInt(fileElements[2]);
+				String bookingDate 	= fileElements[3];
+				int bookingSlot     = Integer.parseInt(fileElements[4]);
+				boolean paid 		= Boolean.parseBoolean(fileElements[5]);
+				aBooking = new Booking(bookingId, facilityId, userId, bookingDate, bookingSlot, paid);
 				bookings.add(aBooking);
 			}
 			in.close();
 		}
-		catch(Exception e)
-		{}
-	}	
+	}
 	
   
 	public static String menuBox(String options)
