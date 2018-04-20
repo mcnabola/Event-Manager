@@ -23,6 +23,16 @@ public class Booking
 		this.paymentStatus	= paymentStatus;
 	}
 	
+	public Booking(int bookingId, int facilityId, int userId, String bookingDate, int bookingSlot, boolean paymentStatus)
+	{
+		this.bookingId 		= bookingId;
+		this.facilityId 	= facilityId;
+		this.userId 		= userId;
+		this.bookingDate	= LocalDate.parse(bookingDate, formatter);
+		this.bookingSlot 	= bookingSlot;
+		this.paymentStatus	= paymentStatus;
+	}
+	
 	public int getBookingId()
 	{
 		return bookingId;
