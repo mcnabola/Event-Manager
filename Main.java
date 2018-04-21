@@ -510,7 +510,7 @@ public class main
 					{
 						case 0: createNewFacility();
 						break;
-						case 1: //Facility Availability
+						case 1: facilityViewing();
 						break;
 						case 2:	viewBookingsForAFacility();		 
 						break;
