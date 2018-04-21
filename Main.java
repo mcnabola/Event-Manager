@@ -589,7 +589,8 @@ public class main
 			
 			
 
-	/////=====//// havent tested - but 0 errors when compiled 
+	// tested -- now for testing when u have loads of payments and bookings
+	// also should add the euro sign beside the money and the users email as opposed to their id number
 	 /**
 	   *
 	   *Input -
