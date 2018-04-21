@@ -15,10 +15,13 @@ public class main
 	private static ArrayList<Booking> bookings=new ArrayList<Booking>();
  	
 	
-	 /**
+	 /** ------ REMEMBER LAST TIME when the javadoc was formatted to shit 
+	   *      - This shit below will save us from that 
 	   *
-	   *Input -
-	   *Output -
+	   * @param  ---- Use this for all the parameters a method takes
+	   * @param   -- you can have multiple param tags
+           * @return  ---- and for the return
+	   *
 	   *
 	   **/		
 	public static void main(String [] args)
