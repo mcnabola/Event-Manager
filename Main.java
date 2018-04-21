@@ -15,7 +15,12 @@ public class main
 	private static ArrayList<Booking> bookings=new ArrayList<Booking>();
  	
 	
-	
+	 /**
+	   *
+	   *Input -
+	   *Output -
+	   *
+	   **/		
 	public static void main(String [] args)
 	{
 		restore();
@@ -35,8 +40,13 @@ public class main
 				}
 				else System.exit(0);
 				
-	}
-
+	}	 
+	 /**
+	   *
+	   *Input -
+	   *Output -
+	   *
+	   **/	
 		public static void restore()
 		{
 		try
@@ -119,7 +129,12 @@ public class main
 		{}
 	}
 	
-  
+	 /**
+	   *
+	   *Input -
+	   *Output -
+	   *
+	   **/	  
 	public static String menuBox(String options)
 	{
 		String input="";
@@ -134,7 +149,12 @@ public class main
 		return menuBox(options);
 		}
 	}
-	
+	 /**
+	   *
+	   *Input -
+	   *Output -
+	   *
+	   **/		
 	public static double menuBoxDouble(String options)
 	{
 		String input="";
@@ -151,7 +171,12 @@ public class main
 		return menuBoxDouble(options);
 		}
 	}
-	
+	 /**
+	   *
+	   *Input -
+	   *Output -
+	   *
+	   **/		
 	public static void createNewUser()
 	{
 		boolean found 	= true;
@@ -178,7 +203,12 @@ public class main
 	}
 
 	
-	
+	 /**
+	   *
+	   *Input -
+	   *Output -
+	   *
+	   **/		
 	public static void writeFile(String input, String fileName)
     {
 		try
@@ -194,7 +224,12 @@ public class main
 	    {}
     }
 	
-
+	 /**
+	   *
+	   *Input -
+	   *Output -
+	   *
+	   **/	
 	public static int optionBoxs(String[] options,String whatYouWantItToSay)
 	{
         int result = JOptionPane.showOptionDialog(null, whatYouWantItToSay, "League Manager", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
@@ -254,7 +289,12 @@ public class main
 		
 		return isValid;
 	}
-	
+	 /**
+	   *
+	   *Input -
+	   *Output -
+	   *
+	   **/		
 		public static boolean loginMethod(String email, String password) 
 	{
 		boolean found = false;
@@ -292,7 +332,12 @@ public class main
 		{}
 		return found;
 	}
-	
+	 /**
+	   *
+	   *Input -
+	   *Output -
+	   *
+	   **/		
 		public static boolean isValidDate(String date)throws IOException
 	{
 		try
@@ -307,7 +352,12 @@ public class main
 			return false;
 		}
 	}
-	
+	 /**
+	   *
+	   *Input -
+	   *Output -
+	   *
+	   **/		
 	public static void createNewFacility()
 	{
 		Facility aFacility;
@@ -363,7 +413,12 @@ public class main
 		catch(Exception e)
 		{System.out.print(e.getMessage());}
 	}
-	
+	 /**
+	   *
+	   *Input -
+	   *Output -
+	   *
+	   **/		
 	public static void removeFacility()
 	{
 		try
@@ -400,7 +455,12 @@ public class main
 		{}
 	}
 	
-	
+	 /**
+	   *
+	   *Input -
+	   *Output -
+	   *
+	   **/		
 	public static String dropDown(String[] options, String dialogText)
 	{
 		String selection = "";
@@ -411,12 +471,22 @@ public class main
 		return selection;
 	}
 
-	
+	 /**
+	   *
+	   *Input -
+	   *Output -
+	   *
+	   **/		
 	public static void outputBoxs(String output)
 	{
 	     JOptionPane.showMessageDialog(null, output);	
 	}
-	
+	 /**
+	   *
+	   *Input -
+	   *Output -
+	   *
+	   **/	
 	public static void adminMenu()
 	{
 		try
@@ -468,7 +538,12 @@ public class main
 		catch(Exception E)
 		{}
 	}
-	
+	 /**
+	   *
+	   *Input -
+	   *Output -
+	   *
+	   **/		
 	public static void userMenu()
 	{
 		String [] initialOptions = { "View Bookings", "View Account Statement"};
@@ -487,7 +562,12 @@ public class main
 			}
 		}	
 	}
-
+	 /**
+	   *
+	   *Input -
+	   *Output -
+	   *
+	   **/	
 	public static void viewBookings()
 	{
 		ArrayList<Booking> personalBookings=new ArrayList<Booking>();
@@ -510,6 +590,12 @@ public class main
 			
 
 	/////=====//// havent tested - but 0 errors when compiled 
+	 /**
+	   *
+	   *Input -
+	   *Output -
+	   *
+	   **/	
 	public static String accountStatement(int userId, int userType)
 	{
 	    // Want to return a String output that contains the amount due by each user - this output is depending on whether a admin or a user calls the method  
@@ -564,10 +650,12 @@ public class main
 	}
  
 	// viewFacility() - method made - still currently refactoring/making presentable
-	
-	//NOT TESTED
-	//NOT TESTED
-	//NOT TESTED
+	 /**
+	   *
+	   *Input -
+	   *Output -
+	   *
+	   **/	
 	public static void viewBookingsForAFacility()throws IOException //check what slots are free or booked for a certain date
 	{
 	if(facilities.size()==0)
@@ -630,7 +718,12 @@ public class main
 	}
 	}
 	}
-	
+	 /**
+	   *
+	   *Input -
+	   *Output -
+	   *
+	   **/	
 	public static void decommissionFacility()throws IOException
 	{
 	 	if(facilities.size()==0)
@@ -671,7 +764,7 @@ public class main
 			{
 			facilities.get(i).setDecommissionedUntil(decommissionedToDate);
 			removeLine(facilityFileName,choice,1);
-			writeFile(facilities.get(i).toString(),facilityFileName);
+			writeFile(facilities.get(i).facilityToString(),facilityFileName);
 			}
 			else
 			{
@@ -687,7 +780,12 @@ public class main
 	 
 	}
 	}
-	
+	 /**
+	   *
+	   *Input -
+	   *Output -
+	   *
+	   **/	
 	public static void recommissionFacility()throws IOException
 	{
 	if(facilities.size()==0)
@@ -711,7 +809,7 @@ public class main
 			facilities.get(i).setDecommissionedUntil(LocalDate.now());
 			finished=true;
 			removeLine(facilityFileName,choice,1);
-			writeFile(facilities.get(i).toString(),facilityFileName);
+			writeFile(facilities.get(i).facilityToString(),facilityFileName);
 		 }
 	 }
 	 if(!finished)
@@ -721,7 +819,12 @@ public class main
 	}
 	}
 	
-	
+	 /**
+	   *It allows a user to make a booking for a certain facility for a certain date.
+	   *Input - passed no arguments but the user is requested to choose a facility and enter a date to make the booking for and also choose the slot.
+	   *Output - adds the booking to the booking array list and also writes the information to the file
+	   *
+	   **/		
 	public static void makeBooking()throws IOException
 	{
 	if(facilities.size()==0)
