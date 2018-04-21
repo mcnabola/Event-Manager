@@ -282,7 +282,7 @@ public class main
 	public static boolean validEmail(String email)
 	{
 		boolean isValid = false; 
-		String pattern  = ("^[a-zA-Z0-9]+@[a-zA-Z0-9]+(.[a-zA-Z]{2,})$");
+		String pattern  = ("^[a-zA-Z0-9]+@[a-zA-Z0-9]+[.]([a-zA-Z]{2,})");
 		
 		if (email.matches(pattern))
 			isValid = true;
