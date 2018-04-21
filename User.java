@@ -1,10 +1,21 @@
+	 /**
+	   *
+	   *Input -
+	   *Output -
+	   *
+	   **/	
 public class User
 {
 	public int userId;
 	public String email;
 	public String password;
 	public int userType; //1 = admin, 2 = user
-
+	 /**
+	   *
+	   *Input -
+	   *Output -
+	   *
+	   **/	
 	public User(int userId, String email, String password, int userType) //For restoring users
 	{
 		this.userId 	= userId;
@@ -12,7 +23,12 @@ public class User
 		this.password 	= password;
 		this.userType	= userType;
 	}
-	
+	 /**
+	   *
+	   *Input -
+	   *Output -
+	   *
+	   **/		
 	public User(int userId, String email) //Basic for adding new user
 	{
 		this.userId 	= userId;
@@ -21,7 +37,12 @@ public class User
 		this.userType 	= 2;
 	}
 	
-	
+	 /**
+	   *
+	   *Input -
+	   *Output -
+	   *
+	   **/		
 	public static String generatePassword() //Basic alpha-numeric password generator
 	{
 		String password = "";
@@ -35,28 +56,53 @@ public class User
 		}
 		return password;
 	}
-
+	 /**
+	   *
+	   *Input -
+	   *Output -
+	   *
+	   **/	
 	public int getUserId()
 	{
 		return userId;
 	}
-	
+	 /**
+	   *
+	   *Input -
+	   *Output -
+	   *
+	   **/		
 	public String getEmail()
 	{
 		return email;
 	}
-
+	 /**
+	   *
+	   *Input -
+	   *Output -
+	   *
+	   **/	
 	public String getPassword()
 	{
 		return password;
 	}
-	
+	 /**
+	   *
+	   *Input -
+	   *Output -
+	   *
+	   **/		
 	public int getUserType()
 	{
 		return userType;
 	}
-	
-public String userToString()
+	 /**
+	   *
+	   *Input -
+	   *Output -
+	   *
+	   **/		
+	public String userToString()
 	{
 		String info	= userId + "," + email + "," + password + "," + userType;
 		return info;
