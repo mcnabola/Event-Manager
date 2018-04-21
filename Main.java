@@ -18,9 +18,9 @@ public class main
 	 /** ------ REMEMBER LAST TIME when the javadoc was formatted to shit 
 	   *      - This shit below will save us from that 
 	   *
-	   * @param  ---- Use this for all the parameters a method takes
-	   * @param   -- you can have multiple param tags
-           * @return  ---- and for the return
+	   * @param facilityId facilityId is a int that represents the unique value for that facility
+	   * @param optionType Option Type is a string that represesents a "option" 
+           * @return           Description of the return value
 	   *
 	   *
 	   **/		
