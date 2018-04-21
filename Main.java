@@ -557,7 +557,7 @@ public class main
 		    {
 			    case 0: viewBookings();
 		        break;
-			    case 1: accountStatement(currentUserId,2);
+			    case 1: outputBoxs(accountStatement(currentUserId,2));
                 break;				
 			}
 		}	
