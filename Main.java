@@ -916,7 +916,95 @@ public class main
 		outputBoxs("Incorrect date format:Please enter a date in the form dd/MM/yyyy");
 	}
 	}
-
 	}
+	
+	
+	// this method is tested -- however changing to better more descriptive variable names is something i will change in a bit.
+	public static void facilityViewing()
+	{
+	   if (facilities.size() != 0)
+            {
+            String[] initialUserOptions = {"Availability","Bookings"};
+            int userOption = optionBoxs(initialUserOptions, "Between two dates, view the Availability or Bookings of a selected Facility?"); 
+		
+	     //fill array for dropdown of the facilities
+         String[] facilitiesName = new String[facilities.size()];
+	     for (int i = 0; i < facilities.size();i++)
+	     {
+		    facilitiesName[i] = facilities.get(i).getFacilityName();
+	     }
+	     String choice = dropDown(facilitiesName, "Choose a facility to view availability for."); 
+		 // need the corressponding facility id or index value in the arraylist
+	     int localFacilityId=0; // need a catch to make sure facilities != 0 earlier up
+	     for (int j = 0; j< facilitiesName.length;j++)
+	     {
+		     if (facilities.get(j).equals(choice))
+		     {
+		         localFacilityId = j;
+		     }
+	     }
+         
+                 // getting date1 and date2 and checking
+		 //  DateTimeFormatter formatter = new DateTimeFormatter("dd/MM/yyyy"); 
+		 String d1 = menuBox("Enter the first date you want to view the dates between.\nIn the format dd/MM/yyyy");
+		 String d2 = menuBox("Enter the second date to view the availability between.\nIn the format dd/MM/yyyy");
+		 try{
+		 boolean check = isValidDate(d1);
+		 while(check == false)
+		 {
+		     String date = menuBox("Please enter a valid date for the first date again:\nFormat(DD/MM/YYYY)");
+			 check = isValidDate(date);
+		 }
+		
+		 check = isValidDate(d2);
+		 while(check == false)
+		 {
+		     String date = menuBox("Please enter a valid date for the second date again:\nFormat(DD/MM/YYYY)");
+			 check = isValidDate(d2);
+		 }
+		 }
+		 catch(Exception e){}
+		 
+		 // need to check is the first date before the second one and how many iterations of my loop to store in the array
+		     
+                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                 LocalDate date = LocalDate.parse(d1, formatter);
+		 LocalDate date2 = LocalDate.parse(d2, formatter);
+		 
+		 int dateDifference = date.compareTo(date2); 
+		 /// compare to -- different way of using it 
+		 int ff = Math.abs(dateDifference); 
+		 
+		 String[] names = new String[ff];
+		 // looping over the two dates to get the options for the user
+		 LocalDate temp = date;
+		 String output;
+		 int count = 0;
+		 while (temp.isBefore(date2))
+		 {
+		     temp = temp.plusDays(1);
+		     output = temp.format(formatter);
+			 names[count] = output;
+			 count++;
+		 }
+		 
+		 // user chooses date from the dropDown
+		 String dateChoice = dropDown(names, "Choose a date to view");
+                 LocalDate date777 = LocalDate.parse(dateChoice,formatter);
+ 
+		 // now we need to view all the availabilities//bookings on the date xx/xx/xxxx
+		  // this is where I pass to seans and I modified code.
+		 viewBookingsForAFacility(date777, userOption, localFacilityId);
+		 }
+		 else
+		 {
+			 outputBoxs("There are no facilities made at this time.");
+		 }
+	 }
+	 
+	 public static void viewBookingsForAFacility(LocalDate date, int option, int localFacilityId) // note my current code has facilityId
+	 {
+		 outputBoxs("This is where I add seans <viewBookings>!! and bits of my own -- if we want?"+option+"  "+localFacilityId);
+	 }
 
 }
