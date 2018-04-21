@@ -87,7 +87,8 @@ public class Facility
 	
 	public void setDecommissionedUntil(String aDate)//SET WITH A STRING
 	{
-			this.decommissionedUntil=LocalDate.parse(aDate);
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			this.decommissionedUntil=LocalDate.parse(aDate,formatter);
 			this.available		 = getAvailability();
 	}
 	
