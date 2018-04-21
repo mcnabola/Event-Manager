@@ -130,9 +130,9 @@ public class main
 	}
 	
 	 /**
-	   *
-	   *Input -
-	   *Output -
+	   *A JOptionPane menu which allows the user to enter a word, digits or characters which are returned as a string.
+	   *Input -Passed a string of what it is going to be displayed on the option box
+	   *Output - whatever the user enters is returned as a string
 	   *
 	   **/	  
 	public static String menuBox(String options)
@@ -150,11 +150,11 @@ public class main
 		}
 	}
 	 /**
+	   *A JOptionPane menu which allows the user to enter digits which are returned as a double.
+	   *Input -Passed a string of what it is going to be displayed on the option box
+	   *Output - whatever the user enters is returned as a double
 	   *
-	   *Input -
-	   *Output -
-	   *
-	   **/		
+	   **/	  
 	public static double menuBoxDouble(String options)
 	{
 		String input="";
@@ -202,11 +202,10 @@ public class main
 		writeFile(info,userFileName);
 	}
 
-	
 	 /**
-	   *
-	   *Input -
-	   *Output -
+	   *Writes the input given to the file specified
+	   *input - passed a string of what the user wants to write to file and a filename of where the input is printed to.
+	   *output - the input is is wrote to file specified
 	   *
 	   **/		
 	public static void writeFile(String input, String fileName)
@@ -225,9 +224,9 @@ public class main
     }
 	
 	 /**
-	   *
-	   *Input -
-	   *Output -
+	   *A JOptionPane drop down menu which returns the index in the array of which option the user selects
+	   *Input -passed an array which are the options and also a string of what you want the JOptionPane to say
+	   *Output - returns a int which is the index in the array which the user selected
 	   *
 	   **/	
 	public static int optionBoxs(String[] options,String whatYouWantItToSay)
@@ -333,9 +332,9 @@ public class main
 		return found;
 	}
 	 /**
-	   *
-	   *Input -
-	   *Output -
+	   *checks whether a string passed into the method is a valid date in the form dd/mm/yyyy
+	   *Input -The method is passed a string which is checked upon whether or not to be in the correct format or not
+	   *Output - the method reutrns a boolean value whether the date is valid or not.
 	   *
 	   **/		
 		public static boolean isValidDate(String date)throws IOException
@@ -414,9 +413,9 @@ public class main
 		{System.out.print(e.getMessage());}
 	}
 	 /**
-	   *
-	   *Input -
-	   *Output -
+	   *removes a facility from the facility array and also removes it from the facility file. A facility cannot be removed if it has a booking.
+	   *Input -The user is asked to choose a facility from a drop down in which they want to remove 
+	   *Output -The facility is removed from the facility arraylist and from the facility file.
 	   *
 	   **/		
 	public static void removeFacility()
@@ -456,9 +455,9 @@ public class main
 	}
 	
 	 /**
-	   *
-	   *Input -
-	   *Output -
+	   *drop down menu in which the user can choose an option.
+	   *Input -passed an array of options in which the user can select and also a sting of what the menu box displays
+	   *Output -The choice in which the user selects is returned as a string
 	   *
 	   **/		
 	public static String dropDown(String[] options, String dialogText)
@@ -472,9 +471,9 @@ public class main
 	}
 
 	 /**
-	   *
-	   *Input -
-	   *Output -
+	   *Displays a message in a JOptionPane gui
+	   *Input -passed a string which is displayed to screen
+	   *Output - none
 	   *
 	   **/		
 	public static void outputBoxs(String output)
@@ -482,9 +481,9 @@ public class main
 	     JOptionPane.showMessageDialog(null, output);	
 	}
 	 /**
-	   *
-	   *Input -
-	   *Output -
+	   *Gui for the administrator to navigate through commands
+	   *Input - admin selects an option which is then passed through switch statements to call the correct method
+	   *Output - the method selected is called an executed 
 	   *
 	   **/	
 	public static void adminMenu()
@@ -539,11 +538,11 @@ public class main
 		{}
 	}
 	 /**
+	   *Gui for the administrator to navigate through commands
+	   *Input - admin selects an option which is then passed through switch statements to call the correct method
+	   *Output - the method selected is called an executed 
 	   *
-	   *Input -
-	   *Output -
-	   *
-	   **/		
+	   **/	
 	public static void userMenu()
 	{
 		String [] initialOptions = { "View Bookings", "View Account Statement"};
@@ -563,9 +562,9 @@ public class main
 		}	
 	}
 	 /**
-	   *
-	   *Input -
-	   *Output -
+	   *Allows the current user to view their own booking
+	   *Input - Uses the global variable of the currentUserId to distinguish bookings.
+	   *Output - The users bookings are displayed to screen
 	   *
 	   **/	
 	public static void viewBookings()
@@ -652,9 +651,9 @@ public class main
  
 	// viewFacility() - method made - still currently refactoring/making presentable
 	 /**
-	   *
-	   *Input -
-	   *Output -
+	   *Shows a user which slots are booked for a certain facility on a certain date
+	   *Input - The user is asked to choose a facility from a dropdown and also asked to input a date to view the bookings
+	   *Output - The slots which are booked for the facility on the date are displayed to screen
 	   *
 	   **/	
 	public static void viewBookingsForAFacility()throws IOException //check what slots are free or booked for a certain date
@@ -720,9 +719,9 @@ public class main
 	}
 	}
 	 /**
-	   *
-	   *Input -
-	   *Output -
+	   *The user has the ability to decommission a facility that is not decommissioned already
+	   *Input -the user is asked to choose a facility to recommissioned  and enter a date for the facility to be decommissioned
+	   *Output - The facility is decommissioned if it has no bookings and already isnt decommissioned and the availability of the entry in the file is changed.
 	   *
 	   **/	
 	public static void decommissionFacility()throws IOException
@@ -761,6 +760,14 @@ public class main
 		 {
 		 	String decommissionedToDate=menuBox("Please enter a date in the form DD/MM/YYYY:");
 			boolean validDate=isValidDate(decommissionedToDate);
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	 		LocalDate dDate=LocalDate.parse(decommissionedToDate,formatter);
+			if(dDate.isBefore(LocalDate.now()))
+			 {
+				 outputBoxs("This date is in the past, cannot decommission");
+			 }
+			 else
+			 {
 			if(validDate)
 			{
 			facilities.get(i).setDecommissionedUntil(decommissionedToDate);
@@ -771,6 +778,7 @@ public class main
 			{
 				outputBoxs("Incorrect date format:Please enter a date in the form dd/MM/yyyy");
 			}
+			 }
 		 }
 	 }
 	 }
@@ -782,9 +790,9 @@ public class main
 	}
 	}
 	 /**
-	   *
-	   *Input -
-	   *Output -
+	   *The user has the ability to recommission a facility that has previously been decommissioned
+	   *Input -the user is asked to choose a facility to recommission 
+	   *Output - The facility is recommissioned if it was previously decommissioned and the availability of the entry in the file is changed.
 	   *
 	   **/	
 	public static void recommissionFacility()throws IOException
@@ -858,6 +866,12 @@ public class main
 	 {
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	 LocalDate secondDate=LocalDate.parse(date,formatter);
+	 if(secondDate.isBefore(LocalDate.now()))
+	 {
+		 outputBoxs("This date is in the past, cannot make a booking.");
+	 }
+	 else
+	 {
 	 ArrayList<Integer> slotNumberForBookingsOfDate=new ArrayList<Integer>();
 	 for(int i=0;i<bookings.size();i++)
 	 {
@@ -882,7 +896,13 @@ public class main
 			}
 			slotAsString=dropDown(dropDownListOfSlots,"The following slots are available please select one");
 			slotNumber=Integer.parseInt(slotAsString);
-			Booking newBooking= new Booking(bookingId,facilityId,currentUserId,secondDate,slotNumber,payment);
+			String [] dropDownOfUsers= new String[users.size()];
+			for(int i=0;i<users.size();i++)
+			{
+				dropDownOfUsers[i]=""+users.get(i).getUserId();
+			}
+			int userId=Integer.parseInt(dropDown(dropDownOfUsers,"Please select a userId to make the booking for"));
+			Booking newBooking= new Booking(bookingId,facilityId,userId,secondDate,slotNumber,payment);
 			writeFile(newBooking.bookingToString(),bookingFileName);
 			bookings.add(newBooking);
 		}
@@ -907,11 +927,18 @@ public class main
 			}
 			slotAsString=dropDown(dropDownListOfSlots,"The following slots are available please select one");
 			slotNumber=Integer.parseInt(slotAsString);
-			Booking newBooking= new Booking(bookingId,facilityId,currentUserId,secondDate,slotNumber,payment);
+			String [] dropDownOfUsers= new String[users.size()];
+			for(int i=0;i<users.size();i++)
+			{
+				dropDownOfUsers[i]=""+users.get(i).getUserId();
+			}
+			int userId=Integer.parseInt(dropDown(dropDownOfUsers,"Please select a userId to make the booking for"));
+			Booking newBooking= new Booking(bookingId,facilityId,userId,secondDate,slotNumber,payment);
 			writeFile(newBooking.bookingToString(),bookingFileName);
 			bookings.add(newBooking);
 		}
 	}
+	 }
 	else
 	{
 		outputBoxs("Incorrect date format:Please enter a date in the form dd/MM/yyyy");
