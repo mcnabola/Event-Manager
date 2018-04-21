@@ -305,7 +305,7 @@ public class main
 			{
 				for (int i=0;i<users.size();i++)
 				{
-					if (users.get(0).getEmail().equalsIgnoreCase(email) && users.get(i).getPassword().equals(password))
+					if (users.get(i).getEmail().equalsIgnoreCase(email) && users.get(i).getPassword().equals(password))
 					{
 						found = true;
 						currentUserId 	= users.get(i).getUserId();
