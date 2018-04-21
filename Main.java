@@ -18,7 +18,6 @@ public class main
 	
 	public static void main(String [] args)
 	{
-		//createNewUser();
 		restore();
 		System.out.println(users.size());
 	String email=menuBox("Enter Email");
@@ -38,9 +37,10 @@ public class main
 				
 	}
 
-
-	public static void restore()throws IOException
-	{
+		public static void restore()
+		{
+		try
+		{
 		String filename = userFileName;
 		Scanner in;
 		String[] fileElements;
@@ -91,6 +91,7 @@ public class main
 			in.close();
 		}
 		
+		
 		filename = bookingFileName;
 		aFile = new File(filename);
 		if (aFile.exists())
@@ -105,13 +106,17 @@ public class main
 				int facilityId 		= Integer.parseInt(fileElements[1]);
 				int userId 	   		= Integer.parseInt(fileElements[2]);
 				String bookingDate 	= fileElements[3];
+				LocalDate bookingDater=LocalDate.parse(bookingDate);
 				int bookingSlot     = Integer.parseInt(fileElements[4]);
 				boolean paid 		= Boolean.parseBoolean(fileElements[5]);
-				aBooking = new Booking(bookingId, facilityId, userId, bookingDate, bookingSlot, paid);
+				aBooking = new Booking(bookingId, facilityId, userId, bookingDater, bookingSlot, paid);
 				bookings.add(aBooking);
 			}
 			in.close();
 		}
+		}
+		catch(Exception e)
+		{}
 	}
 	
   
@@ -130,20 +135,20 @@ public class main
 		}
 	}
 	
-	public static int menuBoxInt(String options)
+	public static double menuBoxDouble(String options)
 	{
 		String input="";
-		int inputAsInt=0;
+		double inputAsDouble=0;
 		try
 		{
 			input=JOptionPane.showInputDialog(null,options);
-			inputAsInt=Integer.parseInt(input);
-			return inputAsInt;
+			inputAsDouble=Double.parseDouble(input);
+			return inputAsDouble;
 		}
 		catch(NumberFormatException e)
 		{
 		JOptionPane.showMessageDialog(null,"Error:Input is not a number entered");
-		return menuBoxInt(options);
+		return menuBoxDouble(options);
 		}
 	}
 	
@@ -171,6 +176,7 @@ public class main
 		String info  =(newUser.userToString());
 		writeFile(info,userFileName);
 	}
+
 	
 	
 	public static void writeFile(String input, String fileName)
@@ -332,7 +338,7 @@ public class main
 					facilityName = menuBox("Facility already exists.\nPlease enter another facility name:");
 			}	
 			
-			double pricePerHour 	= menuBoxInt("please enter a price per hour:");
+			double pricePerHour 	= menuBoxDouble("please enter a price per hour:");
 			int decommissionChoice 	= JOptionPane.showConfirmDialog (null, "Do you want to decommission this facility?","Facility",JOptionPane.YES_NO_OPTION);
 			
 			if (decommissionChoice == JOptionPane.YES_OPTION)
@@ -562,9 +568,15 @@ public class main
 	//NOT TESTED
 	//NOT TESTED
 	//NOT TESTED
-	public static void viewBookingsForAFacility() //check what slots are free or booked for a certain date
+	public static void viewBookingsForAFacility()throws IOException //check what slots are free or booked for a certain date
 	{
-        String[] facilitiesName = new String[facilities.size()];
+	if(facilities.size()==0)
+	{
+		outputBoxs("There is no facilities.");
+	}
+	else
+	{
+     String[] facilitiesName = new String[facilities.size()];
 	 for (int i = 0; i < facilities.size();i++)
 	 {
 		 facilitiesName[i] = facilities.get(i).getFacilityName();
@@ -578,9 +590,13 @@ public class main
 		 facilityId=facilities.get(i).getFacilityId();
 		 }
 	 }
-	 //LocalDate today=LocalDate.now();
+	 boolean validDate=true;
 	 String date=menuBox("Enter a date search:");
-	 LocalDate secondDate=LocalDate.parse(date);
+	 validDate=isValidDate(date);
+	 if(validDate)
+	 {
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	 LocalDate secondDate=LocalDate.parse(date,formatter);
 	 boolean available=true;
 	 ArrayList<Integer> slotNumberForBookingsOfDate=new ArrayList<Integer>();
 	 for(int i=0;i<bookings.size();i++)
@@ -600,7 +616,7 @@ public class main
 	 }
 	 else
 	 { 
-	 String result="The current slots on the "+date+"are booked:"+"\n";
+	 String result="The current slots on the "+date+" are booked:"+"\n";
 	 for(int i=0;i<slotNumberForBookingsOfDate.size();i++)
 	 {
 		 result+="slot "+slotNumberForBookingsOfDate.get(i)+"\n";
@@ -608,8 +624,20 @@ public class main
 	 outputBoxs(result);
 	 }
 	}
+	else
+	{
+		outputBoxs("Incorrect date format:Please enter a date in the form dd/MM/yyyy");
+	}
+	}
+	}
 	
 	public static void decommissionFacility()throws IOException
+	{
+	 	if(facilities.size()==0)
+	{
+		outputBoxs("There is no facilities.");
+	}
+	else
 	{
 	 String[] facilitiesName = new String[facilities.size()];
 	 int facilityId=0;
@@ -638,9 +666,17 @@ public class main
 		 if (facilities.get(i).getFacilityName().equals(choice))
 		 {
 		 	String decommissionedToDate=menuBox("Please enter a date in the form DD/MM/YYYY:");
+			boolean validDate=isValidDate(decommissionedToDate);
+			if(validDate)
+			{
 			facilities.get(i).setDecommissionedUntil(decommissionedToDate);
 			removeLine(facilityFileName,choice,1);
 			writeFile(facilities.get(i).toString(),facilityFileName);
+			}
+			else
+			{
+				outputBoxs("Incorrect date format:Please enter a date in the form dd/MM/yyyy");
+			}
 		 }
 	 }
 	 }
@@ -650,8 +686,15 @@ public class main
 	 }
 	 
 	}
+	}
 	
 	public static void recommissionFacility()throws IOException
+	{
+	if(facilities.size()==0)
+	{
+		outputBoxs("There is no facilities.");
+	}
+	else
 	{
 	 String[] facilitiesName = new String[facilities.size()];
 	 int facilityId=0;
@@ -663,7 +706,7 @@ public class main
 	 String choice = dropDown(facilitiesName, "Choose a facility to recommission.");
 	 for (int i = 0; i< facilities.size();i++)
 	  {
-		 if (facilities.get(i).getFacilityName().equals(choice)&&facilities.get(i).getAvailability())
+		 if (facilities.get(i).getFacilityName().equals(choice)&&(!(facilities.get(i).getAvailability())))
 		 {
 			facilities.get(i).setDecommissionedUntil(LocalDate.now());
 			finished=true;
@@ -676,12 +719,20 @@ public class main
 		 outputBoxs("This facility is not decommissioned");
 	 }
 	}
+	}
 	
-	public static void makeBooking()
+	
+	public static void makeBooking()throws IOException
 	{
-		ArrayList<Integer> slots=new ArrayList<Integer>();
-		int slotNumber=0;
-		int bookingId=bookings.size()+1;
+	if(facilities.size()==0)
+	{
+		outputBoxs("There is no facilities.");
+	}
+	else
+	{
+	ArrayList<Integer> slots=new ArrayList<Integer>();
+	int slotNumber=0;
+	int bookingId=bookings.size()+1;
 	String[] facilitiesName = new String[facilities.size()];
 	 for (int i = 0; i < facilities.size();i++)
 	 {
@@ -696,8 +747,13 @@ public class main
 		 facilityId=facilities.get(i).getFacilityId();
 		 }
 	 }
+	 boolean validDate=true;
 	 String date=menuBox("Enter a date to make a booking:");
-	 LocalDate secondDate=LocalDate.parse(date);
+	 validDate=isValidDate(date);
+	 if(validDate)
+	 {
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	 LocalDate secondDate=LocalDate.parse(date,formatter);
 	 ArrayList<Integer> slotNumberForBookingsOfDate=new ArrayList<Integer>();
 	 for(int i=0;i<bookings.size();i++)
 	 {
@@ -751,6 +807,13 @@ public class main
 			writeFile(newBooking.bookingToString(),bookingFileName);
 			bookings.add(newBooking);
 		}
+	}
+	else
+	{
+		outputBoxs("Incorrect date format:Please enter a date in the form dd/MM/yyyy");
+	}
+	}
+
 	}
 
 }
