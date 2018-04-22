@@ -1038,5 +1038,43 @@ public class main
 	 {
 		 outputBoxs("This is where I add seans <viewBookings>!! and bits of my own -- if we want?"+option+"  "+localFacilityId);
 	 }
+	
+	public static void recordPayments()
+	{
+		String[] bookings1 = new String[bookings.size()];
+		for (int i = 0; i < bookings.size();i++)
+			{
+				if ((bookings.get(i).getPaymentStatus())==false)
+				{
+			     bookings1[i] = bookings.get(i).bookingToString();
+				}
+				else{
+				bookings1[i]="Paid";
+				    }
+			}
+		String choice = dropDown(bookings1, "Choose a booking to record Payment for:");
+		System.out.println(choice);
+		System.out.println(bookings.get(0).bookingToString());
+		
+		for (int i = 0; i< bookings.size();i++)
+			{
+					if (bookings.get(i).bookingToString().equals(choice))
+			{
+					String[] x={""};
+					x=choice.split(",");
+					int bookingID=Integer.parseInt(x[0]);
+					int facilityID=Integer.parseInt(x[1]);
+					int userID=Integer.parseInt(x[2]);
+					int BookingSlot=Integer.parseInt(x[4]);
+					boolean pay=true;
+					Booking h=new Booking(bookingID,facilityID,userID,x[3],BookingSlot,pay);
+					bookings.set(i,h);
+					System.out.println(bookings.get(i).bookingToString());
+					restore();
+					
+			}
+					
+			}
+	}
 
 }
