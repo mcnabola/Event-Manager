@@ -1070,7 +1070,7 @@ public class main
 		 if (option == 0)
 			 outputBoxs(availableOut);
 		 else
-			 outputBoxs(availableOut);	 
+			 outputBoxs(bookingsOut);	 
 	 }
 	
 	public static void recordPayments()
