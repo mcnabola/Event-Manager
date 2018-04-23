@@ -1067,7 +1067,9 @@ public class main
 					int userID=Integer.parseInt(x[2]);
 					int BookingSlot=Integer.parseInt(x[4]);
 					boolean pay=true;
-					Booking h=new Booking(bookingID,facilityID,userID,x[3],BookingSlot,pay);
+					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+					LocalDate dateRestore = LocalDate.parse(x[3],formatter);    //convert x[3] back into a date 
+					Booking h=new Booking(bookingID,facilityID,userID,dateRestore,BookingSlot,pay);
 					bookings.set(i,h);
 					System.out.println(bookings.get(i).bookingToString());
 					restore();
