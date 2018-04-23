@@ -1035,8 +1035,42 @@ public class main
 	 }
 	 
 	 public static void viewBookingsForAFacility(LocalDate date, int option, int localFacilityId) // note my current code has facilityId
-	 {
-		 outputBoxs("This is where I add seans <viewBookings>!! and bits of my own -- if we want?"+option+"  "+localFacilityId);
+	 		 LocalDate secondDate=date;
+		 String bookingsOut="For the date xx/zz/yyyy there are", availableOut = "For the date xx/zz/yyyy there are"; 
+	     boolean available=true;
+	     ArrayList<Integer> slotNumberForBookingsOfDate=new ArrayList<Integer>();
+	     for(int i=0;i<bookings.size();i++)
+	     {
+		     if(bookings.get(i).getFacilityId()==facilityId)
+		     {
+			     if(bookings.get(i).getBookingDate().equals(secondDate))
+			     {
+				     available=false;
+				     slotNumberForBookingsOfDate.add(bookings.get(i).getBookingSlot());
+			     }
+		     }
+	     }
+		 if(available==true)
+	     {
+		      bookingsOut = "For the date xx/xx/xxx there are 0 bookings";
+			  availableOut = "For the date xx/xx/xxxx 09:00\n10:00\n11:00\12:00" ;
+	     }
+		 else
+		 {
+	        for (int i = 1 ; i< 10;i++)
+		     {
+                if (slotNumberForBookingsOfDate.contains(i))
+                            {
+				    bookingsOut+= "Slot " + i +"\n";
+			    }
+		else
+				    availableOut+= "Slot " + i +  "\n";
+	         }
+		 }
+		 if (option == 0)
+			 outputBoxs(availableOut);
+		 else
+			 outputBoxs(availableOut);	 
 	 }
 	
 	public static void recordPayments()
