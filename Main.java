@@ -582,16 +582,19 @@ public class main
 			if(bookings.get(i).getUserId()==currentUserId)
 				personalBookings.add(bookings.get(i));
 		}
-		for(int i=0;i<personalBookings.size();i++)// have to get the facility name
+		String out="";
+		if (personalBookings.size() != 0)
 		{
-			System.out.print(personalBookings.get(i).bookingToString());
-			
+		    for(int i=0;i<personalBookings.size();i++)// have to get the facility name
+		    {
+			    out+=(personalBookings.get(i).bookingToString()+"\n");	
+		    }
 		}
+		else
+			out = "There are currently no bookings at this time.";
+		outputBoxs(out);
 	}
-		
-			
-			
-
+	
 	// tested -- now for testing when u have loads of payments and bookings
 	// also should add the euro sign beside the money and the users email as opposed to their id number
 	 /**
