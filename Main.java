@@ -275,8 +275,14 @@ public class main
 			}
 			in.close();
 			out.close();
-			aFile.delete();
-			tempFile.renameTo(aFile);
+			if(aFile.delete())
+				System.out.println("DELETED");
+			else
+				System.out.println("NOT DELETED");
+			if (tempFile.renameTo(aFile))
+				System.out.println("RENAMED");
+			else
+				System.out.println("NOT RENAMED");
 		}
 	}
 	
