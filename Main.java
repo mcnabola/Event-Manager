@@ -19,7 +19,7 @@ public class main
 	  *
 	  * @param facilityId facilityId is a int that represents the unique value for that facility
 	  * @param optionType Option Type is a string that represesents a "option" 
-      * @return           Description of the return value
+          * @return           Description of the return value
 	  *
 	  *
 	  **/		
@@ -551,8 +551,8 @@ public class main
 				case 3: String statementOutput = ""; 
                                         for (int i = 0 ; i < users.size();i++)
                                         { int userid = users.get(i).getUserId();
-				          statementOutput+= accountStatement(userid,1)+"\n";}						
-				          outputBoxs(statementOutput); 
+				          statementOutput+= accountStatement(userid,1)+"\n";
+					} outputBoxs(statementOutput);						
 				break;
 			}
 		}
@@ -615,66 +615,46 @@ out+=("Booking ID: "+elements[0]+"   Facility ID: "+elements[1]+"   Booking Date
 		outputBoxs(out);
 	}
 	
-	// tested -- now for testing when u have loads of payments and bookings
-	// also should add the euro sign beside the money and the users email as opposed to their id number
-	 /**
-	   *
-	   *Input -
-	   *Output -
-	   *
-	   **/	
-	public static String accountStatement(int userId, int userType)
-	{
-	    // Want to return a String output that contains the amount due by each user - this output is depending on whether a admin or a user calls the method  
-	    int amountDue = 0;
-	    String statement = ( userId + "    " + amountDue );
-            for (int i = 0 ; i < bookings.size(); i++ )
-	    {
-                if (bookings.get(i).getUserId() == userId)
+	/**  
+	 * Method that takes in a users id and returns the amount owed by that user.
+	 *
+         *@param userId this is the ID number of the user 
+	 *@return statement this is the output of the users Id, their email address and the amount due for the user.
+	 **/	
+	 public static String accountStatement(int userId) 
+	 {
+	    double amountDue = 0.0;
+		String userEmail = "";
+		Currency curr = Currency.getInstance("EUR");						 
+ 		String symbol = curr.getSymbol();
+		for (int j = 0;j<users.size();j++)
 		{
-	            int facilityID = bookings.get(i).getFacilityId();
-		    for (int y = 0; i < facilities.size();y++)
-		    {
-	                if (facilities.get(y).getFacilityId() == facilityID)
-			{
-			    if (userType == 1)
-			    {
-			        if (bookings.get(i).getPaymentStatus() == false)
-				{
-				    amountDue += facilities.get(y).getPricePerHour();
-                                    statement = userId + "    " + amountDue;									
-				}
-			    }
-			    else
-			    {
-			        boolean ff =  (bookings.get(i).getPaymentStatus() == false ); // opposite atm
-      				if (ff)
-				{
-				    amountDue += facilities.get(y).getPricePerHour();
-				}
-				statement += ( facilities.get(y).getFacilityName() + " " + facilities.get(y).getPricePerHour()  + "  Paid Status: " + ff );				    
-			    }
-		       }
-                   }
-		  }				
-		 } 
-	      statement += ("Amount Due:     " + amountDue);
-	
-		
-		/*  IF UserType 1 
-		Church Room   €100     Paid
- 		Tea Room       €25   Unpaid
-		Room 3         €12   Unpaid
-		
-		Amount Due:            €37
-		
-		========
-		
-		IF UserType 2
-		User Id: 1   €56
-		  - change ints to doubles*/
+			if (users.get(j).getUserId() == userId)
+				userEmail = users.get(j).getEmail();
+		}
+	    String statement = ("User ID: "+userId + "    Email: " + userEmail +"    Amount Due: "+symbol+amountDue);
+            for (int i = 0; i < bookings.size(); i++)
+	     {
+             if (bookings.get(i).getUserId() == userId)
+		     {
+	             int facilityID = bookings.get(i).getFacilityId();
+		     for (int y=0; i < facilities.size();y++)
+                     {
+	                     if (facilities.get(y).getFacilityId() == facilityID)
+			     {
+			         if (bookings.get(i).getPaymentStatus() == false)
+	     	                 {
+			         amountDue += facilities.get(y).getPricePerHour();                     
+                                 statement = "User ID: "+userId + "    Email: " + userEmail + "    Amount Due: "+symbol+ ""+ amountDue+"\n";									
+                                 return(statement);
+				 }  
+		             }
+                      }
+		     }				
+		 }    
 	    return statement;
-	}
+     }
+	
  
 	// viewFacility() - method made - still currently refactoring/making presentable
 	 /**
