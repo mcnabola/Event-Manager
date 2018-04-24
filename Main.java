@@ -979,6 +979,10 @@ public class main
 	}
 	}
 	
+	
+	
+	
+	
 	// this method is tested -- however changing to better more descriptive variable names is something i will change in a bit.
 	public static void facilityViewing()
 	{
@@ -1062,6 +1066,10 @@ public class main
 		 }
 	 }
 	 
+	
+	
+	
+	
 	 public static void viewBookingsForAFacility(LocalDate date, int option, int localFacilityId) // note my current code has facilityId
 	 {		 LocalDate secondDate=date;
 		 String bookingsOut="For the date xx/zz/yyyy there are", availableOut = "For the date xx/zz/yyyy there are"; 
@@ -1101,6 +1109,29 @@ public class main
 			 outputBoxs(bookingsOut);	 
 	 }
 
+	/**
+	 * This method returns a the time value that a 'slot', a integer value from 1 to 9. Which represents a time from 09:00 to 17:00
+	 * @param slot Integer value from 1 to 9 that is representative of a time value
+	 * @return out A string with the time value that represents the inputted slot.
+	 **/
+    public static String slotTime(int slot)
+	{
+		// slot is a value 1 to 9 representing a time value
+		String[] times = {"09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00"};
+		boolean found = false;
+		String out="";
+		for (int i=0 i < times.length() && !found; i++)
+		{
+			if(slot == (i+1))
+			{
+				out = slot[i];
+				found = true;
+			}
+		}
+		return out;
+	}	
+	
+	
 		public static void recordPayments()throws IOException
 	{
 		if(bookings.size()==0)
