@@ -44,9 +44,10 @@ public class main
 	}	 
 	 /**
 	   *
-	   *Input -
-	   *Output -
-	   *
+	   *A method which is called when the application opens.
+	   *Creates objects based on pre-existing files in the system.
+	   *Adds each object into the appropriate Arraylist.
+	   *No input or output.
 	   **/	
 				public static void restore()
 		{
@@ -186,9 +187,11 @@ public class main
 		}
 	}
 	 /**
-	   *
-	   *Input -
-	   *Output -
+	   *Method thats called from main.
+	   *Administrator is presented with a JOptionPaneBox to create a user and enter their Email.
+	   *Writes the info of new user to Users.txt file
+	   *Input -No input
+	   *Output -No output
 	   *
 	   **/		
 	public static void createNewUser()
@@ -300,9 +303,10 @@ public class main
 		return isValid;
 	}
 	 /**
-	   *
-	   *Input -
-	   *Output -
+	   *Boolean method to verify if user has the correct email and password to Login.
+	   *Loops through arraylist users to see if it contains email and password
+	   *Input -User enters email and password as Strings
+	   *Output -Returns a boolean based on whether the email and password correspond and if they are in the arraylist users.
 	   *
 	   **/		
 		public static boolean loginMethod(String email, String password) 
@@ -362,9 +366,12 @@ public class main
 		}
 	}
 	 /**
-	   *
-	   *Input -
-	   *Output -
+	   *Method for administrator to create a new facility
+	   *Asks user to create and name facility, checks if the facility already exists.
+	   *User then inputs price per hour and date it's decomissioned till, if any.
+	   *Then adds the new facility to facilities arraylist.
+	   *Input -No input (Method calls JOptionPane inside)
+	   *Output -No output
 	   *
 	   **/		
 	public static void createNewFacility()
@@ -1004,6 +1011,13 @@ out+=("Booking ID: "+elements[0]+"   Facility ID: "+elements[1]+"   Booking Date
 -		}
 -		return out;
 -	}	
+	/**
+	 *Method which records the payments the user makes.
+	 *Administrator is presented with a JOptionPane dropdown menu of bookings that have not been paid for.
+	 *Once they select the booking to pay for, it changes the boolean pay to true in the bookings array.
+	 *Rewrites the file accordingly with the new payement information.
+	**/
+	
 	
 		public static void recordPayments()throws IOException
 	{
