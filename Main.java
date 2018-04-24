@@ -513,9 +513,9 @@ public class main
 					{
 						case 0: createNewFacility();
 						break;
-						case 1: facilityViewing();
+						case 1: viewBookingsForAFacility(0);
 						break;
-						case 2:	viewBookingsForAFacility();		 
+						case 2:	viewBookingsForAFacility(1);		 
 						break;
 						case 3: removeFacility();
 						break;
@@ -663,7 +663,7 @@ public class main
 	   *Output - The slots which are booked for the facility on the date are displayed to screen
 	   *
 	   **/	
-	public static void viewBookingsForAFacility()throws IOException //check what slots are free or booked for a certain date
+	public static void viewBookingsForAFacility(int type)throws IOException //check what slots are free or booked for a certain date
 	{
 	if(facilities.size()==0)
 	{
@@ -712,11 +712,21 @@ public class main
 	 else
 	 { 
 	 String result="The current slots on the "+date+" are booked:"+"\n";
-	 for(int i=0;i<slotNumberForBookingsOfDate.size();i++)
+	 String avail = "Current free slots on " + date + " are available\n";
+	 for (int i = 1 ; i< 10;i++)
 	 {
-		 result+="slot "+slotNumberForBookingsOfDate.get(i)+"\n";
-	 }
-	 outputBoxs(result);
+         if (slotNumberForBookingsOfDate.contains(i))
+		 {
+				result+=("Slot "+i+"\n");
+		 }
+		 else{
+				avail+=("Slot "+i+"\n");
+	     }
+	 }	 
+	 if (type == 0)
+		 outputBoxs(avail);
+	 else
+		 outputBoxs(result);
 	 }
 	}
 	else
