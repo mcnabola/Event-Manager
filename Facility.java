@@ -17,11 +17,11 @@ public class Facility
 	public boolean available;
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	
-	//IF USER DOEST WANT IT DECOMISSIONED WHEN CREATING FACILITY CALL THIS CONSTRUCTOR
+	//IF USER DOESN'T WANT IT DECOMISSIONED WHEN CREATING FACILITY CALL THIS CONSTRUCTOR
 	/**
-	   *
-	   *Input -
-	   *Output -
+	   *Constructor method if the user does not want to decomission the facility
+	   *Input -Int facilityid,String of facilityName,double of pricePerHour
+	   *Output -No output
 	   *
 	   **/	
 	public Facility(int facilityId, String facilityName, double pricePerHour)
@@ -33,9 +33,9 @@ public class Facility
 	}
 	//IF USER WANTS IT DECOMISSIONED WHEN CREATING FACILITY ENTER THIS CONSTRUCTOR
 	 /**
-	   *
-	   *Input -
-	   *Output -
+	   *Constructor method if the user wants to decomission the facility
+	   *Input -Int facilityid,String of facilityName,double of pricePerHour,LocalDate of decomission date of facility
+	   *Output -No output -
 	   *
 	   **/	
 	public Facility(int facilityId, String facilityName, double pricePerHour, LocalDate decommissionedUntil)
@@ -48,9 +48,9 @@ public class Facility
 	}
 	//IF USER WANTS IT DECOMISSIONED WHEN CREATING FACILITY BUT DATE IS STRING
 	 /**
-	   *
-	   *Input -
-	   *Output -
+	   *Constructor method if the user wants to decomission the facility and enters date as string
+	   *Input -Int facilityid,String of facilityName,double of pricePerHour,String of decomission date of facility
+	   *Output -No output -
 	   *
 	   **/	
 	public Facility(int facilityId, String facilityName, double pricePerHour, String decommissionedUntilDate)
@@ -63,9 +63,9 @@ public class Facility
 		this.available			 = getAvailability();
 	}
 	 /**
-	   *
-	   *Input -
-	   *Output -
+	   *Method to Get Facility ID of facility
+	   *Input -none
+	   *Output -Returns int facility Id of facility
 	   *
 	   **/	
 	public int getFacilityId()
@@ -73,9 +73,9 @@ public class Facility
 		return facilityId;
 	}
 	 /**
-	   *
-	   *Input -
-	   *Output -
+	   *Method to Get FacilityName of facility
+	   *Input -none
+	   *Output -Returns String FacilityName of facility
 	   *
 	   **/	
 	public String getFacilityName()
@@ -83,9 +83,9 @@ public class Facility
 		return facilityName;
 	}
 	 /**
-	   *
-	   *Input -
-	   *Output -
+	   *Method to Price per hour of facility
+	   *Input -noe
+	   *Output -Returns double of price per hour of facility -
 	   *
 	   **/	
 	public double getPricePerHour()
@@ -93,9 +93,9 @@ public class Facility
 		return pricePerHour;
 	}
 	 /**
-	   *
-	   *Input -
-	   *Output -
+	   *Method to Get decommission date of facility
+	   *Input -none 
+	   *Output -Returns LocalDate decommission date of facility
 	   *
 	   **/		
 	public LocalDate getDecommissionedUntil()
@@ -103,9 +103,9 @@ public class Facility
 		return decommissionedUntil;
 	}	
 	 /**
-	   *
-	   *Input -
-	   *Output -
+	   *Method to Get String of facility information
+	   *Input -none
+	   *Output -returns String of facility information
 	   *
 	   **/		
 	public String facilityToString()
@@ -125,9 +125,9 @@ public class Facility
 		return info;
 	}
 	 /**
-	   *
-	   *Input -
-	   *Output -
+	   *Method to check if facility is available or decommissioned
+	   *Input -none
+	   *Output -returns boolean based on availability
 	   *
 	   **/		
 	public boolean getAvailability()
@@ -140,9 +140,9 @@ public class Facility
 		return available;	
 	}
 	 /**
-	   *
-	   *Input -
-	   *Output -
+	   *Set method to assign a decommission date to a facility object
+	   *Input -String of date to decommision until
+	   *Output -None
 	   *
 	   **/		
 	public void setDecommissionedUntil(String aDate)//SET WITH A STRING
@@ -152,9 +152,9 @@ public class Facility
 			this.available		 = getAvailability();
 	}
 	 /**
-	   *
-	   *Input -
-	   *Output -
+	   *Set method to assign a decommission date to a facility object
+	   *Input -LocalDate of date to decommision until
+	   *Output -None
 	   *
 	   **/		
 	public void setDecommissionedUntil(LocalDate aDate)
