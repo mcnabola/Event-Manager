@@ -51,7 +51,7 @@ public class main
 	   *Output -
 	   *
 	   **/	
-		public static void restore()
+				public static void restore()
 		{
 		try
 		{
@@ -98,6 +98,13 @@ public class main
 				else
 				{
 					String decomDate  		= fileElements[3];
+					LocalDate temp = LocalDate.parse(decomDate, formatter);
+					if (temp.isBefore(LocalDate.now()))
+					{
+						aFacility = new Facility(facilityId, facilityName, pricePerHour);
+						removeLine(filename, facilityName, 1);
+						writeFile(aFacility.facilityToString(), filename);
+					}
 					aFacility = new Facility(facilityId, facilityName, pricePerHour, decomDate);
 				}
 				facilities.add(aFacility);
