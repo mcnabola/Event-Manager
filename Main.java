@@ -13,15 +13,13 @@ public class main
 	private static ArrayList<User> users=new ArrayList<User>();
 	private static ArrayList<Facility> facilities=new ArrayList<Facility>();
 	private static ArrayList<Booking> bookings=new ArrayList<Booking>();
- 	
-	
 	 /**
 	  * General Description of the method - leave the space between description and tags
 	  * @ tag nameOFVariable Description of the variable
 	  *
 	  * @param facilityId facilityId is a int that represents the unique value for that facility
 	  * @param optionType Option Type is a string that represesents a "option" 
-          * @return           Description of the return value
+      * @return           Description of the return value
 	  *
 	  *
 	  **/		
@@ -51,7 +49,7 @@ public class main
 	   *Output -
 	   *
 	   **/	
-						public static void restore()
+				public static void restore()
 		{
 		try
 		{
@@ -133,8 +131,10 @@ public class main
 				if (temp2.isBefore(LocalDate.now()))
 					removeLine(filename, fileElements[0], 0);
 				else
+				{	
 					aBooking = new Booking(bookingId, facilityId, userId, bookingDate, bookingSlot, paid);
-				bookings.add(aBooking);
+					bookings.add(aBooking);
+				}
 			}
 			in.close();
 		}
@@ -248,13 +248,45 @@ public class main
         int result = JOptionPane.showOptionDialog(null, whatYouWantItToSay, "League Manager", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
         return result;
 	}
-		/**
+	/**
 	  * Searches a file for a given string in a given position and regenerates the file without the line
 	  * Copies every line from the file except the specified line and writes them to a temp file
 	  * The original file is then deleted and the temp file is renamed to the name of the original file
 	  * Input: Takes the filename, the string item to search for, and its position in a line
 	  **/
-		public static void removeLine(String filename, String str, int pos)throws IOException
+	/*	public static void removeLine(String filename, String str, int pos)throws IOException
+	{
+		String tempFilename = "temp.txt";
+		File aFile 	  = new File(filename);
+		File tempFile = new File(tempFilename);
+		String lineFromFile = "";
+		Scanner in;
+		PrintWriter out;
+		String[] fileElements;
+		if (aFile.exists())
+		{
+			in = new Scanner(aFile);
+			out = new PrintWriter(tempFilename);
+			while (in.hasNext())
+			{
+				System.out.println ("LN32");
+				lineFromFile = in.nextLine();
+				fileElements = lineFromFile.split(",");
+				if (!fileElements[pos].equals(str))
+				{
+					out.print(lineFromFile);
+					out.println();
+				}
+			}
+			in.close();
+			out.close();
+			//aFile.delete();
+				System.out.println("NOT RENAMED");
+			//tempFile.renameTo(aFile);
+		}
+	}*/
+	
+	public static void removeLine(String filename, String str, int pos)throws IOException
 	{
 		File aFile 	  = new File(filename);
 		String lineFromFile = "";
@@ -431,6 +463,12 @@ public class main
 	{
 		try
 		{
+			if(facilities.size()==0)
+			{
+				outputBoxs("There are no facilites to remove.");
+			}
+			else
+			{
 		String [] listOfFacilities=new String[facilities.size()];
 		int facilityId=0;
 		int positionInArrayList=0;
@@ -458,6 +496,7 @@ public class main
 		else
 			facilities.remove(positionInArrayList);
 			removeLine(facilityFileName,selection,1);
+		}
 		}
 		catch(Exception e)
 		{}
@@ -600,8 +639,8 @@ public class main
 		outputBoxs(out);
 	}
 	
-	
-		// also should add the euro sign beside the money and the users email as opposed to their id number
+	// tested -- now for testing when u have loads of payments and bookings
+	// also should add the euro sign beside the money and the users email as opposed to their id number
 	 /**
 	   *
 	   *Input -
@@ -611,52 +650,42 @@ public class main
 	public static String accountStatement(int userId, int userType)
 	{
 	    // Want to return a String output that contains the amount due by each user - this output is depending on whether a admin or a user calls the method  
-	    double amountDue = 0.0;
-		String userEmail = "";
-		for (int j = 0;j<users.size();j++)
-		{
-			if (users.get(j).getUserId() == userId)
-				userEmail = users.get(j).getEmail();
-		}
-	    String statement = ("User ID: "+userId + "Email: " + userEmail + "    Amount Due: " + amountDue+"\n");
+	    int amountDue = 0;
+	    String statement = ( userId + "    " + amountDue );
             for (int i = 0 ; i < bookings.size(); i++ )
-	         {
-                 if (bookings.get(i).getUserId() == userId)
-		         {
-	             int facilityID = bookings.get(i).getFacilityId();
-		         for (int y = 0; i < facilities.size();y++)
-		         {
+	    {
+                if (bookings.get(i).getUserId() == userId)
+		{
+	            int facilityID = bookings.get(i).getFacilityId();
+		    for (int y = 0; i < facilities.size();y++)
+		    {
 	                if (facilities.get(y).getFacilityId() == facilityID)
-			        {
-			        if (userType == 1)  // whats returned to a admin
-			        {
-			            if (bookings.get(i).getPaymentStatus() == false)
-				        {
-				        amountDue += facilities.get(y).getPricePerHour(); 
-						amountDue = currency.getSymbol() + amountDue;/// currency.getSymbol();
-                                        statement = "User ID: "+userId + "Email: " + userEmail + "    Amount Due: " + amountDue+"\n"; /// returned to normal user !!!???!!!!									
-				        }
-			         }
-			         else  /// user type 2 returned to a ordinary user
-			         {
-			             boolean ff =  (bookings.get(i).getPaymentStatus() == false ); // opposite atm
-      				     if (ff)
-				         {
-				             amountDue += facilities.get(y).getPricePerHour();
-				         }
-						 amountDue = currency.getSymbol() + amountDue;
-				     statement += ( facilities.get(y).getFacilityName() + " " + facilities.get(y).getPricePerHour()  + "  Paid Status: " + ff +"\n");				    
-			     }
-		         }
-                 }
-		         }				
-		     } 
-	      statement += ("\nAmount Due:     " + amountDue);
+			{
+			    if (userType == 1)
+			    {
+			        if (bookings.get(i).getPaymentStatus() == false)
+				{
+				    amountDue += facilities.get(y).getPricePerHour();
+                                    statement = userId + "    " + amountDue;									
+				}
+			    }
+			    else
+			    {
+			        boolean ff =  (bookings.get(i).getPaymentStatus() == false ); // opposite atm
+      				if (ff)
+				{
+				    amountDue += facilities.get(y).getPricePerHour();
+				}
+				statement += ( facilities.get(y).getFacilityName() + " " + facilities.get(y).getPricePerHour()  + "  Paid Status: " + ff );				    
+			    }
+		       }
+                   }
+		  }				
+		 } 
+	      statement += ("Amount Due:     " + amountDue);
 	
 		
-		/*  IF UserType 2		
-		
-		User Id : 4 || JJ@CSIS.UL
+		/*  IF UserType 1 
 		Church Room   €100     Paid
  		Tea Room       €25   Unpaid
 		Room 3         €12   Unpaid
@@ -665,9 +694,9 @@ public class main
 		
 		========
 		
-		IF UserType 1
-		
-		User Id: 4 || JJ@CSIS.UL	  Amnt Due €37		*/
+		IF UserType 2
+		User Id: 1   €56
+		  - change ints to doubles*/
 	    return statement;
 	}
  
@@ -845,9 +874,9 @@ public class main
 	 String choice = dropDown(facilitiesName, "Choose a facility to recommission.");
 	 for (int i = 0; i< facilities.size();i++)
 	  {
-		 if (facilities.get(i).getFacilityName().equals(choice)&&(!(facilities.get(i).getAvailability())))
+		 if (facilities.get(i).getFacilityName().equals(choice)&&(facilities.get(i).getAvailability()==false))
 		 {
-			facilities.get(i).setDecommissionedUntil(LocalDate.now());
+			facilities.get(i).setDecommissionedUntil("10/10/1900");
 			finished=true;
 			removeLine(facilityFileName,choice,1);
 			writeFile(facilities.get(i).facilityToString(),facilityFileName);
@@ -859,7 +888,6 @@ public class main
 	 }
 	}
 	}
-	
 	 /**
 	   *It allows a user to make a booking for a certain facility for a certain date.
 	   *Input - passed no arguments but the user is requested to choose a facility and enter a date to make the booking for and also choose the slot.
@@ -987,9 +1015,6 @@ public class main
 	}
 	
 	
-	
-	
-	
 	// this method is tested -- however changing to better more descriptive variable names is something i will change in a bit.
 	public static void facilityViewing()
 	{
@@ -1073,10 +1098,6 @@ public class main
 		 }
 	 }
 	 
-	
-	
-	
-	
 	 public static void viewBookingsForAFacility(LocalDate date, int option, int localFacilityId) // note my current code has facilityId
 	 {		 LocalDate secondDate=date;
 		 String bookingsOut="For the date xx/zz/yyyy there are", availableOut = "For the date xx/zz/yyyy there are"; 
@@ -1116,29 +1137,6 @@ public class main
 			 outputBoxs(bookingsOut);	 
 	 }
 
-	/**
-	 * This method returns a the time value that a 'slot', a integer value from 1 to 9. Which represents a time from 09:00 to 17:00
-	 * @param slot Integer value from 1 to 9 that is representative of a time value
-	 * @return out A string with the time value that represents the inputted slot.
-	 **/
-    public static String slotTime(int slot)
-	{
-		// slot is a value 1 to 9 representing a time value
-		String[] times = {"09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00"};
-		boolean found = false;
-		String out="";
-		for (int i=0; i < times.length && !found; i++)
-		{
-			if(slot == (i+1))
-			{
-				out = times[i];
-				found = true;
-			}
-		}
-		return out;
-	}	
-	
-	
 		public static void recordPayments()throws IOException
 	{
 		if(bookings.size()==0)
