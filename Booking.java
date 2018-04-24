@@ -138,8 +138,8 @@ public class Booking
 		this.bookingDate = aDate;
 	}
 	
-	public void setPaymentStaus(boolean paymentStatus)
+	public void setPaymentStatus(boolean paymentStatus)
 	{
-	       this.paymentStatus=paymentStaus	
+	       this.paymentStatus=paymentStatus;
 	}
 }
