@@ -51,7 +51,7 @@ public class main
 	   *Output -
 	   *
 	   **/	
-				public static void restore()
+						public static void restore()
 		{
 		try
 		{
@@ -97,12 +97,12 @@ public class main
 					aFacility = new Facility(facilityId, facilityName, pricePerHour);
 				else
 				{
-					String decomDate  		= fileElements[3];
+					String decomDate = fileElements[3];
 					LocalDate temp = LocalDate.parse(decomDate, formatter);
 					if (temp.isBefore(LocalDate.now()))
 					{
+						removeLine(filename, fileElements[1], 1);
 						aFacility = new Facility(facilityId, facilityName, pricePerHour);
-						removeLine(filename, facilityName, 1);
 						writeFile(aFacility.facilityToString(), filename);
 					}
 					aFacility = new Facility(facilityId, facilityName, pricePerHour, decomDate);
@@ -128,7 +128,12 @@ public class main
 				String bookingDate 	= fileElements[3];
 				int bookingSlot     = Integer.parseInt(fileElements[4]);
 				boolean paid 		= Boolean.parseBoolean(fileElements[5]);
-				aBooking = new Booking(bookingId, facilityId, userId, bookingDate, bookingSlot, paid);
+				
+				LocalDate temp2 = LocalDate.parse(bookingDate, formatter);
+				if (temp2.isBefore(LocalDate.now()))
+					removeLine(filename, fileElements[0], 0);
+				else
+					aBooking = new Booking(bookingId, facilityId, userId, bookingDate, bookingSlot, paid);
 				bookings.add(aBooking);
 			}
 			in.close();
