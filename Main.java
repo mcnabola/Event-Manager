@@ -599,7 +599,8 @@ public class main
 		{
 		    for(int i=0;i<personalBookings.size();i++)// have to get the facility name
 		    {
-			    out+=(personalBookings.get(i).bookingToString()+"\n");	
+                    String[] elements = personalBookings.get(i).bookingToString().split(",");
+out+=("Booking ID: "+elements[0]+"   Facility ID: "+elements[1]+"   Booking Date: "+elements[3]+"   Slot: "+elements[4]+"   Paid Status: " +elements[5]+"\n");	
 		    }
 		}
 		else
