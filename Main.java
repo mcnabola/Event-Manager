@@ -29,7 +29,7 @@ public class main
 	{
 		restore();
 		System.out.println(users.size());
-	String email=menuBox("Enter Email");
+		String email=menuBox("Enter Email");
 			String password=menuBox("Enter Password");
 			boolean testing=loginMethod(email,password);
 			if (testing&&currentUserType==1)  
@@ -525,7 +525,7 @@ public class main
 						break;
 					}
                 break;
-				case 2: //Record Payments;
+				case 2: recordPayments();
 				break;
 				case 3: String statementOutput = ""; 
                                         for (int i = 0 ; i < users.size();i++)
@@ -1083,48 +1083,8 @@ public class main
 		 else
 			 outputBoxs(bookingsOut);	 
 	 }
-	
-	public static void recordPayments()
-	{
-		String[] bookings1 = new String[bookings.size()];
-		for (int i = 0; i < bookings.size();i++)
-			{
-				if ((bookings.get(i).getPaymentStatus())==false)
-				{
-			     bookings1[i] = bookings.get(i).bookingToString();
-				}
-				else{
-				bookings1[i]="Paid";
-				    }
-			}
-		String choice = dropDown(bookings1, "Choose a booking to record Payment for:");
-		System.out.println(choice);
-		System.out.println(bookings.get(0).bookingToString());
-		
-		for (int i = 0; i< bookings.size();i++)
-			{
-					if (bookings.get(i).bookingToString().equals(choice))
-			{
-					String[] x={""};
-					x=choice.split(",");
-					int bookingID=Integer.parseInt(x[0]);
-					int facilityID=Integer.parseInt(x[1]);
-					int userID=Integer.parseInt(x[2]);
-					int BookingSlot=Integer.parseInt(x[4]);
-					boolean pay=true;
-					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-					LocalDate dateRestore = LocalDate.parse(x[3],formatter);    //convert x[3] back into a date 
-					Booking h=new Booking(bookingID,facilityID,userID,dateRestore,BookingSlot,pay);
-					bookings.set(i,h);
-					System.out.println(bookings.get(i).bookingToString());
-					restore();
-					
-			}
-					
-			}
-	}
 
-		public static void recordPayments()
+		public static void recordPayments()throws IOException
 	{
 		if(bookings.size()==0)
 		{
