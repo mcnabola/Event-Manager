@@ -579,7 +579,7 @@ public class main
 		    {
 			    case 0: viewBookings();
 		        break;
-			    case 1: outputBoxs(accountStatement(currentUserId,2));
+			    case 1: outputBoxs(accountStatement(currentUserId));
                 break;				
 			}
 		}	
@@ -633,7 +633,8 @@ out+=("Booking ID: "+elements[0]+"   Facility ID: "+elements[1]+"   Booking Date
 				userEmail = users.get(j).getEmail();
 		}
 	    String statement = ("User ID: "+userId + "    Email: " + userEmail +"    Amount Due: "+symbol+amountDue);
-            for (int i = 0; i < bookings.size(); i++)
+             if (bookings.size() == 0){
+             for (int i = 0; i < bookings.size(); i++)
 	     {
              if (bookings.get(i).getUserId() == userId)
 		     {
@@ -645,13 +646,14 @@ out+=("Booking ID: "+elements[0]+"   Facility ID: "+elements[1]+"   Booking Date
 			         if (bookings.get(i).getPaymentStatus() == false)
 	     	                 {
 			         amountDue += facilities.get(y).getPricePerHour();                     
-                                 statement = "User ID: "+userId + "    Email: " + userEmail + "    Amount Due: "+symbol+ ""+ amountDue+"\n";									
-                                 return(statement);
+                                 statement = "User ID: "+userId + "    Email: " + userEmail + "    Amount Due: "+symbol+ ""+ amountDue;									
 				 }  
 		             }
                       }
 		     }				
-		 }    
+		 }
+	     }
+            else statement="No bookings";
 	    return statement;
      }
 	
