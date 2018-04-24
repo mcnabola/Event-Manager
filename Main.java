@@ -26,7 +26,6 @@ public class main
 	public static void main(String [] args)
 	{
 		restore();
-		System.out.println(users.size());
 		String email=menuBox("Enter Email");
 			String password=menuBox("Enter Password");
 			boolean testing=loginMethod(email,password);
@@ -154,7 +153,8 @@ public class main
 		String input=JOptionPane.showInputDialog(null,options);;
 			if(!(input != null))
 			{
-				System.exit(0);
+				outputBoxs("Error: no String entered");
+				input=menuBox(options);
 			}
 			else if(input.equals(""))
 			{
@@ -181,7 +181,7 @@ public class main
 		}
 		catch(NumberFormatException e)
 		{
-		JOptionPane.showMessageDialog(null,"Error:Input is not a number entered");
+		outputBoxs("Error:Input is not a number entered");
 		return menuBoxDouble(options);
 		}
 	}
@@ -354,7 +354,6 @@ public class main
 		{
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 			LocalDate test = LocalDate.parse(date, formatter);
-			System.out.println(" TRUE" + test);
 			return true;
 		}
 		catch(Exception e)
@@ -417,11 +416,10 @@ public class main
 			
 			facilities.add(aFacility);
 			String info = aFacility.facilityToString();
-			System.out.println(info);
 			writeFile(info,facilityFileName);
 		}
 		catch(Exception e)
-		{System.out.print(e.getMessage());}
+		{}
 	}
 	 /**
 	   *removes a facility from the facility array and also removes it from the facility file. A facility cannot be removed if it has a booking.
