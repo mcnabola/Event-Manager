@@ -243,7 +243,7 @@ public class main
         int result = JOptionPane.showOptionDialog(null, whatYouWantItToSay, "League Manager", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
         return result;
 	}
-	/**
+		/**
 	  * Searches a file for a given string in a given position and regenerates the file without the line
 	  * Copies every line from the file except the specified line and writes them to a temp file
 	  * The original file is then deleted and the temp file is renamed to the name of the original file
@@ -251,38 +251,27 @@ public class main
 	  **/
 		public static void removeLine(String filename, String str, int pos)throws IOException
 	{
-		String tempFilename = "temp.txt";
 		File aFile 	  = new File(filename);
-		File tempFile = new File(tempFilename);
 		String lineFromFile = "";
+		String fileOutput = "";
 		Scanner in;
-		PrintWriter out;
+		FileWriter out;
 		String[] fileElements;
 		if (aFile.exists())
 		{
 			in = new Scanner(aFile);
-			out = new PrintWriter(tempFilename);
 			while (in.hasNext())
 			{
-				System.out.println ("LN32");
 				lineFromFile = in.nextLine();
 				fileElements = lineFromFile.split(",");
-				if (!fileElements[pos].equals(str))
+	 			if (!fileElements[pos].equals(str))
 				{
-					out.print(lineFromFile);
-					out.println();
+					fileOutput += lineFromFile + "\n";
 				}
 			}
 			in.close();
+			out = new FileWriter(filename);
 			out.close();
-			if(aFile.delete())
-				System.out.println("DELETED");
-			else
-				System.out.println("NOT DELETED");
-			if (tempFile.renameTo(aFile))
-				System.out.println("RENAMED");
-			else
-				System.out.println("NOT RENAMED");
 		}
 	}
 	
