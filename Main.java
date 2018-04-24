@@ -1126,11 +1126,11 @@ public class main
 		String[] times = {"09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00"};
 		boolean found = false;
 		String out="";
-		for (int i=0; i < times.length() && !found; i++)
+		for (int i=0; i < times.length && !found; i++)
 		{
 			if(slot == (i+1))
 			{
-				out = slot[i];
+				out = times[i];
 				found = true;
 			}
 		}
