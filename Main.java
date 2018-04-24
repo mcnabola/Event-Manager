@@ -607,7 +607,7 @@ public class main
 	}
 	
 	
-	// also should add the euro sign beside the money and the users email as opposed to their id number
+		// also should add the euro sign beside the money and the users email as opposed to their id number
 	 /**
 	   *
 	   *Input -
@@ -618,8 +618,13 @@ public class main
 	{
 	    // Want to return a String output that contains the amount due by each user - this output is depending on whether a admin or a user calls the method  
 	    double amountDue = 0.0;
-	    // for loop here get users email
-	    String statement = ("User ID: "+userId + "    Amnt Due: " + amountDue+"\n");
+		String userEmail = "";
+		for (int j = 0;j<users.size();j++)
+		{
+			if (users.get(j).getUserId() == userId)
+				userEmail = users.get(j).getEmail();
+		}
+	    String statement = ("User ID: "+userId + "Email: " + userEmail + "    Amount Due: " + amountDue+"\n");
             for (int i = 0 ; i < bookings.size(); i++ )
 	         {
                  if (bookings.get(i).getUserId() == userId)
@@ -633,8 +638,9 @@ public class main
 			        {
 			            if (bookings.get(i).getPaymentStatus() == false)
 				        {
-				        amountDue += facilities.get(y).getPricePerHour();    /// currency.getSymbol();
-                                        statement = "User ID: "+userId + "    Amnt Due: " + amountDue+"\n"; /// returned to normal user !!!???!!!!									
+				        amountDue += facilities.get(y).getPricePerHour(); 
+						amountDue = currency.getSymbol() + amountDue;/// currency.getSymbol();
+                                        statement = "User ID: "+userId + "Email: " + userEmail + "    Amount Due: " + amountDue+"\n"; /// returned to normal user !!!???!!!!									
 				        }
 			         }
 			         else  /// user type 2 returned to a ordinary user
@@ -644,7 +650,8 @@ public class main
 				         {
 				             amountDue += facilities.get(y).getPricePerHour();
 				         }
-				     statement += ( facilities.get(y).getFacilityName() + " " + facilities.get(y).getPricePerHour()  + "  Paid Status: " + ff );				    
+						 amountDue = currency.getSymbol() + amountDue;
+				     statement += ( facilities.get(y).getFacilityName() + " " + facilities.get(y).getPricePerHour()  + "  Paid Status: " + ff +"\n");				    
 			     }
 		         }
                  }
