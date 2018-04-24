@@ -593,7 +593,7 @@ public class main
 		outputBoxs(out);
 	}
 	
-	// tested -- now for testing when u have loads of payments and bookings
+	
 	// also should add the euro sign beside the money and the users email as opposed to their id number
 	 /**
 	   *
@@ -604,42 +604,45 @@ public class main
 	public static String accountStatement(int userId, int userType)
 	{
 	    // Want to return a String output that contains the amount due by each user - this output is depending on whether a admin or a user calls the method  
-	    int amountDue = 0;
-	    String statement = ( userId + "    " + amountDue );
+	    double amountDue = 0.0;
+	    // for loop here get users email
+	    String statement = ("User ID: "+userId + "    Amnt Due: " + amountDue+"\n");
             for (int i = 0 ; i < bookings.size(); i++ )
-	    {
-                if (bookings.get(i).getUserId() == userId)
-		{
-	            int facilityID = bookings.get(i).getFacilityId();
-		    for (int y = 0; i < facilities.size();y++)
-		    {
+	         {
+                 if (bookings.get(i).getUserId() == userId)
+		         {
+	             int facilityID = bookings.get(i).getFacilityId();
+		         for (int y = 0; i < facilities.size();y++)
+		         {
 	                if (facilities.get(y).getFacilityId() == facilityID)
-			{
-			    if (userType == 1)
-			    {
-			        if (bookings.get(i).getPaymentStatus() == false)
-				{
-				    amountDue += facilities.get(y).getPricePerHour();
-                                    statement = userId + "    " + amountDue;									
-				}
-			    }
-			    else
-			    {
-			        boolean ff =  (bookings.get(i).getPaymentStatus() == false ); // opposite atm
-      				if (ff)
-				{
-				    amountDue += facilities.get(y).getPricePerHour();
-				}
-				statement += ( facilities.get(y).getFacilityName() + " " + facilities.get(y).getPricePerHour()  + "  Paid Status: " + ff );				    
-			    }
-		       }
-                   }
-		  }				
-		 } 
-	      statement += ("Amount Due:     " + amountDue);
+			        {
+			        if (userType == 1)  // whats returned to a admin
+			        {
+			            if (bookings.get(i).getPaymentStatus() == false)
+				        {
+				        amountDue += facilities.get(y).getPricePerHour();    /// currency.getSymbol();
+                                        statement = "User ID: "+userId + "    Amnt Due: " + amountDue+"\n"; /// returned to normal user !!!???!!!!									
+				        }
+			         }
+			         else  /// user type 2 returned to a ordinary user
+			         {
+			             boolean ff =  (bookings.get(i).getPaymentStatus() == false ); // opposite atm
+      				     if (ff)
+				         {
+				             amountDue += facilities.get(y).getPricePerHour();
+				         }
+				     statement += ( facilities.get(y).getFacilityName() + " " + facilities.get(y).getPricePerHour()  + "  Paid Status: " + ff );				    
+			     }
+		         }
+                 }
+		         }				
+		     } 
+	      statement += ("\nAmount Due:     " + amountDue);
 	
 		
-		/*  IF UserType 1 
+		/*  IF UserType 2		
+		
+		User Id : 4 || JJ@CSIS.UL
 		Church Room   €100     Paid
  		Tea Room       €25   Unpaid
 		Room 3         €12   Unpaid
@@ -648,9 +651,9 @@ public class main
 		
 		========
 		
-		IF UserType 2
-		User Id: 1   €56
-		  - change ints to doubles*/
+		IF UserType 1
+		
+		User Id: 4 || JJ@CSIS.UL	  Amnt Due €37		*/
 	    return statement;
 	}
  
