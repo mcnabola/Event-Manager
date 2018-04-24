@@ -126,4 +126,9 @@ public class Booking
 	{
 		this.bookingDate = aDate;
 	}
+	
+	public void setPaymentStaus(boolean paymentStatus)
+	{
+	       this.paymentStatus=paymentStaus	
+	}
 }
