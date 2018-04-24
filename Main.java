@@ -518,9 +518,9 @@ public class main
 					{
 						case 0: createNewFacility();
 						break;
-						case 1: viewBookingsForAFacility(0);
+						case 1: viewFacility(0);
 						break;
-						case 2:	viewBookingsForAFacility(1);		 
+						case 2:	viewFacility(1);		 
 						break;
 						case 3: removeFacility();
 						break;
@@ -671,7 +671,7 @@ public class main
 	   *Output - The slots which are booked for the facility on the date are displayed to screen
 	   *
 	   **/	
-	public static void viewBookingsForAFacility(int type)throws IOException //check what slots are free or booked for a certain date
+	public static void viewFacility(int type)throws IOException //check what slots are free or booked for a certain date
 	{
 	if(facilities.size()==0)
 	{
