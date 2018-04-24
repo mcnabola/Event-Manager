@@ -17,7 +17,7 @@ public class main
 	
 	 /**
 	  * General Description of the method - leave the space between description and tags
-	  * @tag nameOFVariable Description of the variable
+	  * @ tag nameOFVariable Description of the variable
 	  *
 	  * @param facilityId facilityId is a int that represents the unique value for that facility
 	  * @param optionType Option Type is a string that represesents a "option" 
