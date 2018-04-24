@@ -34,6 +34,17 @@ public class Booking
 		this.bookingSlot 	= bookingSlot;
 		this.paymentStatus	= paymentStatus;
 	}
+	
+	   public Booking(int bookingId, int facilityId, int userId, String bookingDate, int bookingSlot, boolean paymentStatus)
+	{
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		this.bookingId 		= bookingId;
+		this.facilityId 	= facilityId;
+		this.userId 		= userId;
+		this.bookingDate	= LocalDate.parse(bookingDate, formatter);
+		this.bookingSlot 	= bookingSlot;
+		this.paymentStatus	= paymentStatus;
+	}
 	 /**
 	   *
 	   *Input -
