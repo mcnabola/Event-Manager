@@ -1126,4 +1126,46 @@ public class main
 			}
 	}
 
+		public static void recordPayments()
+	{
+		if(bookings.size()==0)
+		{
+			outputBoxs("There is no bookings to record payments for.");
+		}
+		else
+		{
+			ArrayList<Integer> bookingsNotPaid=new ArrayList<Integer>();
+			for(int i=0;i<bookings.size();i++)
+			{
+				if(bookings.get(i).getPaymentStatus()==false)
+				{
+					bookingsNotPaid.add(bookings.get(i).getBookingId());
+				}
+			}
+			if(bookingsNotPaid.size()==0)
+			{
+				outputBoxs("Every booking has been paid for.");
+			}
+			else
+			{
+				String [] dropDownBookings=new String[bookingsNotPaid.size()];
+				for(int i=0;i<bookingsNotPaid.size();i++)
+				{
+					dropDownBookings[i]=""+bookingsNotPaid.get(i);
+				}
+				String choice=dropDown(dropDownBookings,"Please select a bookingId to record payment for:");
+				int specificChoice=Integer.parseInt(choice);
+				for(int i=0;i<bookings.size();i++)
+				{
+					if(bookings.get(i).getBookingId()==specificChoice)
+					{
+						boolean setTrue=true;
+						removeLine(bookingFileName,choice,0);
+						bookings.get(i).setPaymentStatus(setTrue);
+						writeFile(bookings.get(i).bookingToString(),bookingFileName);
+					}
+				}
+			}
+		}
+	}
 }
