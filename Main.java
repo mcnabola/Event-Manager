@@ -914,12 +914,20 @@ public class main
 			}
 			slotAsString=dropDown(dropDownListOfSlots,"The following slots are available please select one");
 			slotNumber=Integer.parseInt(slotAsString);
-			String [] dropDownOfUsers= new String[users.size()];
+			String [] dropDownOfUsersEmail= new String[users.size()];
 			for(int i=0;i<users.size();i++)
 			{
-				dropDownOfUsers[i]=""+users.get(i).getUserId();
+				dropDownOfUsersEmail[i]=users.get(i).getEmail();
 			}
-			int userId=Integer.parseInt(dropDown(dropDownOfUsers,"Please select a userId to make the booking for"));
+			String email=dropDown(dropDownOfUsersEmail,"Please select an email to make the booking for");
+			int userId=0;
+			for(int i=0;i<users.size();i++)
+			{
+				if(users.get(i).getEmail().equals(email))
+				{
+					userId=users.get(i).getUserId();
+				}
+			}
 			Booking newBooking= new Booking(bookingId,facilityId,userId,secondDate,slotNumber,payment);
 			writeFile(newBooking.bookingToString(),bookingFileName);
 			bookings.add(newBooking);
@@ -963,7 +971,6 @@ public class main
 	}
 	}
 	}
-	
 	
 	// this method is tested -- however changing to better more descriptive variable names is something i will change in a bit.
 	public static void facilityViewing()
