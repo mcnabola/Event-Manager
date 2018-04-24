@@ -151,17 +151,17 @@ public class main
 	   **/	  
 	public static String menuBox(String options)
 	{
-		String input="";
-		try
-		{
-			input=JOptionPane.showInputDialog(null,options);
-			return input;
-		}
-		catch(Exception e)
-		{
-		JOptionPane.showMessageDialog(null,"Error: no String entered");
-		return menuBox(options);
-		}
+		String input=JOptionPane.showInputDialog(null,options);;
+			if(!(input != null))
+			{
+				System.exit(0);
+			}
+			else if(input.equals(""))
+			{
+				outputBoxs("Error: no String entered");
+				input = menuBox(options);
+			}
+		return input;
 	}
 	 /**
 	   *A JOptionPane menu which allows the user to enter digits which are returned as a double.
@@ -254,37 +254,7 @@ public class main
 	  * The original file is then deleted and the temp file is renamed to the name of the original file
 	  * Input: Takes the filename, the string item to search for, and its position in a line
 	  **/
-	/*	public static void removeLine(String filename, String str, int pos)throws IOException
-	{
-		String tempFilename = "temp.txt";
-		File aFile 	  = new File(filename);
-		File tempFile = new File(tempFilename);
-		String lineFromFile = "";
-		Scanner in;
-		PrintWriter out;
-		String[] fileElements;
-		if (aFile.exists())
-		{
-			in = new Scanner(aFile);
-			out = new PrintWriter(tempFilename);
-			while (in.hasNext())
-			{
-				System.out.println ("LN32");
-				lineFromFile = in.nextLine();
-				fileElements = lineFromFile.split(",");
-				if (!fileElements[pos].equals(str))
-				{
-					out.print(lineFromFile);
-					out.println();
-				}
-			}
-			in.close();
-			out.close();
-			//aFile.delete();
-				System.out.println("NOT RENAMED");
-			//tempFile.renameTo(aFile);
-		}
-	}*/
+
 	
 	public static void removeLine(String filename, String str, int pos)throws IOException
 	{
@@ -357,15 +327,15 @@ public class main
 					loginAttempts--;
 					if (loginAttempts == 0)
 					{
-						JOptionPane.showMessageDialog(null, "No attempts remaining");
+						outputBoxs("No attempts remaining");
 						break;
 					}
-					JOptionPane.showMessageDialog(null, "Incorrect login details.\n" + loginAttempts + " attempts remaining:");
-					email	 = JOptionPane.showInputDialog(null, "Enter email");
-					password = JOptionPane.showInputDialog(null, "Enter password");
+					outputBoxs("Incorrect login details.\n" + loginAttempts + " attempts remaining:");
+					email	 = menuBox("Enter email");
+					password = menuBox("Enter password");
 				}
 				else
-					JOptionPane.showMessageDialog(null, "Successfully logged in as " + email);
+					outputBoxs("Successfully logged in as " + email);
 			}
 		}
 		catch(Exception e)
