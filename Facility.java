@@ -118,6 +118,8 @@ public class Facility
 			
 			info	= facilityId + "," + facilityName + "," + pricePerHour + "," + temp + "," + available;
 		}
+		else if(decommissionedUntil.isBefore(LocalDate.now()))
+			info = facilityId + "," + facilityName + "," + pricePerHour +"," + available;
 		else
 			info 	= facilityId + "," + facilityName + "," + pricePerHour + "," + available; //Considering changing to include date=null
 		return info;
