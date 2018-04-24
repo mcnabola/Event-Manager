@@ -110,7 +110,6 @@ public class main
 		aFile = new File(filename);
 		if (aFile.exists())
 		{
-			System.out.println("ln80");
 			in = new Scanner(aFile);
 			while (in.hasNext())
 			{
@@ -120,10 +119,9 @@ public class main
 				int facilityId 		= Integer.parseInt(fileElements[1]);
 				int userId 	   		= Integer.parseInt(fileElements[2]);
 				String bookingDate 	= fileElements[3];
-				LocalDate bookingDater=LocalDate.parse(bookingDate);
 				int bookingSlot     = Integer.parseInt(fileElements[4]);
 				boolean paid 		= Boolean.parseBoolean(fileElements[5]);
-				aBooking = new Booking(bookingId, facilityId, userId, bookingDater, bookingSlot, paid);
+				aBooking = new Booking(bookingId, facilityId, userId, bookingDate, bookingSlot, paid);
 				bookings.add(aBooking);
 			}
 			in.close();
