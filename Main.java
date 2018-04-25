@@ -14,12 +14,11 @@ public class main
 	private static ArrayList<Facility> facilities=new ArrayList<Facility>();
 	private static ArrayList<Booking> bookings=new ArrayList<Booking>();
 	 /**
-	  * General Description of the method - leave the space between description and tags
-	  * @ tag nameOFVariable Description of the variable
+	  * 
 	  *
-	  * @param facilityId facilityId is a int that represents the unique value for that facility
-	  * @param optionType Option Type is a string that represesents a "option" 
-          * @return           Description of the return value
+	  * @param 
+	  * @param 
+      * @return          
 	  *
 	  *
 	  **/		
@@ -49,7 +48,7 @@ public class main
 	   *Adds each object into the appropriate Arraylist.
 	   *No params or return.
 	   **/	
-				public static void restore()
+		public static void restore()
 		{
 		try
 		{
@@ -547,7 +546,7 @@ public class main
 		try
 		{
 		String [] initialOptions = { "Register User", "Facility Menu", "Record Payments", "View Account Statements" };
-		String [] subOptions	 = {"Add Facility","View Facility Availability", "View Facility Bookings", "Remove Facility", "Decommission Facility", "Recommission Facility","Make Booking"};
+		String [] subOptions	 = {"Add Facility","View Facility Availability", "View Facility Bookings", "Remove Facility", "Decommission Facility", "Recommission Facility","Make Booking","Return to main menu"};
 	        boolean main = true;
 		int x = 0;
 		while(main && x==0||x==1||x==2||x==3)   
@@ -577,6 +576,8 @@ public class main
 						break;
 						case 6: makeBooking();
 						break;
+						case 7: 
+						break;
 					}
                 break;
 				case 2: recordPayments();
@@ -584,7 +585,7 @@ public class main
 				case 3: String statementOutput = ""; 
                                         for (int i = 0 ; i < users.size();i++)
                                         { int userid = users.get(i).getUserId();
-				          statementOutput+= accountStatement(userid,1)+"\n";
+				          statementOutput+= accountStatement(userid)+"\n";
 					} outputBoxs(statementOutput);						
 				break;
 			}
@@ -595,7 +596,7 @@ public class main
 	}
 	 /**
 	   *Gui for the administrator to navigate through commands. Admin selects an option which is then passed through switch statements to call the correct method
-	   
+	 
 	   *@param- None 
 	   
 	   *@return -None
@@ -832,11 +833,6 @@ out+=("Booking ID: "+elements[0]+"   Facility ID: "+elements[1]+"   Booking Date
 	 else
 		 outputBoxs(result);
 	 }
-	}
-	else
-	{
-		outputBoxs("Incorrect date format:Please enter a date in the form dd/MM/yyyy");
-	}
 	}
 	}
 	 /**
