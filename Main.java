@@ -687,13 +687,73 @@ out+=("Booking ID: "+elements[0]+"   Facility ID: "+elements[1]+"   Booking Date
 		 facilityId=facilities.get(i).getFacilityId();
 		 }
 	 }
-	 boolean validDate=true;
-	 String date=menuBox("Enter a date search:");
+           String d1 = menuBox("Enter the first date you want to view the dates between.\nIn the format dd/MM/yyyy");
+             String d2 = menuBox("Enter the second date to view the availability between.\nIn the format dd/MM/yyyy");
+		     try{
+		     boolean check = isValidDate(d1);
+		     while(check == false)
+		     {
+		         d1 = menuBox("Please enter a valid date for the first date again:\nFormat(DD/MM/YYYY)");
+			     check = isValidDate(d1);
+		     }
+		
+		     check = isValidDate(d2);
+		     while(check == false)
+		     {
+		         d2 = menuBox("Please enter a valid date for the second date again:\nFormat(DD/MM/YYYY)");
+			     check = isValidDate(d2);
+		     }
+		     }
+		     catch(Exception e){}
+		 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+             LocalDate date = LocalDate.parse(d1, formatter);
+		     LocalDate date2 = LocalDate.parse(d2, formatter);
+		 
+		     int dateDifference = date.compareTo(date2);
+		 
+		 /// compare to -- different way of using it 
+		     int ff = Math.abs(dateDifference); 
+	
+		/// only want to limit to a week in difference as anything greater will be too much and break the JOptionPane
+             LocalDate secondDate = LocalDate.now();
+     		 if (ff<=7)
+		     {
+		
+		     String[] names = new String[ff];
+		     LocalDate temp = date;
+		     String output;
+		     int count = 0;
+		     while (temp.isBefore(date2))
+		     {
+		     temp = temp.plusDays(1);
+		     output = temp.format(formatter);
+			 names[count] = output;
+			 count++;
+		     }
+		 
+		     // user chooses date from the dropDown
+		     String dateChoice = dropDown(names, "Choose a date to view");
+             secondDate = LocalDate.parse(dateChoice,formatter);
+		     }
+		     else{	 
+	         String date11=menuBox("You have selected dates outside a range capable of Joptionpane\nEnter a date search between:");
+	         boolean validDate=isValidDate(date11);
+	         if(validDate)
+	         {
+	             //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	             secondDate=LocalDate.parse(date11,formatter);
+			 }	
+		     }
+			 
+	 
+	 /* String date=menuBox("Enter a date search:");
 	 validDate=isValidDate(date);
 	 if(validDate)
 	 {
-	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-	 LocalDate secondDate=LocalDate.parse(date,formatter);
+	 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	 LocalDate secondDate=LocalDate.parse(date,formatter);  */
+		
+		
 	 boolean available=true;
 	 ArrayList<Integer> slotNumberForBookingsOfDate=new ArrayList<Integer>();
 	 for(int i=0;i<bookings.size();i++)
