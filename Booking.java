@@ -3,9 +3,7 @@ import java.text.*;
 import java.time.*;
 import java.time.format.*;
 	 /**
-	   *Creating a Booking class with object varialbes
-	   *Input -none
-	   *Output -none
+	   public Class Booking,variables for making objects of booking type
 	   *
 	   **/	
 public class Booking
@@ -21,8 +19,15 @@ public class Booking
 	//FOR RESTORING - MAY ADD FURTHER CONSTRUCTORS
 	 /**
 	   *Construcutor method to create Booking object
-	   *Input -Int booking id, int facility id, int user id, localDate of booking, int of booking slot, boolean of whether the user has paid or not
-	   *Output -None
+	   
+	   @param-Int bookingId is the Id of the booking
+	   @param-Int facility is the Id of the facility for which the booking is made for
+	   @param-Int UserId is the Id of the user who made the booking
+	   @param-LocalDate bookingDate is the date of when the booking is made for
+	   @param-Int bookingSlot is the position of the day/time the booking is made for
+	   @param-Boolean paymentStatus is the boolean of whether the user has paid for this booking or not
+	   
+	   *@return-None
 	   *
 	   **/	
 	   public Booking(int bookingId, int facilityId, int userId, LocalDate bookingDate, int bookingSlot, boolean paymentStatus)
@@ -36,8 +41,15 @@ public class Booking
 	}
 	/**
 	   *Construcutor method to create Booking object
-	   *Input -Int booking id, int facility id, int user id, String of bookingdate, int of booking slot, boolean of whether the user has paid or not
-	   *Output -None
+	   
+	   @param-Int bookingId is the Id of the booking
+	   @param-Int facility is the Id of the facility for which the booking is made for
+	   @param-Int UserId is the Id of the user who made the booking
+	   @param-String bookingDate is the date of when the booking is made for
+	   @param-Int bookingSlot is the position of the day/time the booking is made for
+	   @param-Boolean paymentStatus is the boolean of whether the user has paid for this booking or not
+	   
+	   *@return-None
 	   *
 	   **/	
 	   public Booking(int bookingId, int facilityId, int userId, String bookingDate, int bookingSlot, boolean paymentStatus)
@@ -52,8 +64,10 @@ public class Booking
 	}
 	 /**
 	   *Get method for BookingId of the booking made
-	   *Input -None
-	   *Output -Returns int of the BookingId
+	   
+	   *@param -None
+	   
+	   *@return -Returns int of the BookingId
 	   *
 	   **/		
 	public int getBookingId()
@@ -62,8 +76,10 @@ public class Booking
 	}
 	 /**
 	   *Get method for FacilityId of the booking
-	   *Input -None
-	   *Output -Returns int of the FacilityId
+	   
+	   *@param -None
+	   
+	   *@return -Returns int of the FacilityId
 	   *
 	   **/		
 	public int getFacilityId()
@@ -72,8 +88,10 @@ public class Booking
 	}
 	 /**
 	   *Get method for UserId of the booking made
-	   *Input -None
-	   *Output -Returns int of the UserId that made the booking
+	   
+	   *@param -None
+	   
+	   *@retutn -Returns int of the UserId that made the booking
 	   *
 	   **/		
 	public int getUserId()
@@ -82,8 +100,10 @@ public class Booking
 	}
 	 /**
 	   *Get method for the booking date of the booking made
-	   *Input -None
-	   *Output -Returns LocalDate of the day the booking is for
+	   
+	   *@param -None
+	   
+	   *@return -Returns LocalDate of the day the booking is for
 	   *
 	   **/		
 	public LocalDate getBookingDate()
@@ -92,8 +112,10 @@ public class Booking
 	}
 	 /**
 	   *Get method for the slot for which the booking is made
-	   *Input -None
-	   *Output -Returns int of the booking slot the booking is made for on that date
+	   
+	   *@param -None
+	   
+	   *@return -Returns int of the booking slot the booking is made for on that date
 	   *
 	   **/		
 	public int getBookingSlot()
@@ -102,8 +124,10 @@ public class Booking
 	}
 	 /**
 	   *Get method for whether the user has paid for their booking or not
-	   *Input -None
-	   *Output -Returns Boolean of PaymentStatus true if they have paid for booking
+	   
+	   *@param -None
+	   
+	   *return -Returns Boolean of PaymentStatus true if they have paid for booking
 	   *
 	   **/		
 	public boolean getPaymentStatus()
@@ -112,8 +136,10 @@ public class Booking
 	}
 	 /**
 	   *Mehtod to convert all Booking info made to one String
-	   *Input -None
-	   *Output -reurns String info,which contains all booking variables seperated by a ","
+	   
+	   *@param -None
+	   
+	   *@return -reurns String info,which contains all booking variables seperated by a ","
 	   *
 	   **/		
 	public String bookingToString()
@@ -124,8 +150,10 @@ public class Booking
 	}
 	 /**
 	   *Set Method to give a booking a date
-	   *Input -String of date the user wishes to book for
-	   *Output -None
+	   
+	   *@param -String aDate is the date the user wishes to book for
+	   
+	   *@return -None
 	   *
 	   **/	
 	public void setBookingDate(String aDate)
@@ -134,8 +162,10 @@ public class Booking
 	}
 	 /**
 	   *Set Method to give a booking a date
-	   *Input -LocalDate of date the user wishes to book for
-	   *Output -None
+	   
+	   *@param-LocalDate aDate is the date the user wishes to book for
+	   
+	   *@return -None
 	   *
 	   **/		
 	public void setBookingDate(LocalDate aDate)
@@ -144,8 +174,10 @@ public class Booking
 	}
 	/**
 	   *Set Method to give a booking a payment status
-	   *Input -Boolean of wheter the user has paid or not for the booking
-	   *Output -None
+	   
+	   *@param-Boolean paymentStatus of whether the user has paid for the booking or not
+	   
+	   *@return-none
 	   *
 	   **/	
 	public void setPaymentStatus(boolean paymentStatus)
