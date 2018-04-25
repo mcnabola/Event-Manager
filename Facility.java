@@ -138,14 +138,18 @@ public class Facility
 
 		if (decommissionedUntil != null)
 		{
-			String temp = decommissionedUntil.format(formatter);
-			
-			info	= facilityId + "," + facilityName + "," + pricePerHour + "," + temp + "," + available;
+			if (decommissionedUntil.isBefore(LocalDate.now()))
+				info 	= facilityId + "," + facilityName + "," + pricePerHour + "," + available;
+			else
+			{
+				String temp = decommissionedUntil.format(formatter);
+				info = facilityId + "," + facilityName + "," + pricePerHour + "," + temp + "," + available;
+			}
 		}
-		else if(decommissionedUntil.isBefore(LocalDate.now()))
-			info = facilityId + "," + facilityName + "," + pricePerHour +"," + available;
+		
 		else
-			info 	= facilityId + "," + facilityName + "," + pricePerHour + "," + available; //Considering changing to include date=null
+			info 	= facilityId + "," + facilityName + "," + pricePerHour + "," + available;
+		
 		return info;
 	}
 	 /**
