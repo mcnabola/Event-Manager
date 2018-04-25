@@ -136,9 +136,7 @@ public class Booking
 	}
 	 /**
 	   *Mehtod to convert all Booking info made to one String
-	   
 	   *@param -None
-	   
 	   *@return -reurns String info,which contains all booking variables seperated by a ","
 	   *
 	   **/		
@@ -150,9 +148,8 @@ public class Booking
 	}
 	 /**
 	   *Set Method to give a booking a date
-	   
+	   *
 	   *@param -String aDate is the date the user wishes to book for
-	   
 	   *@return -None
 	   *
 	   **/	
@@ -162,9 +159,8 @@ public class Booking
 	}
 	 /**
 	   *Set Method to give a booking a date
-	   
-	   *@param-LocalDate aDate is the date the user wishes to book for
-	   
+	   *
+	   *@param LocalDate aDate is the date the user wishes to book for
 	   *@return -None
 	   *
 	   **/		
@@ -174,10 +170,9 @@ public class Booking
 	}
 	/**
 	   *Set Method to give a booking a payment status
-	   
-	   *@param-Boolean paymentStatus of whether the user has paid for the booking or not
-	   
-	   *@return-none
+	   *
+	   *@param Boolean paymentStatus of whether the user has paid for the booking or not
+	   *@return none
 	   *
 	   **/	
 	public void setPaymentStatus(boolean paymentStatus)
