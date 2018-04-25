@@ -38,8 +38,6 @@ public class Facility
 	 *@param pricePerHour Inputs the price of the facility to book per a time slot
 	 *@param decommissionedUntil Inputs a date and decommissions the facility until that date.
 	 *
-	 *@return-None
-	 *
 	 */	
 	public Facility(int facilityId, String facilityName, double pricePerHour, LocalDate decommissionedUntil)
 	{		
@@ -111,7 +109,7 @@ public class Facility
 	/**
 	 *Method to get a String containing all of the facilities information available.
 	 *    
-	 *@return-returns String of facility information
+	 *@return    returns String containing facility information.
 	 *
 	 */		
 	public String facilityToString()
