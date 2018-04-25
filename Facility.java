@@ -3,9 +3,8 @@ import java.text.*;
 import java.time.*;
 import java.time.format.*;
 	 /**
+	   *public class Facility,variables for creating object of facility type
 	   *
-	   *Input -
-	   *Output -
 	   *
 	   **/	
 public class Facility
@@ -20,8 +19,12 @@ public class Facility
 	//IF USER DOESN'T WANT IT DECOMISSIONED WHEN CREATING FACILITY CALL THIS CONSTRUCTOR
 	/**
 	   *Constructor method if the user does not want to decomission the facility
-	   *Input -Int facilityid,String of facilityName,double of pricePerHour
-	   *Output -No output
+	   
+	   @param-Int facilityId is the Id of the facility
+	   @param-String facilityName is the name of the facility
+	   @param-Double pricePerHour is the price of facility to book per time slot
+	   
+	   *@return-None
 	   *
 	   **/	
 	public Facility(int facilityId, String facilityName, double pricePerHour)
@@ -34,8 +37,14 @@ public class Facility
 	//IF USER WANTS IT DECOMISSIONED WHEN CREATING FACILITY ENTER THIS CONSTRUCTOR
 	 /**
 	   *Constructor method if the user wants to decomission the facility
-	   *Input -Int facilityid,String of facilityName,double of pricePerHour,LocalDate of decomission date of facility
-	   *Output -No output -
+	   
+	    @param-Int facilityId is the Id of the facility
+	    @param-String facilityName is the name of the facility
+	    @param-Double pricePerHour is the price of facility to book per time slot
+	    @param-LocalDate decommissionedUntil is the date the facility is decommissioned to.
+	  
+	   
+	   *@return-None
 	   *
 	   **/	
 	public Facility(int facilityId, String facilityName, double pricePerHour, LocalDate decommissionedUntil)
@@ -49,8 +58,13 @@ public class Facility
 	//IF USER WANTS IT DECOMISSIONED WHEN CREATING FACILITY BUT DATE IS STRING
 	 /**
 	   *Constructor method if the user wants to decomission the facility and enters date as string
-	   *Input -Int facilityid,String of facilityName,double of pricePerHour,String of decomission date of facility
-	   *Output -No output -
+	   
+	    @param-Int facilityId is the Id of the facility
+	    @param-String facilityName is the name of the facility
+	    @param-Double pricePerHour is the price of facility to book per time slot
+	    @param-String decommissionedUntil is the date the facility is decommissioned to.
+	    
+	    @return-None
 	   *
 	   **/	
 	public Facility(int facilityId, String facilityName, double pricePerHour, String decommissionedUntilDate)
@@ -64,8 +78,10 @@ public class Facility
 	}
 	 /**
 	   *Method to Get Facility ID of facility
-	   *Input -none
-	   *Output -Returns int facility Id of facility
+	   
+	   *@param-None
+	   
+	   *@return-Returns int facility Id of facility
 	   *
 	   **/	
 	public int getFacilityId()
@@ -74,8 +90,10 @@ public class Facility
 	}
 	 /**
 	   *Method to Get FacilityName of facility
-	   *Input -none
-	   *Output -Returns String FacilityName of facility
+	   
+	   *@param-None
+	   
+	   *@return -Returns String FacilityName of facility
 	   *
 	   **/	
 	public String getFacilityName()
@@ -84,8 +102,10 @@ public class Facility
 	}
 	 /**
 	   *Method to Price per hour of facility
-	   *Input -noe
-	   *Output -Returns double of price per hour of facility -
+	   
+	   *@param-None
+	   
+	   *@return-Returns double of price per hour of facility -
 	   *
 	   **/	
 	public double getPricePerHour()
@@ -94,8 +114,10 @@ public class Facility
 	}
 	 /**
 	   *Method to Get decommission date of facility
-	   *Input -none 
-	   *Output -Returns LocalDate decommission date of facility
+	   
+	   *@param-None
+	   
+	   *@return -Returns LocalDate decommission date of facility
 	   *
 	   **/		
 	public LocalDate getDecommissionedUntil()
@@ -104,8 +126,10 @@ public class Facility
 	}	
 	 /**
 	   *Method to Get String of facility information
-	   *Input -none
-	   *Output -returns String of facility information
+	   
+	   *@param-None
+	   
+	   *@return-returns String of facility information
 	   *
 	   **/		
 	public String facilityToString()
@@ -126,7 +150,9 @@ public class Facility
 	}
 	 /**
 	   *Method to check if facility is available or decommissioned
-	   *Input -none
+	   
+	   *@param-None
+	   
 	   *Output -returns boolean based on availability
 	   *
 	   **/		
@@ -141,8 +167,10 @@ public class Facility
 	}
 	 /**
 	   *Set method to assign a decommission date to a facility object
-	   *Input -String of date to decommision until
-	   *Output -None
+	   
+	   *@param-String of date to decommision until
+	   
+	   *@return-None
 	   *
 	   **/		
 	public void setDecommissionedUntil(String aDate)//SET WITH A STRING
@@ -153,8 +181,10 @@ public class Facility
 	}
 	 /**
 	   *Set method to assign a decommission date to a facility object
-	   *Input -LocalDate of date to decommision until
-	   *Output -None
+	   
+	   *@param -LocalDate aDate of date to decommision until
+	   
+	   *@return-None
 	   *
 	   **/		
 	public void setDecommissionedUntil(LocalDate aDate)
