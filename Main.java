@@ -41,6 +41,9 @@ public class main
 				else System.exit(0);
 				
 	}	 
+	
+	
+	
 	 /**
 	   *
 	   *A method which is called when the application opens.
@@ -155,8 +158,11 @@ public class main
 		String input=JOptionPane.showInputDialog(null,options);;
 			if(!(input != null))
 			{
-				outputBoxs("Error: no String entered");
-				input=menuBox(options);
+				int check = JOptionPane.showConfirmDialog (null, "Do you want to exit?","Menu",JOptionPane.YES_NO_OPTION);
+				if (check == JOptionPane.YES_OPTION)
+					System.exit(0);
+				else
+					input=menuBox(options);
 			}
 			else if(input.equals(""))
 			{
@@ -165,6 +171,7 @@ public class main
 			}
 		return input;
 	}
+
 	 /**
 	   *A JOptionPane menu which allows the user to enter digits which are returned as a double.
 	   
