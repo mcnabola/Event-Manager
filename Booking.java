@@ -16,7 +16,6 @@ public class Booking
 	public boolean paymentStatus;
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-	//FOR RESTORING - MAY ADD FURTHER CONSTRUCTORS
 	 /**
 	   *Construcutor method to create Booking object
 	   
