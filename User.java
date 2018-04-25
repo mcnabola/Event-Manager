@@ -1,7 +1,7 @@
 	 /**
+	   *Public class User, Variables for creating object of User Type
 	   *
-	   *Input -
-	   *Output -
+	   *
 	   *
 	   **/	
 public class User
@@ -13,8 +13,13 @@ public class User
 	 /**
 	   *Constructor method for user.
 	   *Gets the parameters and assign them to the variables of user.
-	   *Input -Int of user Id,String of user's email ,String of user's password, int of usertype
-	   *Output -No output
+	   
+	   @param-Int userId is the Id of user
+	   @param-String email is the email of user
+	   @param-String password is the password of user
+	   @param-int usertype is the type of user-1=admin,2=user
+	   
+	   *@return-None
 	   *
 	   **/	
 	public User(int userId, String email, String password, int userType) //For restoring users
@@ -28,8 +33,11 @@ public class User
 	   *Gets the parameters and assign them to the variables of user.
 	   *Calls the generatepassword method to create password.
 	   *Automatically assigns usertype to 2.
-	   *Input -Int user Id and String email
-	   *Output -No output
+	   
+	   @param-Int userId is the Id of user
+	   @param-String email is the email of user
+	   
+	   @return-None
 	   *
 	   **/		
 	public User(int userId, String email) //Basic for adding new user
@@ -42,8 +50,10 @@ public class User
 	
 	 /**
 	   *Method to generate a random String password for user.
-	   *Input -None
-	   *Output -returns the genrated password as a string
+	   
+	   *@param -None
+	   
+	   *@return -returns the genrated password as a string
 	   *
 	   **/		
 	public static String generatePassword() //Basic alpha-numeric password generator
@@ -61,8 +71,10 @@ public class User
 	}
 	 /**
 	   *Get method to return userid of user
-	   *Input -No input
-	   *Output -returns int UserId of user
+	   
+	   *@param -None
+	   
+	   *@return -returns int UserId of user
 	   *
 	   **/	
 	public int getUserId()
@@ -71,8 +83,10 @@ public class User
 	}
 	 /**
 	   *Get method to return Email of user
-	   *Input -No input
-	   *Output -returns String Email of user
+	   
+	   *@param -None
+	   
+	   *@return -returns String Email of user
 	   *
 	   **/		
 	public String getEmail()
@@ -81,8 +95,10 @@ public class User
 	}
 	 /**
 	   *Get method to return Password of user
-	   *Input -No input
-	   *Output -returns String Password of user
+	   
+	   *@param -None
+	   
+	   *@return -returns String Password of user
 	   *
 	   **/	
 	public String getPassword()
@@ -91,8 +107,10 @@ public class User
 	}
 	 /**
 	   *Get method to return Usertype of user
-	   *Input -No input
-	   *Output -returns int Uertype of user
+	   
+	   *@param -None
+	   
+	   *@return-returns int Uertype of user
 	   *
 	   **/		
 	public int getUserType()
@@ -101,8 +119,10 @@ public class User
 	}
 	 /**
 	   *Get method to return User info to String
-	   *Input -No input
-	   *Output -returns a String of the user's info
+	   
+	   *@param -None
+	   
+	   *@return-returns a String of the user's info
 	   *
 	   **/		
 	public String userToString()
