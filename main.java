@@ -13,15 +13,16 @@ public class main
 	private static ArrayList<User> users=new ArrayList<User>();
 	private static ArrayList<Facility> facilities=new ArrayList<Facility>();
 	private static ArrayList<Booking> bookings=new ArrayList<Booking>();
-	 /**
-	  * 
-	  *
-	  * @param 
-	  * @param 
-      * @return          
-	  *
-	  *
-	  **/		
+	/**
+	 * General Description of the method - leave the space between description and tags
+	 * @ tag nameOFVariable Description of the variable
+	 *
+	 *@param facilityId facilityId is a int that represents the unique value for that facility
+	 *@param optionType Option Type is a string that represesents a "option" 
+	 *@return           Description of the return value
+	 *
+	 *
+	 **/		
 	public static void main(String [] args)
 	{
 		restore();
@@ -41,9 +42,6 @@ public class main
 				else System.exit(0);
 				
 	}	 
-	
-	
-	
 	 /**
 	   *
 	   *A method which is called when the application opens.
@@ -51,7 +49,7 @@ public class main
 	   *Adds each object into the appropriate Arraylist.
 	   *No params or return.
 	   **/	
-		public static void restore()
+				public static void restore()
 		{
 		try
 		{
@@ -147,9 +145,7 @@ public class main
 	
 	 /**
 	   *A JOptionPane menu which allows the user to enter a word, digits or characters which are returned as a string.
-	   
 	   *@param String options Type is a string that represesents a the type of info you want from the user. 
-	   
 	   *@return - whatever the user enters is returned as a string
 	   *
 	   **/	  
@@ -158,11 +154,8 @@ public class main
 		String input=JOptionPane.showInputDialog(null,options);;
 			if(!(input != null))
 			{
-				int check = JOptionPane.showConfirmDialog (null, "Do you want to exit?","Menu",JOptionPane.YES_NO_OPTION);
-				if (check == JOptionPane.YES_OPTION)
-					System.exit(0);
-				else
-					input=menuBox(options);
+				outputBoxs("Error: no String entered");
+				input=menuBox(options);
 			}
 			else if(input.equals(""))
 			{
@@ -171,12 +164,9 @@ public class main
 			}
 		return input;
 	}
-
 	 /**
 	   *A JOptionPane menu which allows the user to enter digits which are returned as a double.
-	   
 	   *@param String options Type is a string that represesents a the type of info you want from the user. 
-	   
 	   *@return - whatever the user enters is returned as a double
 	   *
 	   **/	  
@@ -229,13 +219,13 @@ public class main
 	}
 
 	 /**
-	   *Writes the input given to the file specified
+	*Writes the input given to the file specified
 	   
 	   *@param- String input of what the user wants to write to file.
 	   *@param-String filename of where the input is printed to.
 	   *@return - the input is then wrote to file specified
 	   *
-	   **/		
+	**/		
 	public static void writeFile(String input, String fileName)
     {
 		try
@@ -253,10 +243,8 @@ public class main
 	
 	 /**
 	   *A JOptionPane drop down menu which returns the index in the array of which option the user selects
-	   
 	   *@param -String[] options is  a passed an array what options the user can choose
 	   *@param -String whatYouWantItToSay is a string of what you want the JOptionPane to print to prompt user selection
-	   
 	   *@return - returns a int which is the index in the array which the user selected
 	   *
 	   **/	
@@ -269,13 +257,10 @@ public class main
 	  * Searches a file for a given string in a given position and regenerates the file without the line
 	  * Copies every line from the file except the specified line and writes them to a temp file
 	  * The original file is then deleted and the temp file is renamed to the name of the original file
-	  
 	  * @param-String filename is the selcted file to remove a line from
-	  
 	  * @param-String str is the string you wish to locate in the file to locate the line you wish to delete.
-	  
 	  * @param-int pos is the position in the file line you wish to search for String str
-	  **/
+	**/
 
 	
 	public static void removeLine(String filename, String str, int pos)throws IOException
@@ -307,9 +292,7 @@ public class main
 	/**
 	  * Checks if an inputted string is a valid email address by comparing it to
 	  * a simple email pattern
-	  
 	  * @param-String email is a string of the user email
-	  
 	  * @return- Returns a true boolean value if the email matches the pattern and 
 	  * returns false if it does not
 	  **/                                                               // ---- can "," be accepted - other values "."
@@ -323,19 +306,18 @@ public class main
 		
 		return isValid;
 	}
-	 /**
-	   * Simple login method that scans user arrayList for given parameters.User is given 3 attempts
-	   * to login before the program is closed.
-	   *
-	   * @param email searches the users arraylist and calls the .getEmail() method
-	   *        and compares it to the given email.
-	   * @param password if the given email belongs to a user in the arraylist, the getPassword()
-	   *		method is called on that user and is compared to the given password.
-	   * @return returns a true boolean if both params match. Else returns false and exits the program.
-
-	   *
-	   **/		
-		public static boolean loginMethod(String email, String password) 
+   /**
+	* Simple login method that scans user arrayList for given parameters.User is given 3 attempts
+	* to login before the program is closed.
+	*
+	*@param email searches the users arraylist and calls the .getEmail() method
+	*       and compares it to the given email.
+	* @param password if the given email belongs to a user in the arraylist, the getPassword()
+	*method is called on that user and is compared to the given password.
+	* @return returns a true boolean if both params match. Else returns false and exits the program.
+	*
+	*/		
+	public static boolean loginMethod(String email, String password) 
 	{
 		boolean found = false;
 		int loginAttempts = 3;
@@ -372,15 +354,13 @@ public class main
 		{}
 		return found;
 	}
-	 /**
-	   *checks whether a string passed into the method is a valid date in the form dd/mm/yyyy
-	   
-	   *@param -String date which is checked whether or not to be in the correct format or not
-	   
-	   *@return - the method reutrns a boolean value whether the date is valid or not.
-	   *
-	   **/		
-		public static boolean isValidDate(String date)throws IOException
+   /**
+	*checks whether a string passed into the method is a valid date in the form dd/mm/yyyy
+	*@param -String date which is checked whether or not to be in the correct format or not
+	*@return - the method reutrns a boolean value whether the date is valid or not.
+	*
+	*/		
+	public static boolean isValidDate(String date)throws IOException
 	{
 		try
 		{
@@ -393,19 +373,18 @@ public class main
 			return false;
 		}
 	}
-	 /**
-	   *Method for administrator to create a new facility
-	   *Asks user to create and name facility, checks if the facility already exists.
-	   *User then inputs price per hour and date it's decomissioned till, if any.
-	   *Then adds the new facility to facilities arraylist.
-	   
-	   *@param -No input (Method calls JOptionPane inside)
-	   
-	   *@return -No output
-	   *
-	   **/		
+   /**
+	*Method for administrator to create a new facility
+	*Asks user to create and name facility, checks if the facility already exists.
+	*User then inputs price per hour and date it's decomissioned till, if any.
+	*Then adds the new facility to facilities arraylist.   
+	*@param -No input (Method calls JOptionPane inside)
+	*@return -No output
+	*
+	*/		
 	public static void createNewFacility()
 	{
+		Facility aFacility;
 		String date;
 		int facilityId;
 		int temp = 0;
@@ -434,9 +413,7 @@ public class main
 			}	
 			
 			double pricePerHour 	= menuBoxDouble("please enter a price per hour:");
-			Facility aFacility = new Facility(facilityId, facilityName, pricePerHour);
 			int decommissionChoice 	= JOptionPane.showConfirmDialog (null, "Do you want to decommission this facility?","Facility",JOptionPane.YES_NO_OPTION);
-			
 			
 			if (decommissionChoice == JOptionPane.YES_OPTION)
 			{
@@ -447,22 +424,23 @@ public class main
 					date = menuBox("Please enter a valid date:\nFormat(DD/MM/YYYY)");
 					check = isValidDate(date);
 				}
-				aFacility.setDecommissionedUntil(date);
+				aFacility = new Facility(facilityId, facilityName, pricePerHour, date);
 			}
+			else
+				aFacility = new Facility(facilityId, facilityName, pricePerHour);
+			
 			facilities.add(aFacility);
 			String info = aFacility.facilityToString();
 			writeFile(info,facilityFileName);
 		}
 		catch(Exception e)
-		{System.out.println(e.getMessage());}
+		{}
 	}
-	 /**
-	   *removes a facility from the facility array and also removes it from the facility file. A facility cannot be removed if it has a booking.
-	   
-	   *@param -None
-	   
-	   *@return -None
-	   **/		
+  /**
+	*removes a facility from the facility array and also removes it from the facility file. A facility cannot be removed if it has a booking.
+	*@param -None
+	*@return -None
+	*/		
 	public static void removeFacility()
 	{
 		try
@@ -506,15 +484,13 @@ public class main
 		{}
 	}
 	
-	 /**
-	   *Drop down menu in which the user can choose an option.
-	   
-	   *@param-Array options is the list of options the user can choose from in the dropdown
-	   *@param-String dialogText is the Text displayed to user before picking
-	   
-	   *@return -The choice in which the user selects is returned as a string
-	   *
-	   **/		
+   /**
+	*Drop down menu in which the user can choose an option
+	*@param-Array options is the list of options the user can choose from in the dropdown
+	*@param-String dialogText is the Text displayed to user before picking   
+	*@return -The choice in which the user selects is returned as a string
+	*
+	*/		
 	public static String dropDown(String[] options, String dialogText)
 	{
 		String selection = "";
@@ -525,46 +501,42 @@ public class main
 		return selection;
 	}
 
-	 /**
-	   *Displays a message in a JOptionPane gui
-	   
-	   *@param-String output is the message to be displayed
-	   
-	   *@return - none
-	   *
-	   **/		
+   /**
+	*Displays a message in a JOptionPane gui  
+	*@param-String output is the message to be displayed
+	*@return - none
+	*
+	*/		
 	public static void outputBoxs(String output)
 	{
-	     JOptionPane.showMessageDialog(null, output);	
+		JOptionPane.showMessageDialog(null, output);	
 	}
-	 /**
-	   *Gui for the administrator to navigate through commands
-	   *admin selects an option which is then passed through switch statements to call the correct method
-	   
-	   *@param- none
-	   
-	   *@return-none
-	   *
-	   **/	
+   /**
+	*Gui for the administrator to navigate through commands
+	*admin selects an option which is then passed through switch statements to call the correct method
+	*@param- none
+	*@return-none
+	*
+	*/	
 	public static void adminMenu()
 	{
 		try
 		{
 		String [] initialOptions = { "Register User", "Facility Menu", "Record Payments", "View Account Statements" };
-		String [] subOptions	 = {"Add Facility","View Facility Availability", "View Facility Bookings", "Remove Facility", "Decommission Facility", "Recommission Facility","Make Booking","Return to main menu"};
-	        boolean main = true;
+		String [] subOptions	 = {"Add Facility","View Facility Availability", "View Facility Bookings", "Remove Facility", "Decommission Facility", "Recommission Facility","Make Booking"};
+		boolean main = true;
 		int x = 0;
 		while(main && x==0||x==1||x==2||x==3)   
 		{	
-		    x = optionBoxs(initialOptions,"Choose an option");
-		    int y = 0;
-		    int z = 0;
+			x = optionBoxs(initialOptions,"Choose an option");
+			int y = 0;
+			int z = 0;
 		
-		    switch (x)
-		    {
-			    case 0: createNewUser();
-		        break;
-			    case 1: y = optionBoxs(subOptions,"Choose an option");
+			switch (x)
+			{
+				case 0: createNewUser();
+				break;
+				case 1: y = optionBoxs(subOptions,"Choose an option");
 					switch (y)
 					{
 						case 0: createNewFacility();
@@ -581,17 +553,14 @@ public class main
 						break;
 						case 6: makeBooking();
 						break;
-						case 7: 
-						break;
 					}
-                break;
+				break;
 				case 2: recordPayments();
 				break;
 				case 3: String statementOutput = ""; 
-                                        for (int i = 0 ; i < users.size();i++)
-                                        { int userid = users.get(i).getUserId();
-				          statementOutput+= accountStatement(userid)+"\n";
-					} outputBoxs(statementOutput);						
+										for (int i = 0 ; i < users.size();i++)
+										{ int userid = users.get(i).getUserId();
+										statementOutput+= accountStatement(userid);} outputBoxs(statementOutput);
 				break;
 			}
 		}
@@ -599,41 +568,39 @@ public class main
 		catch(Exception E)
 		{}
 	}
-	 /**
-	   *Gui for the administrator to navigate through commands. Admin selects an option which is then passed through switch statements to call the correct method
-	 
-	   *@param- None 
-	   
-	   *@return -None
-	   *
-	   **/	
+   /**
+	*Gui for the administrator to navigate through commands. Admin selects an option which is then passed through switch statements to call the correct method 
+	*@param- None 
+	
+	*@return -None
+	*
+	*/	
 	public static void userMenu()
 	{
 		String [] initialOptions = { "View Bookings", "View Account Statement"};
-	    boolean main = true;
+		boolean main = true;
 		int x = 0;
 		while (main && x==0||x==1||x==2||x==3)  
 		{	
-		    x = optionBoxs(initialOptions,"Choose an option");
-		    int y = 0;
-		    switch (x)
-		    {
-			    case 0: viewBookings();
-		        break;
-			    case 1: outputBoxs(accountStatement(currentUserId));
-                break;				
+			x = optionBoxs(initialOptions,"Choose an option");
+			int y = 0;
+			switch (x)
+			{
+				case 0: viewBookings();
+				break;
+				case 1: outputBoxs(accountStatement(currentUserId));
+				break;				
 			}
 		}	
 	}
-	 /**
-	   *Allows the current user to view their own booking. Uses the global variable of the currentUserId to distinguish bookings.
-	    The users bookings are displayed to screen
-	   
-	   *@param - None
-	   
-	   *@return -None
-	   *
-	   **/	
+   /**
+	*Allows the current user to view their own booking. Uses the global variable of the currentUserId to distinguish bookings.
+	*The users bookings are displayed to screen
+	*
+	*@param - None
+	*@return -None
+	*
+	**/	
 	public static void viewBookings()
 	{
 		ArrayList<Booking> personalBookings=new ArrayList<Booking>();
@@ -648,337 +615,295 @@ public class main
 		String out="";
 		if (personalBookings.size() != 0)
 		{
-		    for(int i=0;i<personalBookings.size();i++)// have to get the facility name
-		    {
-                    String[] elements = personalBookings.get(i).bookingToString().split(",");
+			for(int i=0;i<personalBookings.size();i++)// have to get the facility name
+			{
+				String[] elements = personalBookings.get(i).bookingToString().split(",");
 out+=("Booking ID: "+elements[0]+"   Facility ID: "+elements[1]+"   Booking Date: "+elements[3]+"   Slot: "+elements[4]+"   Paid Status: " +elements[5]+"\n");	
-		    }
+			}
 		}
 		else
 			out = "There are currently no bookings at this time.";
 		outputBoxs(out);
 	}
 	
-	/**  
-	 * Method that takes in a users id and returns the amount owed by that user.
-	 *
-         *@param userId this is the ID number of the user 
-	 
-	 *@return statement this is the output of the users Id, their email address and the amount due for the user.
-	 **/	
-	 public static String accountStatement(int userId) 
-	 {
-	    double amountDue = 0.0;
-		String userEmail = "";
-		Currency curr = Currency.getInstance("EUR");						 
- 		String symbol = curr.getSymbol();
-		for (int j = 0;j<users.size();j++)
+   /**
+	* Method that takes in a users id and returns the amount owed by that user.
+	*
+	*@param userId this is the ID number of the user 
+	*@return statement this is the output of the users Id, their email address and the amount due for the user.
+	*/	
+	public static String accountStatement(int userId) 
 		{
-			if (users.get(j).getUserId() == userId)
-				userEmail = users.get(j).getEmail();
-		}
-        
-		if (bookings.size() != 0)
-		{
-			for (int i = 0;i<bookings.size();i++)
+			double amountDue = 0.0;
+			String userEmail = "";
+			Currency curr = Currency.getInstance("EUR");						 
+			String symbol = curr.getSymbol();
+			for (int j = 0;j<users.size();j++)
+			{
+				if (users.get(j).getUserId() == userId)
+					userEmail = users.get(j).getEmail();
+			}
+			String statement = ("User ID: "+userId + "    Email: " + userEmail +"    Amount Due: "+symbol+amountDue);    
+			if (bookings.size() != 0)
+			{
+			for (int i = 0; i < bookings.size(); i++)
 			{
 				if (bookings.get(i).getUserId() == userId)
 				{
-					int facilityId = bookings.get(i).getFacilityId();
-					boolean payment = bookings.get(i).getPaymentStatus();
-					if (!payment)
+					int facilityID = bookings.get(i).getFacilityId();
+					for (int y=0; i < facilities.size();y++)
 					{
-						for (int j = 0;j<facilities.size();j++)
+						if (facilities.get(y).getFacilityId() == facilityID)
 						{
-							if (facilities.get(j).getFacilityId() == facilityId)
+							if (bookings.get(i).getPaymentStatus() == false)
 							{
-								amountDue += facilities.get(j).getPricePerHour();
-							}
+								amountDue += facilities.get(y).getPricePerHour();
+							} 
+							statement = "User ID: "+userId + "    Email: " + userEmail + "    Amount Due: "+symbol+ ""+ amountDue;								 
 						}
 					}
 				}
 			}
-		}   
-          String statement = "User ID: "+userId + "    Email: " + userEmail + "    Amount Due: "+symbol+ ""+ amountDue;									
-	    return statement;
-     }
-	
- 
-	// viewFacility() - method made - still currently refactoring/making presentable
-	 /**
-	   *Shows a user which slots are booked for a certain facility on a certain date
-	   The user is asked to choose a facility from a dropdown and also asked to input a date to view the bookings
-	   The slots which are booked for the facility on the date are displayed to screen
-	   
-	   *@param-none
-	   
-	   *@return-none
-	   **/	
-	public static void viewFacility(int type)throws IOException //check what slots are free or booked for a certain date
-	{
-	if(facilities.size()==0)
-	{
-		outputBoxs("There is no facilities.");
-	}
-	else
-	{
-     String[] facilitiesName = new String[facilities.size()];
-	 for (int i = 0; i < facilities.size();i++)
-	 {
-		 facilitiesName[i] = facilities.get(i).getFacilityName();
-	 }
-	 String choice = dropDown(facilitiesName, "Choose a facility to view availability for.");
-	 int facilityId=0;
-	 for (int i = 0; i< facilities.size();i++)
-	  {
-		 if (facilities.get(i).getFacilityName().equals(choice))
-		 {
-		 facilityId=facilities.get(i).getFacilityId();
-		 }
-	 }
-           String d1 = menuBox("Enter the first date you want to view the dates between.\nIn the format dd/MM/yyyy");
-             String d2 = menuBox("Enter the second date to view the availability between.\nIn the format dd/MM/yyyy");
-		     try{
-		     boolean check = isValidDate(d1);
-		     while(check == false)
-		     {
-		         d1 = menuBox("Please enter a valid date for the first date again:\nFormat(DD/MM/YYYY)");
-			     check = isValidDate(d1);
-		     }
-		
-		     check = isValidDate(d2);
-		     while(check == false)
-		     {
-		         d2 = menuBox("Please enter a valid date for the second date again:\nFormat(DD/MM/YYYY)");
-			     check = isValidDate(d2);
-		     }
-		     }
-		     catch(Exception e){}
-		 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-             LocalDate date = LocalDate.parse(d1, formatter);
-			 date = date.minusDays(1);
-		     LocalDate date2 = LocalDate.parse(d2, formatter);
-		 
-		   //  int dateDifference = date.compareTo(date2);
-			
-			 
-			// Duration duration = Duration.between(date, date2);
-			//long ff1 = Math.abs(duration.toDays());
-			//int ff = (int) ff1;
-			 int firstDate=date.getYear();
-			 int secondDates=date2.getYear();
-			  LocalDate secondDate = LocalDate.now();
-			 if(firstDate==secondDates)
-			 {
-			 
-			 firstDate=date.getDayOfYear();
-			 secondDates=date2.getDayOfYear();
-			 int difference= secondDates-firstDate;
-			 
-		 /// compare to -- different way of using it 
-		/// only want to limit to a week in difference as anything greater will be too much and break the JOptionPane
-     		 if (difference<=8&&difference>-1)
-		     {
-			     System.out.println(difference+"      777");
-     		     String[] names = new String[difference];
-	    	     LocalDate temp = date;
-		         String output;
-		         int count = 0;
-		         for(int i=0;i<difference;i++){
-		             temp = temp.plusDays(1);
-		             output = temp.format(formatter);
-			          names[count] = output;
-			         count++;
-		         }
-		         // user chooses date from the dropDown
-		         String dateChoice = dropDown(names, "Choose a date to view");
-                 secondDate = LocalDate.parse(dateChoice,formatter);
-		     }
-			 else{// reason:: JOptionPane pane cant handle displaying each date in a drop down between e.g Jan01 and Dec01
-                     outputBoxs("The difference between the two dates is not seven.  ");
-					 return;
-			 }	
-		     }
-			 
-		     else{	 
-					outputBoxs("You can only search between dates in the same year.");
-					return;
-		     }
-			 
-	 
-	 /* String date=menuBox("Enter a date search:");
-	 validDate=isValidDate(date);
-	 if(validDate)
-	 {
-	 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-	 LocalDate secondDate=LocalDate.parse(date,formatter);  */
-		
-		
-	 boolean available=true;
-	 ArrayList<Integer> slotNumberForBookingsOfDate=new ArrayList<Integer>();
-	 for(int i=0;i<bookings.size();i++)
-	 {
-		if(bookings.get(i).getFacilityId()==facilityId)
-		{
-			if(bookings.get(i).getBookingDate().equals(secondDate))
-			{
-				available=false;
-				slotNumberForBookingsOfDate.add(bookings.get(i).getBookingSlot());
 			}
-		}
-	 }
-	 if(available==true)
-	 {
-		 outputBoxs("There are no bookings for this date.");
-	 }
-	 else
-	 { 
-		date = date.plusDays(1);
-		String temp3 = date.format(formatter);
-	 String result="The current slots on the "+temp3+" are booked:"+"\n";
-	 String avail = "Current free slots on " + temp3 + " are available\n";
-	 for (int i = 1 ; i< 10;i++)
-	 {
-         if (slotNumberForBookingsOfDate.contains(i))
-		 {
-				result+=("Slot "+i+"\n");
-		 }
-		 else{
-				avail+=("Slot "+i+"\n");
-	     }
-	 }	 
-	 if (type == 0)
-		 outputBoxs(avail);
-	 else
-		 outputBoxs(result);
-	 }
+		else
+		{ }
+		return statement;
 	}
+
+
+  /**
+	*Shows a user which slots are booked for a certain facility on a certain date
+	*The user is asked to choose a facility from a dropdown and also asked to input a date to view the bookings
+	*The slots which are booked for the facility on the date are displayed to screen
+	*   
+	*@param-none
+	*@return-none
+	**/	
+	public static void viewFacility(int type) throws IOException //check what slots are free or booked for a certain date
+	{
+		if(facilities.size() == 0)
+		{
+			outputBoxs("There is no facilities.");
+		} else 
+		{
+			String[] facilitiesName = new String[facilities.size()];
+			for (int i = 0; i < facilities.size(); i++) 
+			{
+				facilitiesName[i] = facilities.get(i).getFacilityName();
+			}
+			String choice = dropDown(facilitiesName, "Choose a facility to view availability for.");
+			int facilityId = 0;
+			for (int i = 0; i < facilities.size(); i++) 
+			{
+				if (facilities.get(i).getFacilityName().equals(choice)) 
+				{
+					facilityId = facilities.get(i).getFacilityId();
+				}
+			}
+			String d1 = menuBox("Enter the first date you want to view the dates between.\nIn the format dd/MM/yyyy");
+			String d2 = menuBox("Enter the second date to view the availability between.\nIn the format dd/MM/yyyy");
+			try 
+			{
+				boolean check = isValidDate(d1);
+				while (check == false) 
+				{
+					d1 = menuBox("Please enter a valid date for the first date again:\nFormat(DD/MM/YYYY)");
+					check = isValidDate(d1);
+				}
+				check = isValidDate(d2);
+				while (check == false) 
+				{
+					d2 = menuBox("Please enter a valid date for the second date again:\nFormat(DD/MM/YYYY)");
+					check = isValidDate(d2);
+				}
+			} catch (Exception e) {}
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			LocalDate date = LocalDate.parse(d1, formatter);
+			LocalDate date2 = LocalDate.parse(d2, formatter);	
+			int dateDifference = date.compareTo(date2);
+			int ff = Math.abs(dateDifference);
+			
+        /// only want to limit to a week in difference as anything greater will be too much and crash the JOptionPane dropDown || For example enter a year in difference of the two dates
+			LocalDate secondDate = LocalDate.now();
+			if (ff <= 7) 
+			{
+				String[] names = new String[ff];
+				LocalDate temp = date;
+				String output;
+				int count = 0;
+				while (temp.isBefore(date2)) 
+				{
+					temp = temp.plusDays(1);
+					output = temp.format(formatter);
+					names[count] = output;
+					count++;
+				}
+				
+				// user chooses date from the dropDown
+				String dateChoice = dropDown(names, "Choose a date to view");
+				secondDate = LocalDate.parse(dateChoice, formatter);
+			} else 
+			{
+				String date11 = menuBox("You have selected dates outside a range capable of being shown in a drop down in Joptionpane\nEnter a date to search:"); /// ghub
+				boolean validDate = isValidDate(date11);
+				if (validDate)
+				{
+					secondDate = LocalDate.parse(date11, formatter);
+				}
+				else{outputBoxs("Incorrect date entered.");}
+			}
+			boolean available = true;
+			ArrayList < Integer > slotNumberForBookingsOfDate = new ArrayList < Integer > ();
+			for (int i = 0; i < bookings.size(); i++) 
+			{
+				if (bookings.get(i).getFacilityId() == facilityId) {
+				if (bookings.get(i).getBookingDate().equals(secondDate)) {
+					available = false;
+					slotNumberForBookingsOfDate.add(bookings.get(i).getBookingSlot());
+				}
+				}
+			}
+			if (available == true) {
+				outputBoxs("There is no bookings for this date.");
+			} else {
+				String result = "The current slots on the " + date + " are booked:" + "\n";
+				String avail = "Current free slots on " + date + " are available\n";
+				for (int i = 1; i < 10; i++) {
+					if (slotNumberForBookingsOfDate.contains(i)) {
+						result += ("Slot " + i + "\n");
+					} else {
+						avail += ("Slot " + i + "\n");
+					}
+				}
+				if (type == 0)
+					outputBoxs(avail);
+				else
+					outputBoxs(result);
+			}
+		} 
 	}
-	 /**
-	   *The user has the ability to decommission a facility that is not decommissioned already
-	   The user is asked to choose a facility to recommissioned  and enter a date for the facility to be decommissioned
-	   The facility is decommissioned if it has no bookings and already isnt decommissioned and the availability of the entry in the file is changed.
-	   
-	   *@param -None
-	   
-	   @return-None
-	   **/	
+	
+  /**
+	*The user has the ability to decommission a facility that is not decommissioned already
+	*The user is asked to choose a facility to recommissioned  and enter a date for the facility to be decommissioned
+	*The facility is decommissioned if it has no bookings and already isnt decommissioned and the availability of the entry in the file is changed.
+	*
+	*@param -None
+	*@return-None
+	*/	
 	public static void decommissionFacility()throws IOException
 	{
-	 	if(facilities.size()==0)
-	{
-		outputBoxs("There are no facilities.");
-	}
-	else
-	{
-	 String[] facilitiesName = new String[facilities.size()];
-	 int facilityId=0;
-	 boolean available=true;
-	 for (int i = 0; i < facilities.size();i++)
-	 {
-		 facilitiesName[i] = facilities.get(i).getFacilityName();
-	 }
-	 String choice = dropDown(facilitiesName, "Choose a facility to decommission:");
-	 for (int i = 0; i< facilities.size();i++)
-	  {
-		 if (facilities.get(i).getFacilityName().equals(choice))
-		 {
-		 facilityId=facilities.get(i).getFacilityId();
-		 }
-	 }
-	 for(int i=0;i<bookings.size();i++)
-	 {
-		 if(bookings.get(i).getFacilityId()==facilityId)
-			 available=false;
-	 }
-	 if(available)
-	 {
-	 for (int i = 0; i< facilities.size();i++)
-	  {
-		 if (facilities.get(i).getFacilityName().equals(choice))
-		 {
-		 	String decommissionedToDate=menuBox("Please enter a date in the form DD/MM/YYYY:");
-			boolean validDate=isValidDate(decommissionedToDate);
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-	 		LocalDate dDate=LocalDate.parse(decommissionedToDate,formatter);
-			if(dDate.isBefore(LocalDate.now()))
-			 {
-				 outputBoxs("This date is in the past, cannot decommission");
-			 }
-			 else
-			 {
-			if(validDate)
+		if(facilities.size()==0)
+		{
+			outputBoxs("There is no facilities.");
+		}
+		else
+		{
+			String[] facilitiesName = new String[facilities.size()];
+			int facilityId=0;
+			boolean available=true;
+			for(int i = 0; i < facilities.size();i++)
 			{
-			facilities.get(i).setDecommissionedUntil(decommissionedToDate);
-			removeLine(facilityFileName,choice,1);
-			writeFile(facilities.get(i).facilityToString(),facilityFileName);
+				facilitiesName[i] = facilities.get(i).getFacilityName();
 			}
-			else
+			String choice = dropDown(facilitiesName, "Choose a facility to decommission:");
+			for(int i = 0; i< facilities.size();i++)
 			{
-				outputBoxs("Incorrect date format:Please enter a date in the form dd/MM/yyyy");
+				if (facilities.get(i).getFacilityName().equals(choice))
+				{
+					facilityId=facilities.get(i).getFacilityId();
+				}
 			}
-			 }
-		 }
-	 }
-	 }
-	 else
-	 {
-		 outputBoxs("There is a booking for this Facility, cannot decommission");
-	 }
-	 
+			for(int i=0;i<bookings.size();i++)
+			{
+				if(bookings.get(i).getFacilityId()==facilityId)
+					available=false;
+			}
+		if(available)
+		{
+		for(int i = 0; i< facilities.size();i++)
+		{
+			if(facilities.get(i).getFacilityName().equals(choice))
+			{
+				String decommissionedToDate=menuBox("Please enter a date in the form DD/MM/YYYY:");
+				boolean validDate=isValidDate(decommissionedToDate);
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+				LocalDate dDate=LocalDate.parse(decommissionedToDate,formatter);
+				if(dDate.isBefore(LocalDate.now()))
+				{
+					outputBoxs("This date is in the past, cannot decommission");
+				}
+				else
+				{
+					if(validDate)
+					{
+						facilities.get(i).setDecommissionedUntil(decommissionedToDate);
+						removeLine(facilityFileName,choice,1);
+						writeFile(facilities.get(i).facilityToString(),facilityFileName);
+					}
+					else
+					{
+						outputBoxs("Incorrect date format:Please enter a date in the form dd/MM/yyyy");
+					}
+				}
+			}
+		}
+		}
+		else
+		{
+			outputBoxs("There is a booking for this Facility, cannot decommission");
+		}
+		}
 	}
-	}
-	 /**
-	   *The user has the ability to recommission a facility that has previously been decommissioned
-	   The user is asked to choose a facility to recommission 
-	   The facility is recommissioned if it was previously decommissioned and the availability of the entry in the file is changed.
-	   
-	   *@param-none
-	   
-	   *@return-None
-	   *
-	   **/	
+   /**
+	*The user has the ability to recommission a facility that has previously been decommissioned
+	*The user is asked to choose a facility to recommission 
+	*The facility is recommissioned if it was previously decommissioned and the availability of the entry in the file is changed.
+	*
+	*@param-none
+	*@return-None
+	*
+	*/	
 	public static void recommissionFacility()throws IOException
 	{
-	if(facilities.size()==0)
-	{
-		outputBoxs("There is no facilities.");
+		if(facilities.size()==0)
+		{
+			outputBoxs("There is no facilities.");
+		}
+		else
+		{
+			String[] facilitiesName = new String[facilities.size()];
+			int facilityId=0;
+			boolean finished=false;
+			for(int i = 0; i < facilities.size();i++)
+			{
+				facilitiesName[i] = facilities.get(i).getFacilityName();
+			}
+			String choice = dropDown(facilitiesName, "Choose a facility to recommission.");
+			for (int i = 0; i< facilities.size();i++)
+			{
+				if (facilities.get(i).getFacilityName().equals(choice)&&(facilities.get(i).getAvailability()==false))
+				{
+					facilities.get(i).setDecommissionedUntil("10/10/1900");
+					finished=true;
+					removeLine(facilityFileName,choice,1);
+					writeFile(facilities.get(i).facilityToString(),facilityFileName);
+				}
+			}
+			if(!finished)
+			{
+				outputBoxs("This facility is not decommissioned");
+			}
+		}
 	}
-	else
-	{
-	 String[] facilitiesName = new String[facilities.size()];
-	 int facilityId=0;
-	 boolean finished=false;
-	 for (int i = 0; i < facilities.size();i++)
-	 {
-		 facilitiesName[i] = facilities.get(i).getFacilityName();
-	 }
-	 String choice = dropDown(facilitiesName, "Choose a facility to recommission.");
-	 for (int i = 0; i< facilities.size();i++)
-	  {
-		 if (facilities.get(i).getFacilityName().equals(choice)&&(facilities.get(i).getAvailability()==false))
-		 {
-			facilities.get(i).setDecommissionedUntil("10/10/1900");
-			finished=true;
-			removeLine(facilityFileName,choice,1);
-			writeFile(facilities.get(i).facilityToString(),facilityFileName);
-		 }
-	 }
-	 if(!finished)
-	 {
-		 outputBoxs("This facility is not decommissioned");
-	 }
-	}
-	}
-	 /**
-	   *It allows a user to make a booking for a certain facility for a certain date.
-	   *User is requested to choose a facility and enter a date to make the booking for and also choose the slot.
-	   *Adds the booking to the booking array list and also writes the information to the file
-	   *
-	   *@param-None
-	   
-	   *@return-None
-	   **/		
+   /**
+	*It allows a user to make a booking for a certain facility for a certain date.
+	*User is requested to choose a facility and enter a date to make the booking for and also choose the slot.
+	*Adds the booking to the booking array list and also writes the information to the file
+	*
+	*@param-None
+	*@return-None
+	*/		
 	public static void makeBooking()throws IOException
 	{
 	if(facilities.size()==0)
@@ -1055,15 +980,10 @@ out+=("Booking ID: "+elements[0]+"   Facility ID: "+elements[1]+"   Booking Date
 					userId=users.get(i).getUserId();
 				}
 			}
-			int check = JOptionPane.showConfirmDialog (null, "Is this booking paid for?","Booking",JOptionPane.YES_NO_OPTION);
-			if (check == JOptionPane.YES_OPTION)
-				payment = true;
-
 			Booking newBooking= new Booking(bookingId,facilityId,userId,secondDate,slotNumber,payment);
 			writeFile(newBooking.bookingToString(),bookingFileName);
 			bookings.add(newBooking);
 		}
-		
 		else if(slotNumberForBookingsOfDate.size()==9)
 		{
 			outputBoxs("There are no slots available on this date");
@@ -1085,24 +1005,12 @@ out+=("Booking ID: "+elements[0]+"   Facility ID: "+elements[1]+"   Booking Date
 			}
 			slotAsString=dropDown(dropDownListOfSlots,"The following slots are available please select one");
 			slotNumber=Integer.parseInt(slotAsString);
-			String [] dropDownOfUsersEmail= new String[users.size()];
+			String [] dropDownOfUsers= new String[users.size()];
 			for(int i=0;i<users.size();i++)
 			{
-				dropDownOfUsersEmail[i]=users.get(i).getEmail();
+				dropDownOfUsers[i]=""+users.get(i).getUserId();
 			}
-			String email=dropDown(dropDownOfUsersEmail,"Please select an email to make the booking for");
-			int userId=0;
-			for(int i=0;i<users.size();i++)
-			{
-				if(users.get(i).getEmail().equals(email))
-				{
-					userId=users.get(i).getUserId();
-				}
-			}
-			int check = JOptionPane.showConfirmDialog (null, "Is this booking paid for?","Booking",JOptionPane.YES_NO_OPTION);
-			if (check == JOptionPane.YES_OPTION)
-				payment = true;
-
+			int userId=Integer.parseInt(dropDown(dropDownOfUsers,"Please select a userId to make the booking for"));
 			Booking newBooking= new Booking(bookingId,facilityId,userId,secondDate,slotNumber,payment);
 			writeFile(newBooking.bookingToString(),bookingFileName);
 			bookings.add(newBooking);
@@ -1116,14 +1024,13 @@ out+=("Booking ID: "+elements[0]+"   Facility ID: "+elements[1]+"   Booking Date
 	}
 	}
 	
-	/**
-	 * This method returns a the time value that a 'slot', a integer value from 1 to 9. Which represents a time from 09:00 to 17:00
-	 
-	 * @param slot Integer value from 1 to 9 that is representative of a time value
-	 
-	 * @return out A string with the time value that represents the inputted slot.
-	 **/
-       public static String slotTime(int slot)
+   /**
+	*This method returns a the time value that a 'slot', a integer value from 1 to 9. Which represents a time from 09:00 to 17:00
+	*
+	*@param slot Integer value from 1 to 9 that is representative of a time value
+	*@return out A string with the time value that represents the inputted slot.
+	*/
+	public static String slotTime(int slot)
 	{
 		// slot is a value 1 to 9 representing a time value
 		String[] times = {"09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00"};
@@ -1139,19 +1046,18 @@ out+=("Booking ID: "+elements[0]+"   Facility ID: "+elements[1]+"   Booking Date
 		}
 		return out;
 	}		
-	/**
-	 *Method which records the payments the user makes.
-	 *Administrator is presented with a JOptionPane dropdown menu of bookings that have not been paid for.
-	 *Once they select the booking to pay for, it changes the boolean pay to true in the bookings array.
-	 *Rewrites the file accordingly with the new payement information.
-	 
-	 @param-None
-	 
-	 @return-None
-	**/
+   /**
+	*Method which records the payments the user makes.
+	*Administrator is presented with a JOptionPane dropdown menu of bookings that have not been paid for.
+	*Once they select the booking to pay for, it changes the boolean pay to true in the bookings array.
+	*Rewrites the file accordingly with the new payement information.
+	*
+	*@param-None
+	*@return-None
+	*/
 	
 	
-		public static void recordPayments()throws IOException
+	public static void recordPayments()throws IOException
 	{
 		if(bookings.size()==0)
 		{
