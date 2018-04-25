@@ -47,7 +47,7 @@ public class main
 	   *A method which is called when the application opens.
 	   *Creates objects based on pre-existing files in the system.
 	   *Adds each object into the appropriate Arraylist.
-	   *No input or output.
+	   *No params or return.
 	   **/	
 				public static void restore()
 		{
@@ -145,8 +145,10 @@ public class main
 	
 	 /**
 	   *A JOptionPane menu which allows the user to enter a word, digits or characters which are returned as a string.
-	   *Input -Passed a string of what it is going to be displayed on the option box
-	   *Output - whatever the user enters is returned as a string
+	   
+	   *@param String options Type is a string that represesents a the type of info you want from the user. 
+	   
+	   *@return - whatever the user enters is returned as a string
 	   *
 	   **/	  
 	public static String menuBox(String options)
@@ -166,8 +168,10 @@ public class main
 	}
 	 /**
 	   *A JOptionPane menu which allows the user to enter digits which are returned as a double.
-	   *Input -Passed a string of what it is going to be displayed on the option box
-	   *Output - whatever the user enters is returned as a double
+	   
+	   *@param String options Type is a string that represesents a the type of info you want from the user. 
+	   
+	   *@return - whatever the user enters is returned as a double
 	   *
 	   **/	  
 	public static double menuBoxDouble(String options)
@@ -190,8 +194,7 @@ public class main
 	   *Method thats called from main.
 	   *Administrator is presented with a JOptionPaneBox to create a user and enter their Email.
 	   *Writes the info of new user to Users.txt file
-	   *Input -No input
-	   *Output -No output
+	   *No params or return
 	   *
 	   **/		
 	public static void createNewUser()
@@ -221,8 +224,10 @@ public class main
 
 	 /**
 	   *Writes the input given to the file specified
-	   *input - passed a string of what the user wants to write to file and a filename of where the input is printed to.
-	   *output - the input is is wrote to file specified
+	   
+	   *@param- String input of what the user wants to write to file.
+	   *@param-String filename of where the input is printed to.
+	   *@return - the input is then wrote to file specified
 	   *
 	   **/		
 	public static void writeFile(String input, String fileName)
@@ -242,8 +247,11 @@ public class main
 	
 	 /**
 	   *A JOptionPane drop down menu which returns the index in the array of which option the user selects
-	   *Input -passed an array which are the options and also a string of what you want the JOptionPane to say
-	   *Output - returns a int which is the index in the array which the user selected
+	   
+	   *@param -String[] options is  a passed an array what options the user can choose
+	   *@param -String whatYouWantItToSay is a string of what you want the JOptionPane to print to prompt user selection
+	   
+	   *@return - returns a int which is the index in the array which the user selected
 	   *
 	   **/	
 	public static int optionBoxs(String[] options,String whatYouWantItToSay)
@@ -255,7 +263,12 @@ public class main
 	  * Searches a file for a given string in a given position and regenerates the file without the line
 	  * Copies every line from the file except the specified line and writes them to a temp file
 	  * The original file is then deleted and the temp file is renamed to the name of the original file
-	  * Input: Takes the filename, the string item to search for, and its position in a line
+	  
+	  * @param-String filename is the selcted file to remove a line from
+	  
+	  * @param-String str is the string you wish to locate in the file to locate the line you wish to delete.
+	  
+	  * @param-int pos is the position in the file line you wish to search for String str
 	  **/
 
 	
@@ -288,8 +301,10 @@ public class main
 	/**
 	  * Checks if an inputted string is a valid email address by comparing it to
 	  * a simple email pattern
-	  * Input: Takes an email string
-	  * Output: Returns a true boolean value if the email matches the pattern and 
+	  
+	  * @param-String email is a string of the user email
+	  
+	  * @return- Returns a true boolean value if the email matches the pattern and 
 	  * returns false if it does not
 	  **/                                                               // ---- can "," be accepted - other values "."
 	public static boolean validEmail(String email)
@@ -303,10 +318,15 @@ public class main
 		return isValid;
 	}
 	 /**
-	   *Boolean method to verify if user has the correct email and password to Login.
-	   *Loops through arraylist users to see if it contains email and password
-	   *Input -User enters email and password as Strings
-	   *Output -Returns a boolean based on whether the email and password correspond and if they are in the arraylist users.
+	   * Simple login method that scans user arrayList for given parameters.User is given 3 attempts
+	   * to login before the program is closed.
+	   *
+	   * @param email searches the users arraylist and calls the .getEmail() method
+	   *        and compares it to the given email.
+	   * @param password if the given email belongs to a user in the arraylist, the getPassword()
+	   *		method is called on that user and is compared to the given password.
+	   * @return returns a true boolean if both params match. Else returns false and exits the program.
+
 	   *
 	   **/		
 		public static boolean loginMethod(String email, String password) 
@@ -348,8 +368,10 @@ public class main
 	}
 	 /**
 	   *checks whether a string passed into the method is a valid date in the form dd/mm/yyyy
-	   *Input -The method is passed a string which is checked upon whether or not to be in the correct format or not
-	   *Output - the method reutrns a boolean value whether the date is valid or not.
+	   
+	   *@param -String date which is checked whether or not to be in the correct format or not
+	   
+	   *@return - the method reutrns a boolean value whether the date is valid or not.
 	   *
 	   **/		
 		public static boolean isValidDate(String date)throws IOException
@@ -370,8 +392,10 @@ public class main
 	   *Asks user to create and name facility, checks if the facility already exists.
 	   *User then inputs price per hour and date it's decomissioned till, if any.
 	   *Then adds the new facility to facilities arraylist.
-	   *Input -No input (Method calls JOptionPane inside)
-	   *Output -No output
+	   
+	   *@param -No input (Method calls JOptionPane inside)
+	   
+	   *@return -No output
 	   *
 	   **/		
 	public static void createNewFacility()
@@ -430,9 +454,10 @@ public class main
 	}
 	 /**
 	   *removes a facility from the facility array and also removes it from the facility file. A facility cannot be removed if it has a booking.
-	   *Input -The user is asked to choose a facility from a drop down in which they want to remove 
-	   *Output -The facility is removed from the facility arraylist and from the facility file.
-	   *
+	   
+	   *@param -None
+	   
+	   *@return -None
 	   **/		
 	public static void removeFacility()
 	{
@@ -478,9 +503,12 @@ public class main
 	}
 	
 	 /**
-	   *drop down menu in which the user can choose an option.
-	   *Input -passed an array of options in which the user can select and also a sting of what the menu box displays
-	   *Output -The choice in which the user selects is returned as a string
+	   *Drop down menu in which the user can choose an option.
+	   
+	   *@param-Array options is the list of options the user can choose from in the dropdown
+	   *@param-String dialogText is the Text displayed to user before picking
+	   
+	   *@return -The choice in which the user selects is returned as a string
 	   *
 	   **/		
 	public static String dropDown(String[] options, String dialogText)
@@ -495,8 +523,10 @@ public class main
 
 	 /**
 	   *Displays a message in a JOptionPane gui
-	   *Input -passed a string which is displayed to screen
-	   *Output - none
+	   
+	   *@param-String output is the message to be displayed
+	   
+	   *@return - none
 	   *
 	   **/		
 	public static void outputBoxs(String output)
@@ -505,8 +535,11 @@ public class main
 	}
 	 /**
 	   *Gui for the administrator to navigate through commands
-	   *Input - admin selects an option which is then passed through switch statements to call the correct method
-	   *Output - the method selected is called an executed 
+	   *admin selects an option which is then passed through switch statements to call the correct method
+	   
+	   *@param- none
+	   
+	   *@return-none
 	   *
 	   **/	
 	public static void adminMenu()
@@ -561,9 +594,11 @@ public class main
 		{}
 	}
 	 /**
-	   *Gui for the administrator to navigate through commands
-	   *Input - admin selects an option which is then passed through switch statements to call the correct method
-	   *Output - the method selected is called an executed 
+	   *Gui for the administrator to navigate through commands. Admin selects an option which is then passed through switch statements to call the correct method
+	   
+	   *@param- None 
+	   
+	   *@return -None
 	   *
 	   **/	
 	public static void userMenu()
@@ -585,9 +620,12 @@ public class main
 		}	
 	}
 	 /**
-	   *Allows the current user to view their own booking
-	   *Input - Uses the global variable of the currentUserId to distinguish bookings.
-	   *Output - The users bookings are displayed to screen
+	   *Allows the current user to view their own booking. Uses the global variable of the currentUserId to distinguish bookings.
+	    The users bookings are displayed to screen
+	   
+	   *@param - None
+	   
+	   *@return -None
 	   *
 	   **/	
 	public static void viewBookings()
@@ -619,6 +657,7 @@ out+=("Booking ID: "+elements[0]+"   Facility ID: "+elements[1]+"   Booking Date
 	 * Method that takes in a users id and returns the amount owed by that user.
 	 *
          *@param userId this is the ID number of the user 
+	 
 	 *@return statement this is the output of the users Id, their email address and the amount due for the user.
 	 **/	
 	 public static String accountStatement(int userId) 
@@ -661,9 +700,12 @@ out+=("Booking ID: "+elements[0]+"   Facility ID: "+elements[1]+"   Booking Date
 	// viewFacility() - method made - still currently refactoring/making presentable
 	 /**
 	   *Shows a user which slots are booked for a certain facility on a certain date
-	   *Input - The user is asked to choose a facility from a dropdown and also asked to input a date to view the bookings
-	   *Output - The slots which are booked for the facility on the date are displayed to screen
-	   *
+	   The user is asked to choose a facility from a dropdown and also asked to input a date to view the bookings
+	   The slots which are booked for the facility on the date are displayed to screen
+	   
+	   *@param-none
+	   
+	   *@return-none
 	   **/	
 	public static void viewFacility(int type)throws IOException //check what slots are free or booked for a certain date
 	{
@@ -799,9 +841,12 @@ out+=("Booking ID: "+elements[0]+"   Facility ID: "+elements[1]+"   Booking Date
 	}
 	 /**
 	   *The user has the ability to decommission a facility that is not decommissioned already
-	   *Input -the user is asked to choose a facility to recommissioned  and enter a date for the facility to be decommissioned
-	   *Output - The facility is decommissioned if it has no bookings and already isnt decommissioned and the availability of the entry in the file is changed.
-	   *
+	   The user is asked to choose a facility to recommissioned  and enter a date for the facility to be decommissioned
+	   The facility is decommissioned if it has no bookings and already isnt decommissioned and the availability of the entry in the file is changed.
+	   
+	   *@param -None
+	   
+	   @return-None
 	   **/	
 	public static void decommissionFacility()throws IOException
 	{
@@ -870,8 +915,12 @@ out+=("Booking ID: "+elements[0]+"   Facility ID: "+elements[1]+"   Booking Date
 	}
 	 /**
 	   *The user has the ability to recommission a facility that has previously been decommissioned
-	   *Input -the user is asked to choose a facility to recommission 
-	   *Output - The facility is recommissioned if it was previously decommissioned and the availability of the entry in the file is changed.
+	   The user is asked to choose a facility to recommission 
+	   The facility is recommissioned if it was previously decommissioned and the availability of the entry in the file is changed.
+	   
+	   *@param-none
+	   
+	   *@return-None
 	   *
 	   **/	
 	public static void recommissionFacility()throws IOException
@@ -908,9 +957,12 @@ out+=("Booking ID: "+elements[0]+"   Facility ID: "+elements[1]+"   Booking Date
 	}
 	 /**
 	   *It allows a user to make a booking for a certain facility for a certain date.
-	   *Input - passed no arguments but the user is requested to choose a facility and enter a date to make the booking for and also choose the slot.
-	   *Output - adds the booking to the booking array list and also writes the information to the file
+	   *User is requested to choose a facility and enter a date to make the booking for and also choose the slot.
+	   *Adds the booking to the booking array list and also writes the information to the file
 	   *
+	   *@param-None
+	   
+	   *@return-None
 	   **/		
 	public static void makeBooking()throws IOException
 	{
@@ -1034,7 +1086,9 @@ out+=("Booking ID: "+elements[0]+"   Facility ID: "+elements[1]+"   Booking Date
 	
 	/**
 	 * This method returns a the time value that a 'slot', a integer value from 1 to 9. Which represents a time from 09:00 to 17:00
+	 
 	 * @param slot Integer value from 1 to 9 that is representative of a time value
+	 
 	 * @return out A string with the time value that represents the inputted slot.
 	 **/
        public static String slotTime(int slot)
@@ -1058,6 +1112,10 @@ out+=("Booking ID: "+elements[0]+"   Facility ID: "+elements[1]+"   Booking Date
 	 *Administrator is presented with a JOptionPane dropdown menu of bookings that have not been paid for.
 	 *Once they select the booking to pay for, it changes the boolean pay to true in the bookings array.
 	 *Rewrites the file accordingly with the new payement information.
+	 
+	 @param-None
+	 
+	 @return-None
 	**/
 	
 	
