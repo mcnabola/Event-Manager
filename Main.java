@@ -677,28 +677,29 @@ out+=("Booking ID: "+elements[0]+"   Facility ID: "+elements[1]+"   Booking Date
 			if (users.get(j).getUserId() == userId)
 				userEmail = users.get(j).getEmail();
 		}
-	    String statement = ("User ID: "+userId + "    Email: " + userEmail +"    Amount Due: "+symbol+amountDue);
-             if (bookings.size() == 0){
-             for (int i = 0; i < bookings.size(); i++)
-	     {
-             if (bookings.get(i).getUserId() == userId)
-		     {
-	             int facilityID = bookings.get(i).getFacilityId();
-		     for (int y=0; i < facilities.size();y++)
-                     {
-	                     if (facilities.get(y).getFacilityId() == facilityID)
-			     {
-			         if (bookings.get(i).getPaymentStatus() == false)
-	     	                 {
-			         amountDue += facilities.get(y).getPricePerHour();                     
-                                 statement = "User ID: "+userId + "    Email: " + userEmail + "    Amount Due: "+symbol+ ""+ amountDue;									
-				 }  
-		             }
-                      }
-		     }				
-		 }
-	     }
-            else statement="No bookings";
+        
+		if (bookings.size() != 0)
+		{
+			for (int i = 0;i<bookings.size();i++)
+			{
+				if (bookings.get(i).getUserId() == userId)
+				{
+					int facilityId = bookings.get(i).getFacilityId();
+					boolean payment = bookings.get(i).getPaymentStatus();
+					if (!payment)
+					{
+						for (int j = 0;j<facilities.size();j++)
+						{
+							if (facilities.get(j).getFacilityId() == facilityId)
+							{
+								amountDue += facilities.get(j).getPricePerHour();
+							}
+						}
+					}
+				}
+			}
+		}   
+          String statement = "User ID: "+userId + "    Email: " + userEmail + "    Amount Due: "+symbol+ ""+ amountDue;									
 	    return statement;
      }
 	
@@ -755,42 +756,53 @@ out+=("Booking ID: "+elements[0]+"   Facility ID: "+elements[1]+"   Booking Date
 		     catch(Exception e){}
 		 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
              LocalDate date = LocalDate.parse(d1, formatter);
+			 date = date.minusDays(1);
 		     LocalDate date2 = LocalDate.parse(d2, formatter);
 		 
-		     int dateDifference = date.compareTo(date2);
-		 
+		   //  int dateDifference = date.compareTo(date2);
+			
+			 
+			// Duration duration = Duration.between(date, date2);
+			//long ff1 = Math.abs(duration.toDays());
+			//int ff = (int) ff1;
+			 int firstDate=date.getYear();
+			 int secondDates=date2.getYear();
+			  LocalDate secondDate = LocalDate.now();
+			 if(firstDate==secondDates)
+			 {
+			 
+			 firstDate=date.getDayOfYear();
+			 secondDates=date2.getDayOfYear();
+			 int difference= secondDates-firstDate;
+			 
 		 /// compare to -- different way of using it 
-		     int ff = Math.abs(dateDifference); 
-	
 		/// only want to limit to a week in difference as anything greater will be too much and break the JOptionPane
-             LocalDate secondDate = LocalDate.now();
-     		 if (ff<=7)
+     		 if (difference<=8&&difference>-1)
 		     {
-		
-		     String[] names = new String[ff];
-		     LocalDate temp = date;
-		     String output;
-		     int count = 0;
-		     while (temp.isBefore(date2))
-		     {
-		     temp = temp.plusDays(1);
-		     output = temp.format(formatter);
-			 names[count] = output;
-			 count++;
+			     System.out.println(difference+"      777");
+     		     String[] names = new String[difference];
+	    	     LocalDate temp = date;
+		         String output;
+		         int count = 0;
+		         for(int i=0;i<difference;i++){
+		             temp = temp.plusDays(1);
+		             output = temp.format(formatter);
+			          names[count] = output;
+			         count++;
+		         }
+		         // user chooses date from the dropDown
+		         String dateChoice = dropDown(names, "Choose a date to view");
+                 secondDate = LocalDate.parse(dateChoice,formatter);
 		     }
-		 
-		     // user chooses date from the dropDown
-		     String dateChoice = dropDown(names, "Choose a date to view");
-             secondDate = LocalDate.parse(dateChoice,formatter);
-		     }
-		     else{	 
-	         String date11=menuBox("You have selected dates outside a range capable of Joptionpane\nEnter a date search between:");
-	         boolean validDate=isValidDate(date11);
-	         if(validDate)
-	         {
-	             //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-	             secondDate=LocalDate.parse(date11,formatter);
+			 else{// reason:: JOptionPane pane cant handle displaying each date in a drop down between e.g Jan01 and Dec01
+                     outputBoxs("The difference between the two dates is not seven.  ");
+					 return;
 			 }	
+		     }
+			 
+		     else{	 
+					outputBoxs("You can only search between dates in the same year.");
+					return;
 		     }
 			 
 	 
@@ -817,12 +829,14 @@ out+=("Booking ID: "+elements[0]+"   Facility ID: "+elements[1]+"   Booking Date
 	 }
 	 if(available==true)
 	 {
-		 outputBoxs("There is no bookings for this date.");
+		 outputBoxs("There are no bookings for this date.");
 	 }
 	 else
 	 { 
-	 String result="The current slots on the "+date+" are booked:"+"\n";
-	 String avail = "Current free slots on " + date + " are available\n";
+		date = date.plusDays(1);
+		String temp3 = date.format(formatter);
+	 String result="The current slots on the "+temp3+" are booked:"+"\n";
+	 String avail = "Current free slots on " + temp3 + " are available\n";
 	 for (int i = 1 ; i< 10;i++)
 	 {
          if (slotNumberForBookingsOfDate.contains(i))
@@ -853,7 +867,7 @@ out+=("Booking ID: "+elements[0]+"   Facility ID: "+elements[1]+"   Booking Date
 	{
 	 	if(facilities.size()==0)
 	{
-		outputBoxs("There is no facilities.");
+		outputBoxs("There are no facilities.");
 	}
 	else
 	{
@@ -1041,10 +1055,15 @@ out+=("Booking ID: "+elements[0]+"   Facility ID: "+elements[1]+"   Booking Date
 					userId=users.get(i).getUserId();
 				}
 			}
+			int check = JOptionPane.showConfirmDialog (null, "Is this booking paid for?","Booking",JOptionPane.YES_NO_OPTION);
+			if (check == JOptionPane.YES_OPTION)
+				payment = true;
+
 			Booking newBooking= new Booking(bookingId,facilityId,userId,secondDate,slotNumber,payment);
 			writeFile(newBooking.bookingToString(),bookingFileName);
 			bookings.add(newBooking);
 		}
+		
 		else if(slotNumberForBookingsOfDate.size()==9)
 		{
 			outputBoxs("There are no slots available on this date");
@@ -1066,12 +1085,24 @@ out+=("Booking ID: "+elements[0]+"   Facility ID: "+elements[1]+"   Booking Date
 			}
 			slotAsString=dropDown(dropDownListOfSlots,"The following slots are available please select one");
 			slotNumber=Integer.parseInt(slotAsString);
-			String [] dropDownOfUsers= new String[users.size()];
+			String [] dropDownOfUsersEmail= new String[users.size()];
 			for(int i=0;i<users.size();i++)
 			{
-				dropDownOfUsers[i]=""+users.get(i).getUserId();
+				dropDownOfUsersEmail[i]=users.get(i).getEmail();
 			}
-			int userId=Integer.parseInt(dropDown(dropDownOfUsers,"Please select a userId to make the booking for"));
+			String email=dropDown(dropDownOfUsersEmail,"Please select an email to make the booking for");
+			int userId=0;
+			for(int i=0;i<users.size();i++)
+			{
+				if(users.get(i).getEmail().equals(email))
+				{
+					userId=users.get(i).getUserId();
+				}
+			}
+			int check = JOptionPane.showConfirmDialog (null, "Is this booking paid for?","Booking",JOptionPane.YES_NO_OPTION);
+			if (check == JOptionPane.YES_OPTION)
+				payment = true;
+
 			Booking newBooking= new Booking(bookingId,facilityId,userId,secondDate,slotNumber,payment);
 			writeFile(newBooking.bookingToString(),bookingFileName);
 			bookings.add(newBooking);
