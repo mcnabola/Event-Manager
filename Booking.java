@@ -3,9 +3,9 @@ import java.text.*;
 import java.time.*;
 import java.time.format.*;
 	 /**
-	   *
-	   *Input -
-	   *Output -
+	   *Creating a Booking class with object varialbes
+	   *Input -none
+	   *Output -none
 	   *
 	   **/	
 public class Booking
@@ -20,9 +20,9 @@ public class Booking
 
 	//FOR RESTORING - MAY ADD FURTHER CONSTRUCTORS
 	 /**
-	   *
-	   *Input -
-	   *Output -
+	   *Construcutor method to create Booking object
+	   *Input -Int booking id, int facility id, int user id, localDate of booking, int of booking slot, boolean of whether the user has paid or not
+	   *Output -None
 	   *
 	   **/	
 	   public Booking(int bookingId, int facilityId, int userId, LocalDate bookingDate, int bookingSlot, boolean paymentStatus)
@@ -34,7 +34,12 @@ public class Booking
 		this.bookingSlot 	= bookingSlot;
 		this.paymentStatus	= paymentStatus;
 	}
-	
+	/**
+	   *Construcutor method to create Booking object
+	   *Input -Int booking id, int facility id, int user id, String of bookingdate, int of booking slot, boolean of whether the user has paid or not
+	   *Output -None
+	   *
+	   **/	
 	   public Booking(int bookingId, int facilityId, int userId, String bookingDate, int bookingSlot, boolean paymentStatus)
 	{
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -46,9 +51,9 @@ public class Booking
 		this.paymentStatus	= paymentStatus;
 	}
 	 /**
-	   *
-	   *Input -
-	   *Output -
+	   *Get method for BookingId of the booking made
+	   *Input -None
+	   *Output -Returns int of the BookingId
 	   *
 	   **/		
 	public int getBookingId()
@@ -56,9 +61,9 @@ public class Booking
 		return bookingId;
 	}
 	 /**
-	   *
-	   *Input -
-	   *Output -
+	   *Get method for FacilityId of the booking
+	   *Input -None
+	   *Output -Returns int of the FacilityId
 	   *
 	   **/		
 	public int getFacilityId()
@@ -66,9 +71,9 @@ public class Booking
 		return facilityId;
 	}
 	 /**
-	   *
-	   *Input -
-	   *Output -
+	   *Get method for UserId of the booking made
+	   *Input -None
+	   *Output -Returns int of the UserId that made the booking
 	   *
 	   **/		
 	public int getUserId()
@@ -76,9 +81,9 @@ public class Booking
 		return userId;
 	}
 	 /**
-	   *
-	   *Input -
-	   *Output -
+	   *Get method for the booking date of the booking made
+	   *Input -None
+	   *Output -Returns LocalDate of the day the booking is for
 	   *
 	   **/		
 	public LocalDate getBookingDate()
@@ -86,9 +91,9 @@ public class Booking
 		return bookingDate;
 	}
 	 /**
-	   *
-	   *Input -
-	   *Output -
+	   *Get method for the slot for which the booking is made
+	   *Input -None
+	   *Output -Returns int of the booking slot the booking is made for on that date
 	   *
 	   **/		
 	public int getBookingSlot()
@@ -96,9 +101,9 @@ public class Booking
 		return bookingSlot;
 	}
 	 /**
-	   *
-	   *Input -
-	   *Output -
+	   *Get method for whether the user has paid for their booking or not
+	   *Input -None
+	   *Output -Returns Boolean of PaymentStatus true if they have paid for booking
 	   *
 	   **/		
 	public boolean getPaymentStatus()
@@ -106,9 +111,9 @@ public class Booking
 		return paymentStatus;
 	}
 	 /**
-	   *
-	   *Input -
-	   *Output -
+	   *Mehtod to convert all Booking info made to one String
+	   *Input -None
+	   *Output -reurns String info,which contains all booking variables seperated by a ","
 	   *
 	   **/		
 	public String bookingToString()
@@ -118,9 +123,9 @@ public class Booking
 		return info;
 	}
 	 /**
-	   *
-	   *Input -
-	   *Output -
+	   *Set Method to give a booking a date
+	   *Input -String of date the user wishes to book for
+	   *Output -None
 	   *
 	   **/	
 	public void setBookingDate(String aDate)
@@ -128,16 +133,21 @@ public class Booking
 		this.bookingDate = LocalDate.parse(aDate);
 	}
 	 /**
-	   *
-	   *Input -
-	   *Output -
+	   *Set Method to give a booking a date
+	   *Input -LocalDate of date the user wishes to book for
+	   *Output -None
 	   *
 	   **/		
 	public void setBookingDate(LocalDate aDate)
 	{
 		this.bookingDate = aDate;
 	}
-	
+	/**
+	   *Set Method to give a booking a payment status
+	   *Input -Boolean of wheter the user has paid or not for the booking
+	   *Output -None
+	   *
+	   **/	
 	public void setPaymentStatus(boolean paymentStatus)
 	{
 	       this.paymentStatus=paymentStatus;
