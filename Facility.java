@@ -2,11 +2,11 @@ import java.util.*;
 import java.text.*;
 import java.time.*;
 import java.time.format.*;
-	/**
-	 * Public class for a Facility
-	 *
-	 */	
-	public class Facility
+/**
+ * Public class for a Facility
+ *
+ */	
+public class Facility
 {
 	public int facilityId;
 	public String facilityName;
