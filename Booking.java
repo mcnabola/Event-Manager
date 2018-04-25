@@ -2,12 +2,12 @@ import java.util.*;
 import java.text.*;
 import java.time.*;
 import java.time.format.*;
-	/**
-	 *Public Class for Bookings
-	 *
-	 */	
-	public class Booking
-	{
+/**
+ *Public Class for Bookings
+ *
+ */	
+public class Booking
+{
 	public int bookingId;
 	public int facilityId;
 	public int userId;
