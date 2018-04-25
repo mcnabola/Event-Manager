@@ -18,12 +18,11 @@ import java.time.format.*;
 	/**
 	 *Constructor method if the user "does not want" to decomission the facility, this constructor is used.
 	 * 
-	 *@param-Int facilityId is the Id of the facility
-	 *@param-String facilityName is the name of the facility
-	 *@param-Double pricePerHour is the price of facility to book per time slot. 
-	 *@return-None
+	 *@param facilityId Inputs the Id of the facility
+	 *@param facilityName Inputs the name of the facility
+	 *@param pricePerHour Inputs the price of the facility to book per time slot. 
 	 *
-	 */	
+	 */		
 	public Facility(int facilityId, String facilityName, double pricePerHour)
 	{
 		this.facilityId 		 = facilityId;
