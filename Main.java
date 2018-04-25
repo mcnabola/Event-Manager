@@ -406,7 +406,6 @@ public class main
 	   **/		
 	public static void createNewFacility()
 	{
-		Facility aFacility;
 		String date;
 		int facilityId;
 		int temp = 0;
@@ -435,7 +434,9 @@ public class main
 			}	
 			
 			double pricePerHour 	= menuBoxDouble("please enter a price per hour:");
+			Facility aFacility = new Facility(facilityId, facilityName, pricePerHour);
 			int decommissionChoice 	= JOptionPane.showConfirmDialog (null, "Do you want to decommission this facility?","Facility",JOptionPane.YES_NO_OPTION);
+			
 			
 			if (decommissionChoice == JOptionPane.YES_OPTION)
 			{
@@ -446,17 +447,14 @@ public class main
 					date = menuBox("Please enter a valid date:\nFormat(DD/MM/YYYY)");
 					check = isValidDate(date);
 				}
-				aFacility = new Facility(facilityId, facilityName, pricePerHour, date);
+				aFacility.setDecommissionedUntil(date);
 			}
-			else
-				aFacility = new Facility(facilityId, facilityName, pricePerHour);
-			
 			facilities.add(aFacility);
 			String info = aFacility.facilityToString();
 			writeFile(info,facilityFileName);
 		}
 		catch(Exception e)
-		{}
+		{System.out.println(e.getMessage());}
 	}
 	 /**
 	   *removes a facility from the facility array and also removes it from the facility file. A facility cannot be removed if it has a booking.
