@@ -7,7 +7,7 @@ import java.time.format.*;
  *
  */	
 public class Booking
-{
+	{
 	public int bookingId;
 	public int facilityId;
 	public int userId;
@@ -40,13 +40,13 @@ public class Booking
 	 *Construcutor method to create Booking object
 	 *  
 	 *@param bookingId is the Id of the booking
-	 *@param facility is the Id of the facility for which the booking is made for
-	 *@param UserId is the Id of the user who made the booking
+	 *@param facilityId is the Id of the facility for which the booking is made for
+	 *@param userId is the Id of the user who made the booking
 	 *@param bookingDate is the date of when the booking is made for
 	 *@param bookingSlot is the position of the day/time the booking is made for
 	 *@param paymentStatus is the boolean of whether the user has paid for this booking or not
 	 *
-	 */	
+	 */
 	   public Booking(int bookingId, int facilityId, int userId, String bookingDate, int bookingSlot, boolean paymentStatus)
 	{
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -60,7 +60,7 @@ public class Booking
 	/**
 	 *Get method for BookingId of the booking made
 	 *    
-	 *@return getBookingId Returns the booking id of a booking object.
+	 *@return  Returns the booking id of a booking object.
 	 *
 	 */		
 	public int getBookingId()
@@ -72,7 +72,7 @@ public class Booking
 	 * 	   
 	 *@return facilityId Returns a int of the facilities id number.
 	 *
-	  */		
+	 */		
 	public int getFacilityId()
 	{
 		return facilityId;
@@ -80,7 +80,7 @@ public class Booking
 	/**
 	 *Get method for UserId of the booking made
 	 *  
-	 *@retutn userID Returns a int of the UserId that is made for the booking
+	 *@return userID Returns a int of the UserId that is made for the booking
 	 *
 	 */		
 	public int getUserId()
@@ -100,7 +100,6 @@ public class Booking
 	/**
 	 *Get method for the slot for which the booking is made
 	 *
-	 *  
 	 *@return bookingSlot The booking is made for on that date
 	 *
 	 */		
@@ -111,7 +110,7 @@ public class Booking
 	/**
 	 *Get method for whether the user has paid for their booking or not
 	 *    
-	 *return paymentStatus Boolean return based on payment status.
+	 *@return paymentStatus Boolean return based on payment status.
 	 *
 	 */		
 	public boolean getPaymentStatus()
@@ -135,7 +134,6 @@ public class Booking
 	 *
 	 *@param aDate Date entered as a String is the date the user wishes to book for
 	 *
-	 *
 	 */	
 	public void setBookingDate(String aDate)
 	{
@@ -146,7 +144,6 @@ public class Booking
 	 *
 	 *@param aDate date the user wishes to book for
 	 *
-	 *
 	 */		
 	public void setBookingDate(LocalDate aDate)
 	{
@@ -156,7 +153,6 @@ public class Booking
 	 *Set Method to give a booking a payment status
 	 *
 	 *@param paymentStatus Boolean of whether the user has paid for the booking or not
-	 *
 	 *
 	 */	
 	public void setPaymentStatus(boolean paymentStatus)
