@@ -22,7 +22,7 @@ public class Facility
 	 *@param facilityName Inputs the name of the facility
 	 *@param pricePerHour Inputs the price of the facility to book per time slot. 
 	 *
-	 */		
+	 */	
 	public Facility(int facilityId, String facilityName, double pricePerHour)
 	{
 		this.facilityId 		 = facilityId;
@@ -68,7 +68,7 @@ public class Facility
 	}
 	/**
 	 *Method to Get Facility ID of facility.
-	 *  
+	 *
 	 *@return facilityId Returns a int of the ID number of the facility.
 	 *
 	 */	
@@ -77,9 +77,9 @@ public class Facility
 		return facilityId;
 	}
 	/**
-	 *Method to return the Name of a facility.
+	 *Method to return the name of a facility.
 	 *  
-	 *@return facilityName A String returning the name of a facility.
+	 *@return facilityName a String returning the name of a facility.
 	 *
 	 */	
 	public String getFacilityName()
@@ -89,6 +89,7 @@ public class Facility
 	/**
 	 *Method to Price per hour of facility
 	 *  
+	 *
 	 *@return pricePerHour Returns a double value of the price per hour of the facility. -
 	 *
 	 */	
@@ -98,7 +99,7 @@ public class Facility
 	}
 	/**
 	 *Method to get the decommissioned date for a facility.
-	 *   
+	 *  
 	 *@return decommissionedUntil Returns a LocalDate of the date of decomission for a facility
 	 *
 	 */		
@@ -109,9 +110,9 @@ public class Facility
 	/**
 	 *Method to get a String containing all of the facilities information available.
 	 *    
-	 *@return    returns String containing facility information.
+	 *@return-returns String of facility information
 	 *
-	 */		
+	  */		
 	public String facilityToString()
 	{
 		String info = "";
@@ -133,9 +134,9 @@ public class Facility
 		return info;
 	}
 	/**
-	 *Method to check if a facility is available or decommissioned.  
-	 *
-	 *return    Returning a boolean based on the availability of the facility.
+	 *Method to check if a facility is available or decommissioned.
+	 *  
+	 *@return    Returning a boolean based on the availability of the facility.
 	 *
 	 */		
 	public boolean getAvailability()
@@ -152,12 +153,13 @@ public class Facility
 	 *  
 	 *@param aDate String of a date that you want to decommision a facility until. 
 	 *
+	 *
 	 */		
 	public void setDecommissionedUntil(String aDate)//SET WITH A STRING
 	{
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-			this.decommissionedUntil=LocalDate.parse(aDate,formatter);
-			this.available		 = getAvailability();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		this.decommissionedUntil=LocalDate.parse(aDate,formatter);
+		this.available		 = getAvailability();
 	}
 	/**
 	 *Set method to assign a decommission date to a facility object.
@@ -170,6 +172,4 @@ public class Facility
 		this.decommissionedUntil = aDate;
 		this.available = getAvailability();
 	}
-	
-	
 }
