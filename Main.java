@@ -35,10 +35,8 @@ public class main
 					userMenu();
 					
 				}
-				else System.exit(0);
-				
+				else System.exit(0);	
 	}	 
-	
 	
 	/**
 	 *
@@ -226,10 +224,10 @@ public class main
 	 *Writes the input given to the file specified
 	 *
 	 *@param input Input of string type of what the user wants to write to file.
-	 *@param filename Filename of where the input is to be written to file.
+	 *@param fileName Filename of where the input is to be written to file.
 	 *
 	 */		
-	public static void writeFile(String input, String fileName)
+	public static void writeFile(String input, String fileName) 
     {
 		try
 	    {
@@ -265,9 +263,10 @@ public class main
 	 *@param filename File name of the selcted file to remove a line from
 	 *@param str String you wish to locate in the file that you wish to delete.
 	 *@param pos Position in the file line you wish to search for String str
+	 *@throws IOException Removing a line from a file.
 	 */
 	public static void removeLine(String filename, String str, int pos)throws IOException
-	{
+	{  
 		File aFile 	  = new File(filename);
 		String lineFromFile = "";
 		String fileOutput = "";
@@ -363,10 +362,10 @@ public class main
 	 *  
 	 *@param date checker to see whether or not date is in the correct format or not
 	 *@return  Method reutrns a boolean value whether the date is valid or not.
-	 *
+	 *@throws IOException Try & Catch
 	 */		
 	public static boolean isValidDate(String date)throws IOException
-	{
+	{ 
 		try
 		{
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -674,9 +673,10 @@ out+=("Booking ID: "+elements[0]+"   Facility ID: "+elements[1]+"   Booking Date
 	 *The slots which are booked for the facility on the date are displayed to screen
 	 *
 	 *@param type This is a int 0 or 1 and depending on where this method is called in the adminMenu() 0 or 1 will be passed through which will display availabilies of a facility or the bookings.
+	 *@throws IOException Writing to Facilities file.
 	 */	
 	public static void viewFacility(int type)throws IOException 
-	{
+	{ 
 		if(facilities.size()==0)
 		{
 			outputBoxs("There are no facilities.");
@@ -805,9 +805,10 @@ out+=("Booking ID: "+elements[0]+"   Facility ID: "+elements[1]+"   Booking Date
 	 *The user is asked to choose a facility to decommission and enter a date for the facility to be decommissioned
 	 *The facility is decommissioned if it has no bookings and already isn't decommissioned. Then the availability of the entry in the file is changed.
 	 *  
+	 *@throws IOException Writing to Facilities File.
 	 */	
 	public static void decommissionFacility()throws IOException
-	{
+	{ 
 	 	if(facilities.size()==0)
 	{
 		outputBoxs("There are no facilities.");
@@ -876,6 +877,7 @@ out+=("Booking ID: "+elements[0]+"   Facility ID: "+elements[1]+"   Booking Date
 	 *The user is asked to choose a facility to recommission 
 	 *The facility is recommissioned if it was previously decommissioned. Then the availability of the entry in the file is changed.
 	 *  
+	 *@throws IOException Writing to Facilities file.
 	 */	
 	public static void recommissionFacility()throws IOException
 	{
@@ -914,9 +916,10 @@ out+=("Booking ID: "+elements[0]+"   Facility ID: "+elements[1]+"   Booking Date
 	 *User is requested to choose a facility and enter a date to make the booking for and also choose the slot.
 	 *Adds the booking to the booking array list and also writes the information to the file
 	 *
+	 *@throws IOException Writing to Bookings file
 	 */		
 	public static void makeBooking()throws IOException
-	{
+	{ 
 	if(facilities.size()==0)
 	{
 		outputBoxs("There is no facilities.");
@@ -1056,9 +1059,10 @@ out+=("Booking ID: "+elements[0]+"   Facility ID: "+elements[1]+"   Booking Date
 	 *Once they select the booking to pay for, it changes the boolean pay to true in the bookings array.
 	 *Rewrites the file accordingly with the new payement information.
 	 *
+	 *@throws IOException Writing to Bookings File
 	**/
 	public static void recordPayments()throws IOException
-	{
+	{ 
 		if(bookings.size()==0)
 		{
 			outputBoxs("There is no bookings to record payments for.");
