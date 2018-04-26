@@ -15,7 +15,7 @@ public class User
 	 *@param userId is the Id of user
 	 *@param email is the email of user
 	 *@param password is the password of user
-	 *@param usertype is the type of user-1=admin,2=user
+	 *@param userType is the type of user-1=admin,2=user
 	 */	
 	public User(int userId, String email, String password, int userType) 
 	{
@@ -29,10 +29,10 @@ public class User
 	 *Calls the generatepassword method to create password.
 	 *Automatically assigns usertype to 2.
 	 *
-	 *@param-Int userId is the Id of user
-	 *@param-String email is the email of user
+	 *@param userId Id of user
+	 *@param email is the email of user
 	 *
-	 */		
+	 */
 	public User(int userId, String email) //For adding new user
 	{
 		this.userId 	= userId;
@@ -82,7 +82,6 @@ public class User
 	}
 	/**
 	  *Get method to return Password of user. 
-	  *
 	  *
 	  *@return password String Password of user
 	  *
