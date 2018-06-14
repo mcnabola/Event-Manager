@@ -82,9 +82,9 @@ public class main
 			in = new Scanner(aFile);
 			while (in.hasNext())
 			{
-				lineFromFile 			= in.nextLine();
-				fileElements 			= lineFromFile.split(",");
-				int facilityId 			= Integer.parseInt(fileElements[0]);
+				lineFromFile 		= in.nextLine();
+				fileElements 		= lineFromFile.split(",");
+				int facilityId 		= Integer.parseInt(fileElements[0]);
 				String facilityName 	= fileElements[1];
 				Double pricePerHour  	= Double.parseDouble(fileElements[2]);
 				if (fileElements.length == 4)
@@ -141,7 +141,7 @@ public class main
 	
 	/**
 	 *A JOptionPane menu which allows the user to enter a word, digits or characters which are returned as a string.
-     *
+	 *
 	 *@param options Enters a string to prompt a response from the user.   
 	 *@return   Whatever the user enters in the JOptionPane is returned as a string
 	 *
